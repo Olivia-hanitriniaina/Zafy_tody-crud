@@ -22,7 +22,7 @@
     <div class="container">
         <img src="<?=base_url('/assets/images/logo.png')?>" alt="logo" id="logo">
         <?= form_open('authentification/login',array('class'=>'form')) ?>
-        <fieldset>
+        <fieldset class="scheduler-border">
             <div class="form-group">
                 <?= form_label("Adresse email&nbsp:","adresse_email")?>
                 <?= form_input(['name'=>'adresse_email','id'=>'adresse_email','class'=>'form-control'],set_value('adresse_email'))?>
