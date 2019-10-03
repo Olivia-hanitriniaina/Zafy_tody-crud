@@ -8,21 +8,19 @@
 
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/font-awesome.min.css')?>">
-    <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap-theme.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/login_form.css')?>">
 
     
 
 </head>
 <body>
-   
         
 
     <?php $this->load->helper('form') ?>
     <div class="container">
         <img src="<?=base_url('/assets/images/logo.png')?>" alt="logo" id="logo">
         <?= form_open('authentification/login',array('class'=>'form')) ?>
-        <fieldset>
+        <fieldset class = "scheduler-border">
             <div class="form-group">
                 <?= form_label("Adresse email&nbsp:","adresse_email")?>
                 <?= form_input(['name'=>'adresse_email','id'=>'adresse_email','class'=>'form-control'],set_value('adresse_email'))?>
@@ -45,7 +43,7 @@
             <?php if(!empty($error)): ?>
                 <div class="alert alert-danger" style="text-align:center"><?=$error?></div>
             <?php elseif(!empty($mail_error) AND !empty($passeword_error) ):?>
-                <div class="alert alert-danger" style="text-align:center"><?=$mail_error.''.$passeword_error?></div>
+                <div class="alert alert-danger" style="text-align:center"><?=$mail_error.'and'.$passeword_error?></div>
             <?php elseif(!empty($mail_error)):?>
                 <div class="alert alert-danger" style="text-align:center"><?=$mail_error?></div>
             <?php elseif(!empty($passeword_error)):?>
