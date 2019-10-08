@@ -17,7 +17,7 @@ class Authentification extends CI_Controller{
                 $this->form_validation->set_rules('password','Mot de passe','required');
                 if($this->form_validation->run()==TRUE){
                     $found=$this->auth_model->read($adresse_email,$password);
-                    if(is_array($found)){
+                    if(is_array($found)){;
                         redirect('site/acceuil','location');
                     }else{
                         $error='Identifiant ou mot de passe incorrecte!';

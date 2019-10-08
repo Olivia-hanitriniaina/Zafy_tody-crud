@@ -1,0 +1,30 @@
+td.titre{
+  text-align: center;
+  font-size: 1.3em;
+  color: white;
+  background-color: blue;
+  
+}
+
+th{
+  font-size: 1.5em;
+  text-align: center;
+  background-color: rgba(255,0,0,0.2)
+}
+th.numero , th.reponse{
+  width: 4%;
+}
+th.observation{
+  width: 20%
+}
+td.num{
+  text-align: center;
+  font-weight: bold;
+}
+.fusion{
+  border-collapse: initial
+}
+span{
+  font-style: italic;
+  font-size:1.2em;
+}
