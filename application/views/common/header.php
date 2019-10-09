@@ -26,24 +26,31 @@
            
             <div class="collapse navbar-collapse" id="main-menu" style="margin-bottom: 0px;">
                 <ul class="nav navbar-nav">
-                    <li><?=anchor("site/acceuil","Acceuil")?></li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#">Fiche de visite <b class="caret"></b></a>
-                        <ul class="dropdown-menu jqueryfadeIn">
-                            <li class="dropdown-header"><h5>Tour de sécurité CODIR</h5></li>
-                            <li><?=anchor("site/station_service","Station service")?></li>
-                            <li><?=anchor("site/depot_aviation","Dépôt aviation")?></li>
-                            <li><?=anchor("site/centre_emplisseur","Centre emplisseur")?></li>
-                            <li class="dropdown-header"><h6>---------------------------------</h6> </li>
-                            <li><a href="#">HSE chantier</a></li>
-                            <li><a href="#">STL Bouteilles</a></li>
-                            <li><a href="#">STL camion opéré</a></li>
-                            <li><a href="#">Contrôle camion</a></li>
-                        </ul>
-                    </li>
+                    <?php
+                    $session=$this->session->userdata("id","email");
+                    if (isset($session)):
+                    ?>
+                        <li><?=anchor("site/acceuil","Acceuil")?></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" href="#">Fiche de visite <b class="caret"></b></a>
+                            <ul class="dropdown-menu jqueryfadeIn">
+                                <li class="dropdown-header"><h5>Tour de sécurité CODIR</h5></li>
+                                <li><?=anchor("site/station_service","Station service")?></li>
+                                <li><?=anchor("site/depot_aviation","Dépôt aviation")?></li>
+                                <li><?=anchor("site/centre_emplisseur","Centre emplisseur")?></li>
+                                <li class="dropdown-header"><h6>---------------------------------</h6> </li>
+                                <li><a href="#">HSE chantier</a></li>
+                                <li><a href="#">STL Bouteilles</a></li>
+                                <li><a href="#">STL camion opéré</a></li>
+                                <li><a href="#">Contrôle camion</a></li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <?php redirect('authentification/login') ?>
+                    <?php endif; ?> 
                 </ul>    
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">se déconnecter</a></li>
+                    <li><?=anchor('authentification/logout',"Se déconnecter")?></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

@@ -1,5 +1,13 @@
 <?php
 class Site extends CI_Controller{
+    public function index(){
+        $session=$this->session->userdata("id","email");
+        if(isset($session)){
+            $this->acceuil();
+        }else{
+            redirect('authentification/login');
+        }
+    }
     public function acceuil(){
         $this->load->view('common/header');
         $this->load->view('site/page_acceuil');
