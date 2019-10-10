@@ -7,11 +7,11 @@
     <title>Page d'acceuil</title>
 
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap.min.css')?>">
-    <link rel="stylesheet" href="<?=base_url('/assets/css/font-awesome.min.css')?>">
+    <link rel="stylesheet" href="<?=base_url('/assets/css/fontawesome.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap-theme.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/navbar.css')?>">
-    <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
+    <!--<link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">-->
 
 
     
