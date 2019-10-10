@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/font-awesome.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap-theme.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
+    <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap-glyphicons.css')?>" rel="stylesheet">
 
     
 
