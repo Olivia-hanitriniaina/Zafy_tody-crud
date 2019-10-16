@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap-theme.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/navbar.css')?>">
-    <!--<link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">-->
+    <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
+    <link rel="stylesheet" href="<?=base_url('/assets/css/datatables.min.css')?>">
+
+    <script src="<?=base_url('/assets/js/jquery.min.js')?>"></script>
+    <script src="<?=base_url('/assets/js/bootstrap.min.js')?>"></script>
+    <script src="<?=base_url('/assets/js/navbar_script.js') ?>"></script>
+    <script src="<?=base_url('/assets/js/fontawesome.min.js') ?>"></script>
+    <script src="<?=base_url('/assets/js/datatables.min.js') ?>"></script>
+    <script src="<?=base_url('/assets/js/jquery.validate.min.js') ?>"></script>
 
 
     

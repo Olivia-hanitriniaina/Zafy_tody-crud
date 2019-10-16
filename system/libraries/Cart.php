@@ -55,7 +55,7 @@ class CI_Cart {
 	 *
 	 * @var string
 	 */
-	public $product_id_rules = '\.a-z0-9_-';
+	public $station_id_rules = '\.a-z0-9_-';
 
 	/**
 	 * These are the regular expression rules that we use to validate the product ID and product name
@@ -213,8 +213,8 @@ class CI_Cart {
 
 		// Validate the product ID. It can only be alpha-numeric, dashes, underscores or periods
 		// Not totally sure we should impose this rule, but it seems prudent to standardize IDs.
-		// Note: These can be user-specified by setting the $this->product_id_rules variable.
-		if ( ! preg_match('/^['.$this->product_id_rules.']+$/i', $items['id']))
+		// Note: These can be user-specified by setting the $this->station_id_rules variable.
+		if ( ! preg_match('/^['.$this->station_id_rules.']+$/i', $items['id']))
 		{
 			log_message('error', 'Invalid product ID.  The product ID can only contain alpha-numeric characters, dashes, and underscores');
 			return FALSE;

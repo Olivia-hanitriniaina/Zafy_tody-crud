@@ -1,0 +1,193 @@
+<div class="container">
+    <h2>Dépôt aviaition</h2>
+    <br>
+    <a href="javascript:void(0)" class="btn btn-info ml-3" id="ajouter-depot">Ajouter</a>
+    <br><br>
+    <table class="table table-bordered table-striped" id="depot_liste">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Depôt aviation</th>
+                <th>Nom du chef du site </th>
+                <th>Nom du visiteur</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php if($depots): ?>
+                <?php foreach($depots as $depot): ?>
+                    <tr id="depot_id_<?=$depot->id_depot;?>">
+                        <td><?= $depot->id_depot ?></td>
+                        <td><?= $depot->date ?></td>
+                        <td><?= $depot->depot_aviation ?></td>
+                        <td><?= $depot->nom_chef_site ?></td>
+                        <td><?= $depot->nom_visiteur ?></td>
+                        
+                        <td>
+                            <a href="javascript:void(0)" id="edit-depot" data-id="<?=$depot->id_depot?>" class="btn btn-info">Modifier</a>
+                            <a href="javascript:void(0)" id="delete-depot" data-id="<?=$depot->id_depot?>" class="btn btn-danger delete-user">Supprimer</a>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+            <?php endif;?>        
+        </tbody>
+    </table>
+</div>
+
+<!--Modal for add & edit station-->
+<div class="modal fade" id="ajax-depot-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="depotCrudModal"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="depotForm" name="depotForm" class="form-horizontal">
+                    <input type="hidden" name="depot_id" id="depot_id">
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Date : </label>
+                        <div class="col-sm-12">
+                            <input type="date" class="form-control" id="date" name="date" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Dépôt aviation : </label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="depot_aviation" name="depot_aviation" placeholder="Dépôt aviation" value="" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Nom du chef du site : </label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="nom_chef_site" name="nom_chef_site" placeholder="Entrer le nom du chef du site" value="" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Nom du visiteur : </label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="nom_visiteur" name="nom_visiteur" placeholder="Entrer le nom du visiteur" value="" required="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+   var SITEURL='<?php echo base_url();?>';
+   
+
+   $(document).ready(function(){
+        $('#depot_liste').DataTable();
+       /**Quand l'utilisateur clic sur me boutton "Ajouter" */
+       $('#ajouter-depot').click(function(){
+            $('#btn-save').val('create-depot');
+            $('#depot_id').val('');
+            $('#depotForm').trigger("reset");
+            $('#depotCrudModal').html("Nouvelle dépôt aviation");
+            $('#ajax-depot-modal').modal('show');
+       });
+
+       /**Quand l'utilisateur clic sur me boutton "Modifier" */
+       $('body').on('click','#edit-depot',function(){
+           var depot_id=$(this).data("id");
+          
+           $.ajax({
+               type:"Post",
+               url:SITEURL + "depot_aviation/get_depot_by_id",
+               data:{
+                   depot_id: depot_id
+               },
+               dataType: "json",
+               success: function (res){
+                    if(res.success == true){
+                        $('#depotCrudModal').html('Modifier Depot aviatio');
+                        $('#btn-save').val('Modifier');
+                        $('#ajax-depot-modal').modal('show');
+                        $('#depot_id').val(res.data.id_depot);
+                        $('#date').val(res.data.date);
+                        $('#depot_aviation').val(res.data.depot_aviation);
+                        $('#nom_chef_site').val(res.data.nom_chef_site);
+                        $('#nom_visiteur').val(res.data.nom_visiteur);
+                        
+                    }
+               },
+               error:function(data){
+                   console.log('error',data);
+               }
+           });
+       });
+
+       $('body').on('click','#delete-depot',function(){
+           var depot_id=$(this).data("id");
+
+           if(confirm("Etes-vous sûre de vouloir supprimer?")){
+               $.ajax({
+                   type:"Post",
+                   url:SITEURL + "depot_aviation/delete",
+                   data:{
+                    depot_id:depot_id
+                   },
+                   dataType:'json',
+                   success:function(data){
+                        $('#depot_id_' + depot_id).remove();
+                   }, 
+                   error:function(data){
+                       console.log('error:',data);
+                   }
+               });
+           }
+       });
+   }); 
+
+   if($('#depotForm').length >0){
+       $('#depotForm').validate({
+           submitHandler: function(form){
+               var actionType= $('#btn-save').val();
+               $('#btn-save').html('Envoie...');
+               var serialize=$('#depotForm').serialize();
+               $.ajax({
+                   url:SITEURL + "depot_aviation/store",
+                   type:"Post",
+                   dataType:'json',
+                   data: serialize,
+                   
+                   success: function(res){
+                    var depot='<tr id="depot_id_'+ res.data.id_depot + '"><td>' + res.data.id_depot + '</td><td>'+res.data.date+'</td><td>' + res.data.depot_aviation + '</td><td>'+ res.data.nom_chef_site + '</td><td>'+ res.data.nom_visiteur + '</td>' ;
+                    depot+= '<td><a href="javascript:void(0)" id="edit-depot" data-id="' + res.data.id_depot + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-depot" data-id="' + res.data.id_depot + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+
+                    if(actionType =="create-depot"){
+                        
+                       $('#depot_liste').prepend(depot);
+                    }else{
+                       $('#depot_id_' + res.data.id_depot).replaceWith(depot);
+                    }
+
+                    $('#depotForm').trigger("reset");
+                    $('#ajax-depot-modal').modal('hide');
+                    $('#btn-save').html('Enregister modification');
+                   },
+
+                  error:function(data){
+                    console.log('error:',data);
+                    $('#btn-save').html('Enregister modification');    
+                  }
+               });
+           }
+       })
+   }
+</script>
