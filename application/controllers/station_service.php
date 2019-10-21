@@ -29,7 +29,7 @@ class Station_service extends CI_Controller{
        $data=array(
            'nom_station'=>$this->input->post('nom_station'),
            'nom_visiteur'=>$this->input->post('nom_visiteur'),
-           'date'=>date('Y-m-d'),
+           'date'=>$this->input->post('date'),
        );
        $status=false;
        $id=$this->input->post('station_id');

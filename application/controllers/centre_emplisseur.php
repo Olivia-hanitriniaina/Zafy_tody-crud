@@ -1,22 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Depot_aviation extends CI_Controller{
+class Centre_emplisseur extends CI_Controller{
    public function __construct(){
        parent::__construct();
        $this->load->helper('url');
-       $this->load->model('Depot_model');
+       $this->load->model('Centre_model');
    }
 
    public function index(){
-       $data['depots']=$this->Depot_model->get_all_depots();
+       $data['centres']=$this->Centre_model->get_all_centres();
        $this->load->view('common/header');
-       $this->load->view('depot_aviation/depot_aff',$data);
+       $this->load->view('centre_emplisseur/centre_aff',$data);
        $this->load->view('common/footer');
    }
 
-   public function get_depot_by_id(){
-       $id=$this->input->post('depot_id');
-       $data=$this->Depot_model->get_by_id($id);
+   public function get_centre_by_id(){
+       $id=$this->input->post('centre_id');
+       $data=$this->Centre_model->get_by_id($id);
        $arr =array('success'=>false,'data'=>'');
 
        if($data){
@@ -28,20 +28,19 @@ class Depot_aviation extends CI_Controller{
    public function store(){
        $data=array(
             'date'=>$this->input->post('date'),
-            'depot_aviation'=>$this->input->post('depot_aviation'),
-            'nom_chef_site'=>$this->input->post('nom_chef_site'),
             'nom_visiteur'=>$this->input->post('nom_visiteur'),
+            'ville'=>$this->input->post('ville'),
        );
        $status=false;
-       $id=$this->input->post('depot_id');
+       $id=$this->input->post('centre_id');
 
        if($id){
-           $update=$this->Depot_model->update($data);
+           $update=$this->Centre_model->update($data);
            $status=true;
-           $data=$this->Depot_model->get_by_id($id);
+           $data=$this->Centre_model->get_by_id($id);
        }else{
-           $create=$this->Depot_model->create($data);
-           $data=$this->Depot_model->get_by_id($create);
+           $create=$this->Centre_model->create($data);
+           $data=$this->Centre_model->get_by_id($create);
            $status=true;
        }
       
@@ -50,7 +49,7 @@ class Depot_aviation extends CI_Controller{
    }
 
    public function delete(){
-       $this->Depot_model->delete();
+       $this->Centre_model->delete();
        echo json_encode(array('status'=>true));
    }
 }

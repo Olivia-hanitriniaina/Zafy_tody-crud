@@ -31,4 +31,15 @@ class Site extends CI_Controller{
         $this->load->view('site/depot_aviation');
         $this->load->view('common/footer');
     }
+
+    public function HSE_chantier(){
+        $this->load->view('common/header');
+        $this->load->view('site/HSE_chantier');
+        $this->load->view('common/footer');
+    }
+    public function STL_bouteilles(){
+        $this->load->view('common/header');
+        $this->load->view('site/STL_bouteilles');
+        $this->load->view('common/footer');
+    }
 }

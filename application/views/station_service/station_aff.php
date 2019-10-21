@@ -1,16 +1,17 @@
 <div class="container">
     <h2>Station service</h2>
     <br>
-    <a href="javascript:void(0)" class="btn btn-info ml-3" id="ajouter-station">Ajouter</a>
+    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-station">Ajouter</a>
     <br><br>
+
     <table class="table table-bordered table-striped" id="station_liste">
-        <thead>
+        <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
-                <th>ID</th>
-                <th>Nom du Station service</th>
-                <th>Nom du visiteur</th>
-                <th>Date</th>
-                <th>Actions</th>
+                <th style="text-align:center">ID</th>
+                <th style="text-align:center">Nom du Station service</th>
+                <th style="text-align:center">Nom du visiteur</th>
+                <th style="text-align:center">Date</th>
+                <th style="text-align:center">Actions</th>
             </tr>
         </thead>
 
@@ -18,11 +19,11 @@
             <?php if($stations): ?>
                 <?php foreach($stations as $station): ?>
                     <tr id="station_id_<?=$station->id_station;?>">
-                        <td><?= $station->id_station ?></td>
-                        <td><?= $station->nom_station ?></td>
-                        <td><?= $station->nom_visiteur ?></td>
-                        <td><?= $station->date ?></td>
-                        <td>
+                        <td style="text-align:center"><?= $station->id_station ?></td>
+                        <td style="text-align:center"><?= $station->nom_station ?></td>
+                        <td style="text-align:center"><?= $station->nom_visiteur ?></td>
+                        <td style="text-align:center"><?= $station->date ?></td>
+                        <td style="text-align:center">
                             <a href="javascript:void(0)" id="edit-station" data-id="<?=$station->id_station?>" class="btn btn-info">Modifier</a>
                             <a href="javascript:void(0)" id="delete-station" data-id="<?=$station->id_station?>" class="btn btn-danger delete-user">Supprimer</a>
                         </td>
@@ -38,41 +39,35 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <a class="close" data-dismiss="modal">×</a>
                 <h4 class="modal-title" id="stationCrudModal"></h4>
             </div>
-            <div class="modal-body">
-                <form id="stationForm" name="stationForm" class="form-horizontal">
+            <form id="stationForm" name="stationForm" class="form-horizontal">
+                <div class="modal-body" style="width:95%;margin:auto">
+                
                     <input type="hidden" name="station_id" id="station_id">
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Nom du Station service : </label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="nom_station" name="nom_station" placeholder="Entrer le nom du station service" value="" required="">
-                        </div>
+                        <label for="name" class="control-label">Station service : </label>
+                        <input type="text" class="form-control" id="nom_station" name="nom_station" placeholder="Entrer le nom du station service" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Nom du visiteur : </label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="nom_visiteur" name="nom_visiteur" placeholder="Entrer le nom du visiteur" value="" required="">
-                        </div>
+                        <label for="name" class="control-label">Nom du visiteur : </label>
+                        <input type="text" class="form-control" id="nom_visiteur" name="nom_visiteur" placeholder="Entrer le nom du visiteur" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Date : </label>
-                        <div class="col-sm-12">
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Entrer la date de visite" value="" required="">
-                        </div>
+                        <label for="name" class="control-label">Date : </label>
+                        <input type="date" class="form-control" id="date" name="date" placeholder="Entrer la date de visite" value="" required="">
                     </div>
-
-                    <div class="col-sm-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-
-            </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
+                    <button class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -82,11 +77,8 @@
    
 
    $(document).ready(function(){
-        setInterval(function(){
-            //$("tbody").load(SITEURL + "station_service/index");  
-        },1000);
-
         $('#station_liste').DataTable();
+        
        /**Quand l'utilisateur clic sur me boutton "Ajouter" */
        $('#ajouter-station').click(function(){
             $('#btn-save').val('create-station');
@@ -140,6 +132,9 @@
                    dataType:'json',
                    success:function(data){
                         $('#station_id_' + station_id).remove();
+                        setTimeout(function(){
+                            location.reload();
+                        },100);
                    }, 
                    error:function(data){
                        console.log('error:',data);
@@ -175,6 +170,9 @@
                     $('#stationForm').trigger("reset");
                     $('#ajax-station-modal').modal('hide');
                     $('#btn-save').html('Enregister modification');
+                    setTimeout(function(){
+                        location.reload();
+                    },100);
                    },
 
                   error:function(data){

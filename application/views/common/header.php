@@ -39,18 +39,16 @@
                     if (isset($session)):
                     ?>
                         <li><?=anchor("site/acceuil","Acceuil")?></li>
+                        <li><?=anchor("site/acceuil","Gestion utilisateur")?></li>
                         <li class="dropdown">
-                            <a data-toggle="dropdown" href="#">Fiche de visite <b class="caret"></b></a>
+                            <a href="#" data-toggle="dropdown">Listes <b class="caret"></b></a>
                             <ul class="dropdown-menu jqueryfadeIn">
-                                <li class="dropdown-header"><h5>Tour de sécurité CODIR</h5></li>
-                                <li><?=anchor("site/station_service","Station service")?></li>
-                                <li><?=anchor("site/depot_aviation","Dépôt aviation")?></li>
-                                <li><?=anchor("site/centre_emplisseur","Centre emplisseur")?></li>
-                                <li class="dropdown-header"><h6>---------------------------------</h6> </li>
-                                <li><a href="#">HSE chantier</a></li>
-                                <li><a href="#">STL Bouteilles</a></li>
-                                <li><a href="#">STL camion opéré</a></li>
-                                <li><a href="#">Contrôle camion</a></li>
+                                <li><?=anchor("station_service/","Station service")?></li>
+                                <li><?=anchor("depot_aviation/","Dépôt aviation")?></li>
+                                <li><?=anchor("centre_emplisseur/","Centre emplisseur")?></li>
+                                <li> <a href="">Ville</a></li>
+                                <li> <a href="">Site</a> </li>
+                                <li> <a href="">Lieu</a> </li>
                             </ul>
                         </li>
                     <?php else: ?>

@@ -1,88 +1,63 @@
-<?php var_dump($this->session->userdata())?>
+<style>
+    .zoom:hover {
+        transform: scale(1.1);
+    } 
+</style>
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <a href="#">
-                <h1>Carte de visite 1</h1> 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+        <div class="col-md-3 zoom">
+            <a href="<?= base_url("/site/station_service")?>" style="text-decoration:none;">
+                <div class="card">
+                    <h2 style="text-align:center ;color:black;" class="card-header">Station service</h2>
+                    <img class="card-body" src="<?= base_url()."assets/images/station_service.jpg"?>" alt="station service" style="width:100%">
+                </div>
             </a>
         </div>
-        <div class="col-md-3">
-            <h1>Carte de visite 2</h1> 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-           </p>
+        <div class="col-md-3 zoom">
+            <a href="<?= base_url("/site/depot_aviation")?>" style="text-decoration:none;">
+                <div class="card">
+                    <h2 style="text-align:center ;color:black;" class="card-header">Dépôt aviation</h2>
+                    <img class="card-body" src="<?= base_url()."assets/images/depot_aviation.jpg"?>" alt="depot_aviation" style="width:100%">
+                </div>
+            </a>
         </div>
-        <div class="col-md-3">
-            <h1>Carte de visite 3</h1> 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-           </p>
+        <div class="col-md-3 zoom">
+            <a href="<?= base_url("/site/centre_emplisseur")?>" style="text-decoration:none;">
+                <div class="card">
+                    <h2 style="text-align:center ;color:black;" class="card-header">Centre emplisseur</h2>
+                    <img class="card-body" src="<?= base_url()."assets/images/centre_emplisseur.jpg"?>" alt="centre_emplisseur" style="width:100%">
+                </div>
+            </a>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <h1>Carte de visite 4</h1> 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-           </p>
+        <div class="col-md-3 zoom">
+            <a href="#" style="text-decoration:none;">
+                <div class="card">
+                    <h2 style="text-align:center ;color:black;" class="card-header">Contrôle camion</h2>
+                    <img class="card-body" src="<?= base_url()."assets/images/controle_camion.jpg"?>" alt="controle_camion" style="width:100%">
+                </div>
+            </a>
         </div>
-        <div class="col-md-3">
-            <h1>Carte de visite 5</h1> 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-           </p>
+        <div class="col-md-3 zoom">
+            <a href="<?= base_url("/site/STL_bouteilles")?>" style="text-decoration:none;">
+            <div class="card">
+                <h2 style="text-align:center ;color:black;" class="card-header">STL Bouteilles</h2>
+                <img class="card-body" src="<?= base_url()."assets/images/stl_bouteille.jpg"?>" alt="stl_bouteille" style="width:100%">
+            </div>
         </div>
-        <div class="col-md-3">
-        <h1>Carte de visite 6</h1> 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-           </p>
+
+        <div class="col-md-3 zoom">
+            <a href="<?= base_url("/site/HSE_chantier")?>" style="text-decoration:none;">
+            <div class="card">
+                <h2 style="text-align:center ;color:black;" class="card-header">HSE Chantier</h2>
+                <img class="card-body" src="<?= base_url()."assets/images/hse_chantier.jpg"?>" alt="hse_chantier" style="width:100%">
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-        <h1>Carte de visite 7</h1> 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-           </p>
+        <div class="col-md-3 zoom">
+            
         </div>
     </div>
 </div>

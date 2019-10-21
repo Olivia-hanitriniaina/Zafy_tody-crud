@@ -1,17 +1,17 @@
 <div class="container">
-    <h2>Dépôt aviaition</h2>
+    <h2>Dépôt aviation</h2>
     <br>
-    <a href="javascript:void(0)" class="btn btn-info ml-3" id="ajouter-depot">Ajouter</a>
+    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-depot">Ajouter</a>
     <br><br>
     <table class="table table-bordered table-striped" id="depot_liste">
-        <thead>
+        <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Depôt aviation</th>
-                <th>Nom du chef du site </th>
-                <th>Nom du visiteur</th>
-                <th>Action</th>
+                <th style="text-align:center">ID</th>
+                <th style="text-align:center">Date</th>
+                <th style="text-align:center">Depôt aviation</th>
+                <th style="text-align:center">Nom du chef du site </th>
+                <th style="text-align:center">Nom du visiteur</th>
+                <th style="text-align:center">Action</th>
             </tr>
         </thead>
 
@@ -19,13 +19,13 @@
             <?php if($depots): ?>
                 <?php foreach($depots as $depot): ?>
                     <tr id="depot_id_<?=$depot->id_depot;?>">
-                        <td><?= $depot->id_depot ?></td>
-                        <td><?= $depot->date ?></td>
-                        <td><?= $depot->depot_aviation ?></td>
-                        <td><?= $depot->nom_chef_site ?></td>
-                        <td><?= $depot->nom_visiteur ?></td>
+                        <td style="text-align:center"><?= $depot->id_depot ?></td>
+                        <td style="text-align:center"><?= $depot->date ?></td>
+                        <td style="text-align:center"><?= $depot->depot_aviation ?></td>
+                        <td style="text-align:center"><?= $depot->nom_chef_site ?></td>
+                        <td style="text-align:center"><?= $depot->nom_visiteur ?></td>
                         
-                        <td>
+                        <td style="text-align:center">
                             <a href="javascript:void(0)" id="edit-depot" data-id="<?=$depot->id_depot?>" class="btn btn-info">Modifier</a>
                             <a href="javascript:void(0)" id="delete-depot" data-id="<?=$depot->id_depot?>" class="btn btn-danger delete-user">Supprimer</a>
                         </td>
@@ -41,48 +41,38 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <a class="close" data-dismiss="modal">×</a>
                 <h4 class="modal-title" id="depotCrudModal"></h4>
             </div>
-            <div class="modal-body">
-                <form id="depotForm" name="depotForm" class="form-horizontal">
+            <form id="depotForm" name="depotForm" class="form-horizontal">
+                <div class="modal-body" style="width:95%;margin:auto">
                     <input type="hidden" name="depot_id" id="depot_id">
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Date : </label>
-                        <div class="col-sm-12">
-                            <input type="date" class="form-control" id="date" name="date" required="">
-                        </div>
+                        <label for="name">Date : </label>
+                        <input type="date" class="form-control" id="date" name="date" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Dépôt aviation : </label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="depot_aviation" name="depot_aviation" placeholder="Dépôt aviation" value="" required="">
-                        </div>
+                        <label for="name">Dépôt aviation : </label>
+                        <input type="text" class="form-control" id="depot_aviation" name="depot_aviation" placeholder="Dépôt aviation" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Nom du chef du site : </label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="nom_chef_site" name="nom_chef_site" placeholder="Entrer le nom du chef du site" value="" required="">
-                        </div>
+                        <label for="name">Nom du chef du site : </label>
+                        <input type="text" class="form-control" id="nom_chef_site" name="nom_chef_site" placeholder="Entrer le nom du chef du site" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Nom du visiteur : </label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="nom_visiteur" name="nom_visiteur" placeholder="Entrer le nom du visiteur" value="" required="">
-                        </div>
+                        <label for="name">Nom du visiteur : </label>
+                        <input type="text" class="form-control" id="nom_visiteur" name="nom_visiteur" placeholder="Entrer le nom du visiteur" value="" required=""> 
                     </div>
-
-                    <div class="col-sm-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -115,7 +105,7 @@
                dataType: "json",
                success: function (res){
                     if(res.success == true){
-                        $('#depotCrudModal').html('Modifier Depot aviatio');
+                        $('#depotCrudModal').html('Modifier Dépôt aviation');
                         $('#btn-save').val('Modifier');
                         $('#ajax-depot-modal').modal('show');
                         $('#depot_id').val(res.data.id_depot);
@@ -145,6 +135,9 @@
                    dataType:'json',
                    success:function(data){
                         $('#depot_id_' + depot_id).remove();
+                        setTimeout(function(){
+                            location.reload();
+                        },100);
                    }, 
                    error:function(data){
                        console.log('error:',data);
@@ -180,6 +173,9 @@
                     $('#depotForm').trigger("reset");
                     $('#ajax-depot-modal').modal('hide');
                     $('#btn-save').html('Enregister modification');
+                    setTimeout(function(){
+                            location.reload();
+                    },100);
                    },
 
                   error:function(data){

@@ -6,7 +6,7 @@ td.titre{
   
 }
 
-th{
+th.th{
   font-size: 1.5em;
   text-align: center;
   background-color: rgba(255,0,0,0.2)

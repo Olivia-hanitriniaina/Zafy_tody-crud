@@ -34,7 +34,7 @@
             </div>
 
             <div class="form-group">
-                <?= form_submit(array('name'=>'login','id'=>'login','class'=>'btn btn-primary','value'=>'Login'))?>
+                <?= form_submit(array('name'=>'login','id'=>'login','class'=>'btn btn-primary','value'=>'Se connecter'))?>
             </div>
             <!--Déclération des 2 variables contenant les erreurs dans les inputs -->
             <?php 
