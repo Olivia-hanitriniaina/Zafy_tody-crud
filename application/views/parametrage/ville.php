@@ -3,22 +3,18 @@
     <table class="table table-hover">
         <thead>
             <tr>
-            <th scope="col">Station service</th>
-            <th scope="col">Nom du visiteur</th>
-            <th scope="col">Date</th>
+            <th scope="col">Ville</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr class="table-active">
-            <td>Total1</td>
-            <td>oliviah</td>
-            <td>6 juin, 2019</td>
-            <td>
-                <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalSuppr"><i class="fa fa-trash"></i> Supprimer</a>
-                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i>Editer</a> 
-                
-            </td>
+                <td>Column content</td>
+                <td>
+                    <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalSuppr"><i class="fa fa-trash"></i> Supprimer</a>
+                    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i>Editer</a> 
+                    
+                </td>
             </tr>
         </tbody>
     </table> 
@@ -58,7 +54,7 @@
                     <button class="btn btn-primary">NON</button>
                 </div>
             </div>
-        </div>
+        </div>17
     </div>
     <!--Fin Modal du boutton Supprimer -->
 
@@ -82,6 +78,7 @@
                             <input type="date" placeholder="Date" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Valider</button>
+                        <button type="submit" class="btn btn-primary">annuler</button>
                     </div>
                 </div>
             </div>

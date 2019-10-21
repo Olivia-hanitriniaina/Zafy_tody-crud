@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap-theme.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/navbar.css')?>">
-    <!--<link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">-->
+    <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
 
 
     
@@ -31,6 +31,18 @@
                     if (isset($session)):
                     ?>
                         <li><?=anchor("site/acceuil","Acceuil")?></li>
+                        <li><?=anchor("site/acceuil","Gestions d'utilisateurs")?></li>
+                        <li>6207836
+                            <a data-toggle="dropdown" href="#">Listes<b class="caret"></b></a>
+                            <ul class="dropdown-menu jqueryfadeIn">
+                                <li><?=anchor("station_service/afficher_station","Station service")?></li>
+                                <li><?=anchor("Parametrage/depot_aviantion","Dépôt aviation")?></li>
+                                <li><?=anchor("Parametrage/site","Site")?></li>
+                                <li><?=anchor("Parametrage/lieu","Lieu")?></li>
+                                <li><?=anchor("Parametrage/ville","ville")?></li>
+                                <li><?=anchor("Parametrage/centre_emplisseur","Centre emplisseur")?></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a data-toggle="dropdown" href="#">Fiche de visite <b class="caret"></b></a>
                             <ul class="dropdown-menu jqueryfadeIn">
