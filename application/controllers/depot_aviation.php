@@ -8,10 +8,15 @@ class Depot_aviation extends CI_Controller{
    }
 
    public function index(){
-       $data['depots']=$this->Depot_model->get_all_depots();
-       $this->load->view('common/header');
-       $this->load->view('depot_aviation/depot_aff',$data);
-       $this->load->view('common/footer');
+        $session=$this->session->userdata();
+        if(isset($session)){
+            $data['depots']=$this->Depot_model->get_all_depots();
+            $this->load->view('common/header');
+            $this->load->view('depot_aviation/depot_aff',$data);
+            $this->load->view('common/footer');
+        }else{
+            redirect('authentifiaction/login','location');
+        }     
    }
 
    public function get_depot_by_id(){

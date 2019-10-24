@@ -39,7 +39,7 @@
                     if (isset($session)):
                     ?>
                         <li><?=anchor("site/acceuil","Acceuil")?></li>
-                        <li><?=anchor("site/acceuil","Gestion utilisateur")?></li>
+                        <li><?=anchor("gestion_utilisateur/","Gestion utilisateur")?></li>
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown">Listes <b class="caret"></b></a>
                             <ul class="dropdown-menu jqueryfadeIn">

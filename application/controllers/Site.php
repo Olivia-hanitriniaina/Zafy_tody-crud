@@ -42,4 +42,14 @@ class Site extends CI_Controller{
         $this->load->view('site/STL_bouteilles');
         $this->load->view('common/footer');
     }
+    public function controle_camion(){
+        $this->load->view('common/header');
+        $this->load->view('site/controle_camion');
+        $this->load->view('common/footer');
+    }
+    public function STL_camion(){
+        $this->load->view('common/header');
+        $this->load->view('site/STL_camion');
+        $this->load->view('common/footer');
+    }
 }
