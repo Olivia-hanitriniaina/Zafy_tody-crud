@@ -7,8 +7,7 @@
     <title>Page d'acceuil</title>
 
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap.min.css')?>">
-    <link rel="stylesheet" href="<?=base_url('/assets/css/fontawesome.min.css')?>">
-    <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap-theme.min.css')?>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/navbar.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
@@ -35,8 +34,7 @@
             <div class="collapse navbar-collapse" id="main-menu" style="margin-bottom: 0px;">
                 <ul class="nav navbar-nav">
                     <?php
-                    $session=$this->session->userdata("id","email");
-                    if (isset($session)):
+                    if (isset($this->session->userdata['logged_in'])):
                     ?>
                         <li><?=anchor("site/acceuil","Acceuil")?></li>
                         <li><?=anchor("gestion_utilisateur/","Gestion utilisateur")?></li>
@@ -52,11 +50,15 @@
                             </ul>
                         </li>
                     <?php else: ?>
-                        <?php redirect('authentification/login') ?>
+                        <?php redirect('authentification/') ?>
                     <?php endif; ?> 
                 </ul>    
                 <ul class="nav navbar-nav navbar-right">
-                    <li><?=anchor('authentification/logout',"Se déconnecter")?></li>
+                    <li>
+                        <a href="<?=base_url('/authentification/logout')?>">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter
+                        </a>
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

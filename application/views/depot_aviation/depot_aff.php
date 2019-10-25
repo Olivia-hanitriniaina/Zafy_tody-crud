@@ -1,7 +1,7 @@
 <div class="container">
     <h2>Dépôt aviation</h2>
     <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-depot">Ajouter</a>
+    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-depot"> <i class="fa fa-plus"></i> Ajouter</a>
     <br><br>
     <table class="table table-bordered table-striped" id="depot_liste">
         <thead style="background-color:rgba(200,0,0,0.5)">
@@ -26,8 +26,8 @@
                         <td style="text-align:center"><?= $depot->nom_visiteur ?></td>
                         
                         <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-depot" data-id="<?=$depot->id_depot?>" class="btn btn-info">Modifier</a>
-                            <a href="javascript:void(0)" id="delete-depot" data-id="<?=$depot->id_depot?>" class="btn btn-danger delete-user">Supprimer</a>
+                            <a href="javascript:void(0)" id="edit-depot" data-id="<?=$depot->id_depot?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="delete-depot" data-id="<?=$depot->id_depot?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

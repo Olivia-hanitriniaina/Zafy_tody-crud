@@ -1,11 +1,10 @@
 <?php
 class Site extends CI_Controller{
     public function index(){
-        $session=$this->session->userdata("id","email");
-        if(isset($session)){
+        if(isset($this->session->userdata['logged_in'])){
             $this->acceuil();
         }else{
-            redirect('authentification/login');
+            redirect('authentification/');
         }
     }
     public function acceuil(){

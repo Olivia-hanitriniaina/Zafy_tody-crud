@@ -1,7 +1,7 @@
 <div class="container">
     <h2>Station service</h2>
     <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-station">Ajouter</a>
+    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-station"> <i class="fa fa-plus"></i> Ajouter</a>
     <br><br>
 
     <table class="table table-bordered table-striped" id="station_liste">
@@ -24,8 +24,8 @@
                         <td style="text-align:center"><?= $station->nom_visiteur ?></td>
                         <td style="text-align:center"><?= $station->date ?></td>
                         <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-station" data-id="<?=$station->id_station?>" class="btn btn-info">Modifier</a>
-                            <a href="javascript:void(0)" id="delete-station" data-id="<?=$station->id_station?>" class="btn btn-danger delete-user">Supprimer</a>
+                            <a href="javascript:void(0)" id="edit-station" data-id="<?=$station->id_station?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="delete-station" data-id="<?=$station->id_station?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

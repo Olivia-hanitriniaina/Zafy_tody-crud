@@ -1,10 +1,11 @@
 <div class="container">
+<?php $session=$this->session->userdata['logged_in'];?>
     <h2>Gestion des utilisateurs</h2>
     <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-user">Ajouter</a>
+    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-user"> <i class="fa fa-plus"></i> Ajouter</a>
     <br><br>
 
-    <table class="table table-bordered table-striped" id="users_liste">
+    <table class="table table-bordered table-striped" id="users_liste"> 
         <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
                 <th style="text-align:center">ID</th>
@@ -20,8 +21,8 @@
                         <td style="text-align:center"><?= $user->id_users ?></td>
                         <td style="text-align:center"><?= $user->adresse_email ?></td>
                         <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-users" data-id="<?=$user->id_users?>" class="btn btn-info" <?php if($user->adresse_email != $_SESSION['email']){ echo "disabled";} ?>>Modifier</a>
-                            <a href="javascript:void(0)" id="delete-users" data-id="<?=$user->id_users?>" class="btn btn-danger delete-user">Supprimer</a>
+                            <a href="javascript:void(0)" id="edit-users" data-id="<?=$user->id_users?>" class="btn btn-info" <?php if($user->adresse_email != $session['adresse_email']){ echo "disabled";} ?>><i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="delete-users" data-id="<?=$user->id_users?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

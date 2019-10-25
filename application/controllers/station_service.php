@@ -8,14 +8,13 @@ class Station_service extends CI_Controller{
    }
 
    public function index(){
-        $session=$this->session->userdata();
-        if(isset($session)){
+        if(isset($this->session->userdata['logged_in'])){
             $data['stations']=$this->Station_model->get_all_stations();
             $this->load->view('common/header');
             $this->load->view('station_service/station_aff',$data);
             $this->load->view('common/footer');
         }else{
-            redirect('authentifiaction/login','location');
+            redirect('authentifiaction/','location');
         }
    }
 

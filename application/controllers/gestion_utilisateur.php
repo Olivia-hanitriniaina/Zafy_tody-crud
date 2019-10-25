@@ -8,14 +8,13 @@ class Gestion_utilisateur extends CI_Controller{
    }
 
    public function index(){
-        $session=$this->session->userdata();
-        if(isset($session)){
+        if(isset($this->session->userdata['logged_in'])){
             $data['users']=$this->Gestion_model->get_all_users();
             $this->load->view('common/header');
             $this->load->view('gestion_utilisateur/utilisateur_aff',$data);
             $this->load->view('common/footer');
         }else{
-            redirect('authentifiaction/login','location');
+            redirect('authentifiaction/','location');
         }  
    }
 
