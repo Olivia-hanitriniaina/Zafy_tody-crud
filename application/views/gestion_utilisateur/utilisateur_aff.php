@@ -33,8 +33,9 @@
     </table>
 </div>
 
+
 <!--Modal for add & edit users-->
-<div class="modal fade" id="ajax-user-modal" aria-hidden="true">
+<div class="modal fade" id="ajax-user-modal" aria-hidden="true">²
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -58,8 +59,9 @@
 
                     <div class="form-group">
                         <label for="name" class="control-label">Rôle : </label>
-                        <select id="pet-select" class="form-control">
+                        <select id="role" class="form-control" name ="role">
                         <option value="">Choisir un rôle</option>
+                        
                         <?php foreach($role as $r){?>
                             <option value="<?php echo $r->{'id_role'}?>"><?php echo $r->{'nom'}?></option>
                         <?php }?>
@@ -118,6 +120,7 @@
                         $('#ajax-user-modal').modal('show');
                         $('#user_id').val(res.data.id_users);
                         $('#adresse_email').val(res.data.adresse_email);
+                        $('#role').val(res.data.role);
                         $('#password').val(res.data.password);
                         $('#confirm_password').val(res.data.password);
                     }
