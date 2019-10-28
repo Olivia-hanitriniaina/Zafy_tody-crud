@@ -5,11 +5,13 @@ class Gestion_utilisateur extends CI_Controller{
        parent::__construct();
        $this->load->helper('url');
        $this->load->model('Gestion_model');
+       $this->load->model('Role_model');
    }
 
    public function index(){
         if(isset($this->session->userdata['logged_in'])){
             $data['users']=$this->Gestion_model->get_all_users();
+            $data['role']=$this->Role_model->get_all_role();
             $this->load->view('common/header');
             $this->load->view('gestion_utilisateur/utilisateur_aff',$data);
             $this->load->view('common/footer');

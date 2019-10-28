@@ -4,8 +4,6 @@
         <thead>
             <tr>
             <th scope="col">Station service</th>
-            <th scope="col">Nom du visiteur</th>
-            <th scope="col">Date</th>
             <th scope="col">Action</th>
             </tr>
         </thead>

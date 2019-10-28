@@ -7,10 +7,8 @@
         <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
                 <th style="text-align:center">ID</th>
-                <th style="text-align:center">Date</th>
                 <th style="text-align:center">Depôt aviation</th>
                 <th style="text-align:center">Nom du chef du site </th>
-                <th style="text-align:center">Nom du visiteur</th>
                 <th style="text-align:center">Action</th>
             </tr>
         </thead>
@@ -20,10 +18,8 @@
                 <?php foreach($depots as $depot): ?>
                     <tr id="depot_id_<?=$depot->id_depot;?>">
                         <td style="text-align:center"><?= $depot->id_depot ?></td>
-                        <td style="text-align:center"><?= $depot->date ?></td>
                         <td style="text-align:center"><?= $depot->depot_aviation ?></td>
                         <td style="text-align:center"><?= $depot->nom_chef_site ?></td>
-                        <td style="text-align:center"><?= $depot->nom_visiteur ?></td>
                         
                         <td style="text-align:center">
                             <a href="javascript:void(0)" id="edit-depot" data-id="<?=$depot->id_depot?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>

@@ -4,16 +4,12 @@
         <thead>
             <tr>
             <th scope="col">Station service</th>
-            <th scope="col">Nom du visiteur</th>
-            <th scope="col">Date</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr class="table-active">
             <th>Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
             <td>
                 <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalSuppr"><i class="fa fa-trash"></i> Supprimer</a>
                 <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i>Editer</a> 

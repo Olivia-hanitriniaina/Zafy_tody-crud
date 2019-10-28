@@ -10,6 +10,7 @@
             <tr>
                 <th style="text-align:center">ID</th>
                 <th style="text-align:center">Adresse e-mail</th>
+                <th style="text-align:center">Rôle</th>
                 <th style="text-align:center">Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                     <tr id="user_id_<?=$user->id_users;?>">
                         <td style="text-align:center"><?= $user->id_users ?></td>
                         <td style="text-align:center"><?= $user->adresse_email ?></td>
+                        <td style="text-align:center"><?= $user->nom ?></td>
                         <td style="text-align:center">
                             <a href="javascript:void(0)" id="edit-users" data-id="<?=$user->id_users?>" class="btn btn-info" <?php if($user->adresse_email != $session['adresse_email']){ echo "disabled";} ?>><i class="fa fa-edit"></i> Modifier</a>
                             <a href="javascript:void(0)" id="delete-users" data-id="<?=$user->id_users?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
@@ -52,6 +54,16 @@
                     <div class="form-group">
                         <label for="name" class="control-label">Mot de passe : </label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" value="" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="control-label">Rôle : </label>
+                        <select id="pet-select" class="form-control">
+                        <option value="">Choisir un rôle</option>
+                        <?php foreach($role as $r){?>
+                            <option value="<?php echo $r->{'id_role'}?>"><?php echo $r->{'nom'}?></option>
+                        <?php }?>
+                        </select>
                     </div>
 
                     <div class="form-group">

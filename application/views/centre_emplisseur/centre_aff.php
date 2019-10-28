@@ -8,8 +8,6 @@
         <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
                 <th style="text-align:center">ID</th>
-                <th style="text-align:center">Date</th>
-                <th style="text-align:center">Nom du visiteur</th>
                 <th style="text-align:center">Ville</th>
                 <th style="text-align:center">Actions</th>
             </tr>
@@ -20,8 +18,6 @@
                 <?php foreach($centres as $centre): ?>
                     <tr id="centre_id_<?=$centre->id_centre;?>">
                         <td style="text-align:center"><?= $centre->id_centre ?></td>
-                        <td style="text-align:center"><?= $centre->date ?></td>
-                        <td style="text-align:center"><?= $centre->nom_visiteur ?></td>
                         <td style="text-align:center"><?= $centre->ville ?></td>
                         <td style="text-align:center">
                             <a href="javascript:void(0)" id="edit-centre" data-id="<?=$centre->id_centre?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>

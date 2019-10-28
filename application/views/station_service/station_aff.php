@@ -9,8 +9,6 @@
             <tr>
                 <th style="text-align:center">ID</th>
                 <th style="text-align:center">Nom du Station service</th>
-                <th style="text-align:center">Nom du visiteur</th>
-                <th style="text-align:center">Date</th>
                 <th style="text-align:center">Actions</th>
             </tr>
         </thead>
@@ -21,8 +19,6 @@
                     <tr id="station_id_<?=$station->id_station;?>">
                         <td style="text-align:center"><?= $station->id_station ?></td>
                         <td style="text-align:center"><?= $station->nom_station ?></td>
-                        <td style="text-align:center"><?= $station->nom_visiteur ?></td>
-                        <td style="text-align:center"><?= $station->date ?></td>
                         <td style="text-align:center">
                             <a href="javascript:void(0)" id="edit-station" data-id="<?=$station->id_station?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
                             <a href="javascript:void(0)" id="delete-station" data-id="<?=$station->id_station?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
