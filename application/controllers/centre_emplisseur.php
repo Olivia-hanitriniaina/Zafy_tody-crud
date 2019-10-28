@@ -8,10 +8,15 @@ class Centre_emplisseur extends CI_Controller{
    }
 
    public function index(){
-       $data['centres']=$this->Centre_model->get_all_centres();
-       $this->load->view('common/header');
-       $this->load->view('centre_emplisseur/centre_aff',$data);
-       $this->load->view('common/footer');
+       if(isset($this->session->userdata['logged_in'])){
+            $data['centres']=$this->Centre_model->get_all_centres();
+            $this->load->view('common/header');
+            $this->load->view('centre_emplisseur/centre_aff',$data);
+            $this->load->view('common/footer');
+       }else{
+            redirect('authentifiaction/','location');
+       }
+       
    }
 
    public function get_centre_by_id(){

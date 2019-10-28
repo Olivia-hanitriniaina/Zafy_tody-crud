@@ -1,11 +1,10 @@
 <?php
 class Site extends CI_Controller{
     public function index(){
-        $session=$this->session->userdata("id","email");
-        if(isset($session)){
+        if(isset($this->session->userdata['logged_in'])){
             $this->acceuil();
         }else{
-            redirect('authentification/login');
+            redirect('authentification/');
         }
     }
     public function acceuil(){
@@ -40,6 +39,16 @@ class Site extends CI_Controller{
     public function STL_bouteilles(){
         $this->load->view('common/header');
         $this->load->view('site/STL_bouteilles');
+        $this->load->view('common/footer');
+    }
+    public function controle_camion(){
+        $this->load->view('common/header');
+        $this->load->view('site/controle_camion');
+        $this->load->view('common/footer');
+    }
+    public function STL_camion(){
+        $this->load->view('common/header');
+        $this->load->view('site/STL_camion');
         $this->load->view('common/footer');
     }
 }

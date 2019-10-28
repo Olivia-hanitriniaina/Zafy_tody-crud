@@ -7,7 +7,7 @@
     <title>Page de connexion</title>
 
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap.min.css')?>">
-    <link rel="stylesheet" href="<?=base_url('/assets/css/font-awesome.min.css')?>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?=base_url('/assets/css/login_form.css')?>">
 
     
@@ -19,8 +19,8 @@
     <?php $this->load->helper('form') ?>
    
     <div class="container">
-    <img class="responsive" src="<?=base_url('/assets/images/logo.png')?>" alt="logo" id="logo">
-        <?= form_open('authentification/login',array('class'=>'form')) ?>
+        <img src="<?=base_url('/assets/images/logo.png')?>" alt="logo" id="logo">
+        <?= form_open('authentification/user_login',array('class'=>'form')) ?>
         <fieldset class="scheduler-border">
             <div class="form-group">
                 <?= form_label("Adresse email&nbsp:","adresse_email")?>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                <?= form_submit(array('name'=>'login','id'=>'login','class'=>'btn btn-primary','value'=>'Se connecter'))?>
+                <button type="submit" name="login" id="login" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Se connecter</button>
             </div>
             <!--Déclération des 2 variables contenant les erreurs dans les inputs -->
             <?php 
@@ -48,7 +48,9 @@
             <?php elseif(!empty($mail_error)):?>
                 <div class="alert alert-danger " style="text-align:center"><?=$mail_error?></div>
             <?php elseif(!empty($passeword_error)):?>
-                <div class="alert alert-danger " style="text-align:center"><?=$passeword_error?></div> 
+                <div class="alert alert-danger" style="text-align:center"><?=$passeword_error?></div> 
+            <?php elseif(isset($error_message)):?>  
+                <div class="alert alert-danger" style="text-align:center"><?=$error_message?></div>       
             <?php endif;?>           
         </fieldset>
         <?= form_close()?>

@@ -494,43 +494,65 @@
                 <td class="titre"> 12- DEBRIEFING TOUR DECURITE</td>
             </tr>
 
-            <table class="table-bordered" style="width:100%;text-align:center" >
+            <table class="table-bordered" style="width:68%;text-align:center" >
                 <thead>
                     <tr>
-                        <th style="text-align:center">Points sécurité abordés (exemples : Règles d'Or, phases à risques, REX, etc.)</th>
+                        <th style="text-align:center;background-color:yellow">Points sécurité abordés (exemples : Règles d'Or, phases à risques, REX, etc.)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur.
+                        </td>
                     </tr>
                 </tbody>
             </table>
             
-           <table class="table-bordered" style="width:100%;text-align:center">
+           <table class="table-bordered" style="width:68%;text-align:center">
                <thead>
                     <tr>
-                        <th style="text-align:center">Points forts</th>
-                        <th style="text-align:center">Points faibles</th>
+                        <th style="text-align:center;background-color:green">Points forts</th>
+                        <th style="text-align:center;background-color:red">Points faibles</th>
                     </tr>
                </thead>
                <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur.
+                        </td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur.
+                        </td>
                     </tr>
                </tbody>
            </table>
             
-           <table class="table-bordered" style="width:100%;text-align:center">
+           <table class="table-bordered" style="width:68%;text-align:center">
                <thead>
                     <tr>
-                        <th style="text-align:center">Points abordés (exemples : Règles d'Or, phases à risques, REX, etc.)</th>
+                        <th style="text-align:center;background-color:yellow">Points abordés (exemples : Règles d'Or, phases à risques, REX, etc.)</th>
                     </tr>
                </thead>
                <tbody>
                     <tr>
-                        <td></td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur.
+                        </td>
                     </tr>
                </tbody>
            </table>

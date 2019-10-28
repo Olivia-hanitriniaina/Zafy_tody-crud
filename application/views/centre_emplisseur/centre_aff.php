@@ -1,7 +1,7 @@
 <div class="container">
     <h2>Centre emplisseur</h2>
     <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-centre">Ajouter</a>
+    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-centre"> <i class="fa fa-plus"></i> Ajouter</a>
     <br><br>
 
     <table class="table table-bordered table-striped" id="centre_liste">
@@ -24,8 +24,8 @@
                         <td style="text-align:center"><?= $centre->nom_visiteur ?></td>
                         <td style="text-align:center"><?= $centre->ville ?></td>
                         <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-centre" data-id="<?=$centre->id_centre?>" class="btn btn-info">Modifier</a>
-                            <a href="javascript:void(0)" id="delete-centre" data-id="<?=$centre->id_centre?>" class="btn btn-danger delete-user">Supprimer</a>
+                            <a href="javascript:void(0)" id="edit-centre" data-id="<?=$centre->id_centre?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="delete-centre" data-id="<?=$centre->id_centre?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach;?>
