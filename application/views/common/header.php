@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/navbar.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
+    <link rel="stylesheet" href="<?=base_url('/assets/css/datatables.min.css')?>">
+
+    <script src="<?=base_url('/assets/js/jquery.min.js')?>"></script>
+    <script src="<?=base_url('/assets/js/bootstrap.min.js')?>"></script>
+    <script src="<?=base_url('/assets/js/navbar_script.js') ?>"></script>
+    <script src="<?=base_url('/assets/js/fontawesome.min.js') ?>"></script>
+    <script src="<?=base_url('/assets/js/datatables.min.js') ?>"></script>
+    <script src="<?=base_url('/assets/js/jquery.validate.min.js') ?>"></script>
 
 
     
@@ -31,30 +39,16 @@
                     if (isset($session)):
                     ?>
                         <li><?=anchor("site/acceuil","Acceuil")?></li>
-                        <li><?=anchor("site/acceuil","Gestions d'utilisateurs")?></li>
-                        <li>6207836
-                            <a data-toggle="dropdown" href="#">Listes<b class="caret"></b></a>
-                            <ul class="dropdown-menu jqueryfadeIn">
-                                <li><?=anchor("station_service/afficher_station","Station service")?></li>
-                                <li><?=anchor("Parametrage/depot_aviantion","Dépôt aviation")?></li>
-                                <li><?=anchor("Parametrage/site","Site")?></li>
-                                <li><?=anchor("Parametrage/lieu","Lieu")?></li>
-                                <li><?=anchor("Parametrage/ville","ville")?></li>
-                                <li><?=anchor("Parametrage/centre_emplisseur","Centre emplisseur")?></li>
-                            </ul>
-                        </li>
+                        <li><?=anchor("site/acceuil","Gestion utilisateur")?></li>
                         <li class="dropdown">
-                            <a data-toggle="dropdown" href="#">Fiche de visite <b class="caret"></b></a>
+                            <a href="#" data-toggle="dropdown">Listes <b class="caret"></b></a>
                             <ul class="dropdown-menu jqueryfadeIn">
-                                <li class="dropdown-header"><h5>Tour de sécurité CODIR</h5></li>
-                                <li><?=anchor("site/station_service","Station service")?></li>
-                                <li><?=anchor("site/depot_aviation","Dépôt aviation")?></li>
-                                <li><?=anchor("site/centre_emplisseur","Centre emplisseur")?></li>
-                                <li class="dropdown-header"><h6>---------------------------------</h6> </li>
-                                <li><a href="#">HSE chantier</a></li>
-                                <li><a href="#">STL Bouteilles</a></li>
-                                <li><a href="#">STL camion opéré</a></li>
-                                <li><a href="#">Contrôle camion</a></li>
+                                <li><?=anchor("station_service/","Station service")?></li>
+                                <li><?=anchor("depot_aviation/","Dépôt aviation")?></li>
+                                <li><?=anchor("centre_emplisseur/","Centre emplisseur")?></li>
+                                <li> <a href="">Ville</a></li>
+                                <li> <a href="">Site</a> </li>
+                                <li> <a href="">Lieu</a> </li>
                             </ul>
                         </li>
                     <?php else: ?>

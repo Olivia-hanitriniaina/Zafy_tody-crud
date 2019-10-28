@@ -479,17 +479,17 @@ For example, if your full URL is this:</p>
 <p>The optional second parameter defaults to NULL and allows you to set the return value
 of this method when the requested URI segment is missing.
 For example, this would tell the method to return the number zero in the event of failure:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$product_id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">uri</span><span class="o">-&gt;</span><span class="na">segment</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$station_id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">uri</span><span class="o">-&gt;</span><span class="na">segment</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>It helps avoid having to write code like this:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">uri</span><span class="o">-&gt;</span><span class="na">segment</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="nv">$product_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nv">$station_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">else</span>
 <span class="p">{</span>
-        <span class="nv">$product_id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">uri</span><span class="o">-&gt;</span><span class="na">segment</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+        <span class="nv">$station_id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">uri</span><span class="o">-&gt;</span><span class="na">segment</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>

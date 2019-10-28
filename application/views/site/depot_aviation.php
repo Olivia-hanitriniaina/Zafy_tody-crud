@@ -11,12 +11,12 @@
     <table class="table-bordered">
         <thead>
             <tr>
-                <th class="numero"></th>
-                <th class="grand_titre">1-Les incontournables</th>
-                <th class="reponse">OUI</th>
-                <th class="reponse">NON</th>
-                <th class="reponse">NA</th>
-                <th class="observation">Observations</th>
+                <th class="numero th"></th>
+                <th class="grand_titre th">1-Les incontournables</th>
+                <th class="reponse th">OUI</th>
+                <th class="reponse th">NON</th>
+                <th class="reponse th">NA</th>
+                <th class="observation th">Observations</th>
             </tr>
         </thead>
         <tbody>
