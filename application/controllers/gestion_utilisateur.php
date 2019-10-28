@@ -35,6 +35,7 @@ class Gestion_utilisateur extends CI_Controller{
        $data=array(
            'adresse_email'=>$this->input->post('adresse_email'),
            'password'=>$this->input->post('password'),
+           'id_role'=>$this->input->post('role')
        );
        $status=false;
        $id=$this->input->post('user_id');
