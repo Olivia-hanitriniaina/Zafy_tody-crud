@@ -59,7 +59,7 @@
 
                     <div class="form-group">
                         <label for="name" class="control-label">Rôle : </label>
-                        <select id="role" class="form-control" name ="role">
+                        <select id="pet-select" name="role"class="form-control">
                         <option value="">Choisir un rôle</option>
                         
                         <?php foreach($role as $r){?>
@@ -123,6 +123,7 @@
                         $('#role').val(res.data.role);
                         $('#password').val(res.data.password);
                         $('#confirm_password').val(res.data.password);
+                        $('#pet-select').val(res.data.id_role)
                     }
                },
                error:function(data){
@@ -179,7 +180,7 @@
                    data: serialize,
                    
                    success: function(res){
-                    var user='<tr id="user_id_'+ res.data.id_users + '"><td>' + res.data.id_users + '</td><td>' + res.data.adresse_email + '</td>'
+                    var user='<tr id="user_id_'+ res.data.id_users + '"><td>' + res.data.id_users + '</td><td>' + res.data.adresse_email + '</td><td>'+ res.data.id_role + '</td>';
                     user+= '<td><a href="javascript:void(0)" id="edit-user" data-id="' + res.data.id_users + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-user" data-id="' + res.data.id_users + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
 
                     if(actionType =="create-user"){

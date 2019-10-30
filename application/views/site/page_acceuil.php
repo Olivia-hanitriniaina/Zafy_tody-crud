@@ -3,7 +3,7 @@
         transform: scale(1.1);
     } 
 </style>
-<div class="container">
+<div class="container" id="container">
     <div class="row">
         <div class="col-md-3 zoom">
             <a href="<?= base_url("/site/station_service")?>" style="text-decoration:none;">
@@ -13,6 +13,7 @@
                 </div>
             </a>
         </div>
+       
         <div class="col-md-3 zoom">
             <a href="<?= base_url("/site/depot_aviation")?>" style="text-decoration:none;">
                 <div class="card">
@@ -21,6 +22,7 @@
                 </div>
             </a>
         </div>
+       
         <div class="col-md-3 zoom">
             <a href="<?= base_url("/site/centre_emplisseur")?>" style="text-decoration:none;">
                 <div class="card">
@@ -29,8 +31,7 @@
                 </div>
             </a>
         </div>
-    </div>
-    <div class="row">
+       
         <div class="col-md-3 zoom">
             <a href="<?= base_url("/site/controle_camion")?>" style="text-decoration:none;">
                 <div class="card">
@@ -39,6 +40,7 @@
                 </div>
             </a>
         </div>
+       
         <div class="col-md-3 zoom">
             <a href="<?= base_url("/site/STL_bouteilles")?>" style="text-decoration:none;">
             <div class="card">
@@ -54,6 +56,10 @@
                 <img class="card-body" src="<?= base_url()."assets/images/hse_chantier1.jpg"?>" alt="hse_chantier" style="width:100%">
             </div>
         </div>
+    </div>
+   
+    <div class="row">
+        
     </div>
     <div class="row">
         <div class="col-md-3 zoom">
