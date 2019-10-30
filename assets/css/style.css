@@ -38,7 +38,7 @@ h2 {
 }
 #menu.navbar-default .navbar-nav > li > a {
 	text-transform: uppercase;
-	color: #eee;
+	color: #fff;
 	font-weight: 800;
 	font-size: 20px;
 	padding: 5px 0;
@@ -116,12 +116,13 @@ li.dropdown a{
 	display: table;
 	width: 100%;
 	padding: 0;
-	background: url(../images/Background4.jpg) center no-repeat;
+	background: url(../images/Background.jpg) center no-repeat;
 	background-color: #e5e5e5;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
 	-o-background-size: cover;
+	opacity: 2;
 }
 .intro .overlay {
 	background: rgba(128, 0, 255,0.2);
