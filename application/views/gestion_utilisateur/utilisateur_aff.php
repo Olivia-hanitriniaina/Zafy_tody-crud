@@ -23,7 +23,7 @@
                         <td style="text-align:center"><?= $user->adresse_email ?></td>
                         <td style="text-align:center"><?= $user->nom ?></td>
                         <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-users" data-id="<?=$user->id_users?>" class="btn btn-info" <?php if($user->adresse_email != $session['adresse_email']){ echo "disabled";} ?>><i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="<?php if($user->adresse_email == $session['adresse_email']){ echo "edit-users";} ?>" data-id="<?=$user->id_users?>" class="btn btn-info" <?php if($user->adresse_email != $session['adresse_email']){ echo "disabled";} ?>><i class="fa fa-edit"></i> Modifier</a>
                             <a href="javascript:void(0)" id="delete-users" data-id="<?=$user->id_users?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
@@ -98,7 +98,7 @@
        });
 
        /**Quand l'utilisateur clic sur me boutton "Modifier" */
-       $('#edit-users').click(function(){
+       $('body').on('click','#edit-users',function(){
            var user_id=$(this).data("id");
           
            $.ajax({

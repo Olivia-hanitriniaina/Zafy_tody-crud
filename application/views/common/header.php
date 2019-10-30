@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Page d'acceuil</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page d'accueil</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="<?=base_url('/assets/css/bootstrap.min.css')?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
-    <link rel="stylesheet" href="<?=base_url('/assets/css/navbar.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/datatables.min.css')?>">
 
+    <!-- Stylesheet
+        ================================================== -->
+    <link rel="stylesheet" type="text/css" href="<?=base_url('/assets/css/style.css')?>">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+
+    <!-- SCRIPT -->
     <script src="<?=base_url('/assets/js/jquery.min.js')?>"></script>
     <script src="<?=base_url('/assets/js/bootstrap.min.js')?>"></script>
     <script src="<?=base_url('/assets/js/navbar_script.js') ?>"></script>
     <script src="<?=base_url('/assets/js/fontawesome.min.js') ?>"></script>
     <script src="<?=base_url('/assets/js/datatables.min.js') ?>"></script>
     <script src="<?=base_url('/assets/js/jquery.validate.min.js') ?>"></script>
-
-
-    
-
+    <script src="<?=base_url('/assets/js/main.js') ?>"></script>
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
+    <!-- Navigation
+        ==========================================-->
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+        <div class="container"> 
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-               <img src="<?=base_url('/assets/images/logo.png')?>" alt="logo" >
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
             </div>
-           
-            <div class="collapse navbar-collapse" id="main-menu" style="margin-bottom: 0px;">
-                <ul class="nav navbar-nav">
-                    <?php
-                    if (isset($this->session->userdata['logged_in'])):
-                    ?>
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav ">
+                    <?php if (isset($this->session->userdata['logged_in'])):?>
                         <li><?=anchor("site/acceuil","Acceuil")?></li>
                         <li><?=anchor("gestion_utilisateur/","Gestion utilisateur")?></li>
                         <li class="dropdown">
-                            <a href="#" data-toggle="dropdown">Listes <b class="caret"></b></a>
-                            <ul class="dropdown-menu jqueryfadeIn">
-                                <li><?=anchor("station_service/","Station service")?></li>
-                                <li><?=anchor("depot_aviation/","Dépôt aviation")?></li>
-                                <li><?=anchor("centre_emplisseur/","Centre emplisseur")?></li>
-                                <li> <a href="">Ville</a></li>
-                                <li> <a href="">Site</a> </li>
-                                <li> <a href="">Lieu</a> </li>
+                            <a href="#" data-toggle="dropdown" style="background-color:transparent">Listes <b class="caret"></b></a>
+                            <ul class="dropdown-menu jqueryfadeIn" style="background-color:rgba(0,0,0,0.5)">
+                                <li class="dropdown"><?=anchor("station_service/","Station service")?></li>
+                                <li class="dropdown"><?=anchor("depot_aviation/","Dépôt aviation")?></li>
+                                <li class="dropdown"><?=anchor("centre_emplisseur/","Centre emplisseur")?></li>
+                                <li class="dropdown"> <a href="">Ville</a></li>
+                                <li class="dropdown"> <a href="">Site</a> </li>
+                                <li class="dropdown"> <a href="">Lieu</a> </li>
                             </ul>
                         </li>
                     <?php else: ?>
@@ -60,6 +68,24 @@
                         </a>
                     </li>
                 </ul>
-            </div><!--/.nav-collapse -->
+                
+            </div>
+            <!-- /.navbar-collapse --> 
         </div>
     </nav>
+    <!-- Header -->
+    <header id="header">
+        <div class="intro">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="intro-text">
+                            <h1></h1>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Features Section -->    
