@@ -67,7 +67,7 @@
 
                     <div class="form-group">
                         <label for="name" class="control-label">Adresse email : </label>
-                        <input type="mail" class="form-control" id="adresse_email" name="adresse_email" placeholder="Entrer votre adresse e-mail" value="" required="">
+                        <input type="email" class="form-control" id="adresse_email" name="adresse_email" placeholder="Entrer votre adresse e-mail" value="" required="">
                     </div>
 
                     <div class="form-group">
@@ -143,7 +143,6 @@
                         $('#password').val(res.data.password);
                         $('#confirm_password').val(res.data.password);
                     }
-                    alert(res.data.id_user_profil);
                },
                error:function(data){
                    console.log('error',data);
