@@ -8,7 +8,8 @@
         <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
                 <th style="text-align:center">ID</th>
-                <th style="text-align:center">Nom du Station service</th>
+                <th style="text-align:center">Station service</th>
+                <th style="text-align:center">Local Manager</th>
                 <th style="text-align:center">Actions</th>
             </tr>
         </thead>
@@ -16,12 +17,13 @@
         <tbody>
             <?php if($stations): ?>
                 <?php foreach($stations as $station): ?>
-                    <tr id="station_id_<?=$station->id_station;?>">
-                        <td style="text-align:center"><?= $station->id_station ?></td>
-                        <td style="text-align:center"><?= $station->nom_station ?></td>
+                    <tr id="station_id_<?=$station->id_local;?>">
+                        <td style="text-align:center"><?= $station->id_local ?></td>
+                        <td style="text-align:center"><?= $station->name_local ?></td>
+                        <td style="text-align:center"><?= $station->fullname ?></td>
                         <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-station" data-id="<?=$station->id_station?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
-                            <a href="javascript:void(0)" id="delete-station" data-id="<?=$station->id_station?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
+                            <a href="javascript:void(0)" id="edit-station" data-id="<?=$station->id_local?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="delete-station" data-id="<?=$station->id_local?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -49,13 +51,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Nom du visiteur : </label>
-                        <input type="text" class="form-control" id="nom_visiteur" name="nom_visiteur" placeholder="Entrer le nom du visiteur" value="" required="">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="control-label">Date : </label>
-                        <input type="date" class="form-control" id="date" name="date" placeholder="Entrer la date de visite" value="" required="">
+                        <label for="name" class="control-label">Local Manager : </label>
+                        <select name="local_manager" id="local_manager" class='form-control'>
+                            <?php foreach ($users as $user): ?>
+                                <option value="<?= $user->id ?>"><?= $user->fullname ?></option>
+                            <?php endforeach;?>
+    
+                        </select>
                     </div>
                 
                 </div>
@@ -103,11 +105,11 @@
                         $('#stationCrudModal').html('Modifier Station service');
                         $('#btn-save').val('Modifier');
                         $('#ajax-station-modal').modal('show');
-                        $('#station_id').val(res.data.id_station);
-                        $('#nom_station').val(res.data.nom_station);
-                        $('#nom_visiteur').val(res.data.nom_visiteur);
-                        $('#date').val(res.data.date);
+                        $('#station_id').val(res.data.id_local);
+                        $('#nom_station').val(res.data.name_local);
+                        $('#local_manager').val(res.data.local_manager_id);
                     }
+                   
                },
                error:function(data){
                    console.log('error',data);
@@ -153,14 +155,14 @@
                    data: serialize,
                    
                    success: function(res){
-                    var station='<tr id="station_id_'+ res.data.id_station + '"><td>' + res.data.id_station + '</td><td>' + res.data.nom_station + '</td><td>'+ res.data.nom_visiteur + '</td><td>'+ res.data.date + '</td>' 
-                    station+= '<td><a href="javascript:void(0)" id="edit-station" data-id="' + res.data.id_station + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-station" data-id="' + res.data.id_station + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+                    var station='<tr id="station_id_'+ res.data.id_local + '"><td>' + res.data.id_local + '</td><td>' + res.data.name_local + '</td><td>'+ res.data.fullname + '</td><td>'; 
+                    station+= '<td><a href="javascript:void(0)" id="edit-station" data-id="' + res.data.id_local + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-station" data-id="' + res.data.id_local + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
 
                     if(actionType =="create-station"){
                         
                        $('#station_liste').prepend(station);
                     }else{
-                       $('#station_id_' + res.data.id_station).replaceWith(station);
+                       $('#station_id_' + res.data.id_local).replaceWith(station);
                     }
 
                     $('#stationForm').trigger("reset");

@@ -1,18 +1,19 @@
 <?php
+defined('BASEPATH') OR exit('No direct script allowed');
 class Auth_model extends CI_Model{
     
     public function login($data){
 
         try {
-                $condition="adresse_email="."'".$data['adresse_email']."' AND "."password="."'".$data['password']."'";
+                $condition="login="."'".$data['login']."' AND "."password="."'".$data['password']."'";
                 $this->db->select('*');
-                $this->db->from('users');
+                $this->db->from('codir_users');
                 $this->db->where($condition);
                 $this->db->limit(1);
                 $query=$this->db->get();
         
                 if($query->num_rows()==1){
-                    return true;
+                    return $query->result();
                 }else{
                     return false;
                 }
@@ -22,12 +23,12 @@ class Auth_model extends CI_Model{
         }
     }
 
-    public function read_user_information($adresse_email){
+    public function read_user_information($login){
 
         try {
-                $condition="adresse_email="."'".$adresse_email."'";
+                $condition="login="."'".$login."'";
                 $this->db->select('*');
-                $this->db->from('users');
+                $this->db->from('codir_users');
                 $this->db->where($condition);
                 $this->db->limit(1);
                 $query=$this->db->get();

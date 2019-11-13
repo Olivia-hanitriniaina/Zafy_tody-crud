@@ -23,8 +23,8 @@
         <?= form_open('authentification/user_login',array('class'=>'form')) ?>
         <fieldset class="scheduler-border">
             <div class="form-group">
-                <?= form_label("Adresse email&nbsp:","adresse_email")?>
-                <?= form_input(['name'=>'adresse_email','id'=>'adresse_email','class'=>'form-control'],set_value('adresse_email'))?>
+                <?= form_label("Nom d'utilisateur&nbsp:","username")?>
+                <?= form_input(['name'=>'username','id'=>'username','class'=>'form-control'],set_value('username'))?>
             </div>
 
             <div class="form-group"> 
@@ -37,16 +37,16 @@
             </div>
             <!--Déclération des 2 variables contenant les erreurs dans les inputs -->
             <?php 
-                $mail_error=form_error('adresse_email');
+                $login_error=form_error('username');
                 $passeword_error=form_error('password');
             ?>
             <!-- Gestion des erreurs -->
             <?php if(!empty($error)): ?>
                 <div class="alert alert-danger " style="text-align:center"><?=$error?></div>
-            <?php elseif(!empty($mail_error) AND !empty($passeword_error) ):?>
-                <div class="alert alert-danger " style="text-align:center"><?=$mail_error.'and'.$passeword_error?></div>
-            <?php elseif(!empty($mail_error)):?>
-                <div class="alert alert-danger " style="text-align:center"><?=$mail_error?></div>
+            <?php elseif(!empty($login_error) AND !empty($passeword_error) ):?>
+                <div class="alert alert-danger " style="text-align:center"><?=$login_error.'and'.$passeword_error?></div>
+            <?php elseif(!empty($login_error)):?>
+                <div class="alert alert-danger " style="text-align:center"><?=$login_error?></div>
             <?php elseif(!empty($passeword_error)):?>
                 <div class="alert alert-danger" style="text-align:center"><?=$passeword_error?></div> 
             <?php elseif(isset($error_message)):?>  

@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav ">
                     <?php if (isset($this->session->userdata['logged_in'])):?>
-                        <li><?=anchor("site/acceuil","Acceuil")?></li>
+                        <li><?=anchor("accueil/acceuil","Accueil")?></li>
                         <li><?=anchor("gestion_utilisateur/","Gestion utilisateur")?></li>
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" style="background-color:transparent">Listes <b class="caret"></b></a>
@@ -51,9 +51,9 @@
                                 <li class="dropdown"><?=anchor("station_service/","Station service")?></li>
                                 <li class="dropdown"><?=anchor("depot_aviation/","Dépôt aviation")?></li>
                                 <li class="dropdown"><?=anchor("centre_emplisseur/","Centre emplisseur")?></li>
-                                <li class="dropdown"> <a href="">Ville</a></li>
-                                <li class="dropdown"> <a href="">Site</a> </li>
-                                <li class="dropdown"> <a href="">Lieu</a> </li>
+                                <li class="dropdown"> <?=anchor("ville/","Ville")?></li>
+                                <li class="dropdown"> <?=anchor("site/","Site")?> </li>
+                                <li class="dropdown"> <?=anchor("lieu/","Lieu")?> </li>
                             </ul>
                         </li>
                     <?php else: ?>

@@ -1,54 +1,60 @@
 <?php
+defined('BASEPATH') OR exit('No direct script allowed');
+
 class Site extends CI_Controller{
+    public function __construct(){
+        parent::__construct();
+        $this->load->helper('url');
+        $this->load->model('Site_model');
+    }    
+
     public function index(){
         if(isset($this->session->userdata['logged_in'])){
-            $this->acceuil();
+            $data['sites']=$this->Site_model->get_all_sites();
+            $data['users']=$this->Site_model->get_all_users();
+            $this->load->view('common/header');
+            $this->load->view('site/site_aff',$data);
+            $this->load->view('common/footer');
         }else{
-            redirect('authentification/');
+            redirect('authentification/','location');
         }
     }
-    public function acceuil(){
-        $this->load->view('common/header');
-        $this->load->view('site/page_acceuil');
-        $this->load->view('common/footer');
+
+    public function get_site_by_id(){
+        $id=$this->input->post('site_id');
+        $data=$this->Site_model->get_by_id($id);
+        $arr=array('success'=>false,'data'=>'');
+
+        if($data){
+            $arr=array('success'=>true,'data'=>$data);
+        }
+        echo json_encode($arr);
     }
 
-    public function station_service(){
-        $this->load->view('common/header');
-        $this->load->view('site/station_service');
-        $this->load->view('common/footer');  
+    public function store(){
+        $data=array(
+            'name_local'=>$this->input->post('nom_site'),
+            'local_manager_id'=>$this->input->post('local_manager'),
+            'local_type_id'=>1
+        );
+        $status=false;
+        $id= $this->input->post('site_id');
+
+        if($id){
+            $update=$this->Site_model->update($data);
+            $status=true;
+            $data=$this->Site_model->get_by_id($id);
+        }else{
+            $create=$this->Site_model->create($data);
+            $data=$this->Site_model->get_by_id($create);
+            $status=true;
+        }
+
+        echo json_encode(array('status'=>$status,'data'=>$data));
     }
 
-    public function centre_emplisseur(){
-        $this->load->view('common/header');
-        $this->load->view('site/centre_emplisseur');
-        $this->load->view('common/footer');
-    }
-
-    public function depot_aviation(){
-        $this->load->view('common/header');
-        $this->load->view('site/depot_aviation');
-        $this->load->view('common/footer');
-    }
-
-    public function HSE_chantier(){
-        $this->load->view('common/header');
-        $this->load->view('site/HSE_chantier');
-        $this->load->view('common/footer');
-    }
-    public function STL_bouteilles(){
-        $this->load->view('common/header');
-        $this->load->view('site/STL_bouteilles');
-        $this->load->view('common/footer');
-    }
-    public function controle_camion(){
-        $this->load->view('common/header');
-        $this->load->view('site/controle_camion');
-        $this->load->view('common/footer');
-    }
-    public function STL_camion(){
-        $this->load->view('common/header');
-        $this->load->view('site/STL_camion');
-        $this->load->view('common/footer');
+    public function delete(){
+        $this->Site_model->delete();
+        echo json_encode(array('status'=>true));
     }
 }

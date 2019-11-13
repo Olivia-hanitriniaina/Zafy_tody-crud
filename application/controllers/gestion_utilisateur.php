@@ -5,13 +5,12 @@ class Gestion_utilisateur extends CI_Controller{
        parent::__construct();
        $this->load->helper('url');
        $this->load->model('Gestion_model');
-       $this->load->model('Role_model');
    }
 
    public function index(){
         if(isset($this->session->userdata['logged_in'])){
             $data['users']=$this->Gestion_model->get_all_users();
-            $data['role']=$this->Role_model->get_all_role();
+            $data['profils']=$this->Gestion_model->get_user_profil();
             $this->load->view('common/header');
             $this->load->view('gestion_utilisateur/utilisateur_aff',$data);
             $this->load->view('common/footer');
@@ -33,9 +32,11 @@ class Gestion_utilisateur extends CI_Controller{
 
    public function store(){
        $data=array(
-           'adresse_email'=>$this->input->post('adresse_email'),
+           'login'=>$this->input->post('username'),
+           'fullname'=>$this->input->post('fullname'),
+           'adress_email'=>$this->input->post('adresse_email'),
            'password'=>$this->input->post('password'),
-           'id_role'=>$this->input->post('role')
+           'profil_id'=>$this->input->post('fonction')
        );
        $status=false;
        $id=$this->input->post('user_id');

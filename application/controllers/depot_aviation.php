@@ -10,6 +10,7 @@ class Depot_aviation extends CI_Controller{
    public function index(){
         if(isset($this->session->userdata['logged_in'])){
             $data['depots']=$this->Depot_model->get_all_depots();
+            $data['users']=$this->Depot_model->get_all_users();
             $this->load->view('common/header');
             $this->load->view('depot_aviation/depot_aff',$data);
             $this->load->view('common/footer');
@@ -31,10 +32,9 @@ class Depot_aviation extends CI_Controller{
 
    public function store(){
        $data=array(
-            'date'=>$this->input->post('date'),
-            'depot_aviation'=>$this->input->post('depot_aviation'),
-            'nom_chef_site'=>$this->input->post('nom_chef_site'),
-            'nom_visiteur'=>$this->input->post('nom_visiteur'),
+            'name_local'=>$this->input->post('depot_aviation'),
+            'local_manager_id'=>$this->input->post('local_manager'),
+            'local_type_id'=>4
        );
        $status=false;
        $id=$this->input->post('depot_id');

@@ -8,7 +8,7 @@
             <tr>
                 <th style="text-align:center">ID</th>
                 <th style="text-align:center">Depôt aviation</th>
-                <th style="text-align:center">Nom du chef du site </th>
+                <th style="text-align:center">Local Manager </th>
                 <th style="text-align:center">Action</th>
             </tr>
         </thead>
@@ -16,14 +16,14 @@
         <tbody>
             <?php if($depots): ?>
                 <?php foreach($depots as $depot): ?>
-                    <tr id="depot_id_<?=$depot->id_depot;?>">
-                        <td style="text-align:center"><?= $depot->id_depot ?></td>
-                        <td style="text-align:center"><?= $depot->depot_aviation ?></td>
-                        <td style="text-align:center"><?= $depot->nom_chef_site ?></td>
+                    <tr id="depot_id_<?=$depot->id;?>">
+                        <td style="text-align:center"><?= $depot->id_local ?></td>
+                        <td style="text-align:center"><?= $depot->name_local ?></td>
+                        <td style="text-align:center"><?= $depot->fullname ?></td>
                         
                         <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-depot" data-id="<?=$depot->id_depot?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
-                            <a href="javascript:void(0)" id="delete-depot" data-id="<?=$depot->id_depot?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
+                            <a href="javascript:void(0)" id="edit-depot" data-id="<?=$depot->id_local?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="delete-depot" data-id="<?=$depot->id_local?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -45,24 +45,19 @@
                     <input type="hidden" name="depot_id" id="depot_id">
 
                     <div class="form-group">
-                        <label for="name">Date : </label>
-                        <input type="date" class="form-control" id="date" name="date" required="">
-                    </div>
-
-                    <div class="form-group">
                         <label for="name">Dépôt aviation : </label>
                         <input type="text" class="form-control" id="depot_aviation" name="depot_aviation" placeholder="Dépôt aviation" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Nom du chef du site : </label>
-                        <input type="text" class="form-control" id="nom_chef_site" name="nom_chef_site" placeholder="Entrer le nom du chef du site" value="" required="">
+                        <label for="name">Local Manager : </label>
+                        <select name="local_manager" id="local_manager" class="form-control">
+                            <?php foreach ($users as $user): ?>
+                                <option value="<?= $user->id ?>"> <?= $user->fullname?> </option>
+                            <?php endforeach; ?>    
+                        </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="name">Nom du visiteur : </label>
-                        <input type="text" class="form-control" id="nom_visiteur" name="nom_visiteur" placeholder="Entrer le nom du visiteur" value="" required=""> 
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
@@ -104,12 +99,9 @@
                         $('#depotCrudModal').html('Modifier Dépôt aviation');
                         $('#btn-save').val('Modifier');
                         $('#ajax-depot-modal').modal('show');
-                        $('#depot_id').val(res.data.id_depot);
-                        $('#date').val(res.data.date);
-                        $('#depot_aviation').val(res.data.depot_aviation);
-                        $('#nom_chef_site').val(res.data.nom_chef_site);
-                        $('#nom_visiteur').val(res.data.nom_visiteur);
-                        
+                        $('#depot_id').val(res.data.id_local);
+                        $('#depot_aviation').val(res.data.name_local);
+                        $('#local_manager').val(res.data.local_manager_id);                        
                     }
                },
                error:function(data){
@@ -156,14 +148,14 @@
                    data: serialize,
                    
                    success: function(res){
-                    var depot='<tr id="depot_id_'+ res.data.id_depot + '"><td>' + res.data.id_depot + '</td><td>'+res.data.date+'</td><td>' + res.data.depot_aviation + '</td><td>'+ res.data.nom_chef_site + '</td><td>'+ res.data.nom_visiteur + '</td>' ;
-                    depot+= '<td><a href="javascript:void(0)" id="edit-depot" data-id="' + res.data.id_depot + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-depot" data-id="' + res.data.id_depot + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+                    var depot='<tr id="depot_id_'+ res.data.id_local + '"><td>' + res.data.id_local + '</td><td>'+res.data.name_local+'</td><td>' + res.data.fullname + '</td><td>';
+                    depot+= '<td><a href="javascript:void(0)" id="edit-depot" data-id="' + res.data.id_local + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-depot" data-id="' + res.data.id_local + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
 
                     if(actionType =="create-depot"){
                         
                        $('#depot_liste').prepend(depot);
                     }else{
-                       $('#depot_id_' + res.data.id_depot).replaceWith(depot);
+                       $('#depot_id_' + res.data.id_local).replaceWith(depot);
                     }
 
                     $('#depotForm').trigger("reset");
