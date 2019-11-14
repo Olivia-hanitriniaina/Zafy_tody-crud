@@ -139,7 +139,7 @@
                         $('#username').val(res.data.login);
                         $('#fullname').val(res.data.fullname)
                         $('#adresse_email').val(res.data.adress_email);
-                        $('#fonction').val(res.data.id_user_profil);
+                        $('#fonction').val(res.data.profil_id);
                         $('#password').val(res.data.password);
                         $('#confirm_password').val(res.data.password);
                     }

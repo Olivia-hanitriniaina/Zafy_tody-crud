@@ -52,6 +52,7 @@
                     <div class="form-group">
                         <label for="name">Local Manager : </label>
                         <select name="local_manager" id="local_manager" class="form-control">
+                            <option value="default"></option>
                             <?php foreach ($users as $user): ?>
                                 <option value="<?= $user->id ?>"> <?= $user->fullname?> </option>
                             <?php endforeach; ?>    
