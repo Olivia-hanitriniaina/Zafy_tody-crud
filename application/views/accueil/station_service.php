@@ -1,4 +1,32 @@
 <div class="container">
+<table class="table table-bordered table-striped" id="station_liste">
+        <thead style="background-color:rgba(200,0,0,0.5)">
+            <tr>
+                <th style="text-align:center">ID</th>
+                <th style="text-align:center">Station service</th>
+                <th style="text-align:center">Gérant</th>
+                <th style="text-align:center">Nom visiteur</th>
+                <th style="text-align:center">date de visite</th>
+                <th style="text-align:center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">TOTAL Ankadimbahoaka</td>
+                <td style="text-align:center">Jean Christ</td>
+                <td style="text-align:center">Rakoto</td>
+                <td style="text-align:center">15 Novembre 2019</td>
+                <td style="text-align:center">
+                    <button class="btn btn-primary">Détail</button>
+                    <button class="btn btn-success">télécharger en format excel</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
     <div class="well" style="text-align: center">
         <h1>Tour de sécurité CODIR : Station service </h1>
     </div>

@@ -8,7 +8,7 @@
             <tr>
                 <th style="text-align:center">ID</th>
                 <th style="text-align:center">Depôt aviation</th>
-                <th style="text-align:center">Local Manager </th>
+                <th style="text-align:center">Gérant </th>
                 <th style="text-align:center">Action</th>
             </tr>
         </thead>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Local Manager : </label>
+                        <label for="name">Gérant : </label>
                         <select name="local_manager" id="local_manager" class="form-control">
                             <option value="default"></option>
                             <?php foreach ($users as $user): ?>
