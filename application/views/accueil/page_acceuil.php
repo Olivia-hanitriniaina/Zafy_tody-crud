@@ -6,7 +6,7 @@
 <div class="container" id="container">
     <div class="row">
         <div class="col-md-3 zoom">
-            <a href="<?= base_url("/accueil/station_service")?>" style="text-decoration:none;">
+            <a href="<?= base_url("visite_station")?>" style="text-decoration:none;">
                 <div class="card">
                     <h2 style="text-align:center ;color:black;" class="card-header">Station service</h2>
                     <img class="card-body" src="<?= base_url()."assets/images/station_service1.png"?>" alt="station service" style="width:100%">
