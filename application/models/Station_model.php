@@ -19,8 +19,24 @@ class Station_model extends CI_Model{
       show_error($e->getMessage().'-----'.$e->getTraceAsString());
     }
   }
+  
+  public function get_count(){
+    try {
+      $this->db->select('*');
+      $this->db->from('codir_locals');
+      $this->db->join('codir_local_type','local_type_id=codir_local_type.id');
+      $this->db->join('codir_users','codir_users.id=local_manager_id','left');
+      $this->db->where(array('local_type_id'=>3));
+      $this->db->order_by('name_local','desc');
+      return $this->db->count_all_results();
+    }
+    catch(Exception $e){
+      show_error($e->getMessage().'-----'.$e->getTraceAsString());
+    }
+    
+  }
 
-  public function get_all_stations(){
+  public function get_all_stations($limit,$start){
 
     try {
       $this->db->select('*');
@@ -28,6 +44,7 @@ class Station_model extends CI_Model{
       $this->db->join('codir_local_type','local_type_id=codir_local_type.id');
       $this->db->join('codir_users','codir_users.id=local_manager_id','left');
       $this->db->where(array('local_type_id'=>3));
+      $this->db->limit($limit,$start);
       $query=$this->db->get();
       return $query->result();
     }

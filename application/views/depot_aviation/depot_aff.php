@@ -104,6 +104,7 @@
                         $('#depot_aviation').val(res.data.name_local);
                         $('#local_manager').val(res.data.local_manager_id);                        
                     }
+                    alert( $('#depot_aviation').val(res.data.name_local));
                },
                error:function(data){
                    console.log('error',data);

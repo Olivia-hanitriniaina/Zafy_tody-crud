@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/datatables.min.css')?>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Stylesheet
         ================================================== -->
@@ -44,7 +45,6 @@
                 <ul class="nav navbar-nav ">
                     <?php if (isset($this->session->userdata['logged_in'])):?>
                         <li><?=anchor("accueil/acceuil","Accueil")?></li>
-                        <li><?=anchor("gestion_utilisateur/","Gestion utilisateur")?></li>
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" style="background-color:transparent">Listes <b class="caret"></b></a>
                             <ul class="dropdown-menu jqueryfadeIn" style="background-color:rgba(0,0,0,0.5)">
@@ -54,15 +54,17 @@
                                 <li class="dropdown"> <?=anchor("ville/","Ville")?></li>
                                 <li class="dropdown"> <?=anchor("site/","Site")?> </li>
                                 <li class="dropdown"> <?=anchor("lieu/","Lieu")?> </li>
+                                <li class="dropdown"> <?=anchor("produit/","Produit")?> </li>
                             </ul>
                         </li>
+                        <li><?=anchor("gestion_utilisateur/","Gestion utilisateur")?></li>
                     <?php else: ?>
                         <?php redirect('authentification/') ?>
                     <?php endif; ?> 
                 </ul>    
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="<?=base_url('/authentification/logout')?>">
+                        <a href="<?=base_url('/authentification/logout')?>" style="font-size:15px">
                             <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter
                         </a>
                     </li>
