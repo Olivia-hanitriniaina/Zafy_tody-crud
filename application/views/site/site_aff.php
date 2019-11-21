@@ -196,8 +196,9 @@
                     if(res.success == true){
                         for(var i =0; i< res.data.length; i++){
                             var response = res.data[i].recherche.split(" ");
+                            alert(res.data[i].recherche) 
                             for(var y =0; y < response.length; y++){
-                               alert(response[y]) 
+                               //alert(response[y]) 
                             }
                           
                         }  
