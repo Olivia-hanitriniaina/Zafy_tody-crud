@@ -1,0 +1,17 @@
+div.container{
+  width: 40%;
+  margin-top: 12%;
+  border: 2px solid white ;
+  border-radius: 20px;
+  background-color: rgba(226,226,226,0.5)
+}
+div.alert.alert-danger{
+  width: 50%;
+  height: auto;
+  margin: auto;
+  background-color: whitesmoke;
+}
+#login{
+  background-color: rgba(245,151,0);
+  border: none;
+}
