@@ -197,7 +197,7 @@
                         for(var i =0; i< res.data.length; i++){
                             var response = res.data[i].recherche.split(" ");
                             for(var y =0; y < response.length; y++){
-                               alert(response[y])
+                               alert(response[y]) 
                             }
                           
                         }  
