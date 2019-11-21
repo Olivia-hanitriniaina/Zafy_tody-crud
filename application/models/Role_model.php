@@ -9,7 +9,7 @@ class Role_model extends CI_Model{
   public function get_all_role(){
 
     try {
-          $this->db->from('codir_user_profil');
+          $this->db->from('role');
           $query=$this->db->get();
           return $query->result();
     }

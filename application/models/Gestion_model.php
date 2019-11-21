@@ -10,7 +10,7 @@ class Gestion_model extends CI_Model{
     try{
       $this->db->select('*');
       $this->db->from('codir_user_profil');
-      $this->db->join('codir_users','profil_id=codir_user_profil.id','right');
+      $this->db->join('codir_users','profil_id=codir_user_profil.id_user_profil','right');
       $query=$this->db->get();
       return $query->result();
       //

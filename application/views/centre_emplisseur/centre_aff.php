@@ -106,8 +106,13 @@
                         $('#centreCrudModal').html('Modifier Centre emplisseur');
                         $('#btn-save').val('Modifier');
                         $('#ajax-centre-modal').modal('show');
+<<<<<<< HEAD
                         $('#centre_id').val(res.data.id);
                         $('#nom_centre').val(res.data.name);
+=======
+                        $('#centre_id').val(res.data.id_local);
+                        $('#nom_centre').val(res.data.name_local);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
                         $('#local_manager').val(res.data.local_manager_id);
                     }
                    
@@ -156,14 +161,23 @@
                    data: serialize,
                    
                    success: function(res){
+<<<<<<< HEAD
                     var centre='<tr id="centre_id_'+ res.data.id + '"><td>' + res.data.id + '</td><td>' + res.data.name + '</td><td>'+ res.data.fullname + '</td><td>'; 
                     centre+= '<td><a href="javascript:void(0)" id="edit-centre" data-id="' + res.data.id + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-centre" data-id="' + res.data.id + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+=======
+                    var centre='<tr id="centre_id_'+ res.data.id_local + '"><td>' + res.data.id_local + '</td><td>' + res.data.name_local + '</td><td>'+ res.data.fullname + '</td><td>'; 
+                    centre+= '<td><a href="javascript:void(0)" id="edit-centre" data-id="' + res.data.id_local + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-centre" data-id="' + res.data.id_local + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
                     if(actionType =="create-centre"){
                         
                        $('#centre_liste').prepend(centre);
                     }else{
+<<<<<<< HEAD
                        $('#centre_id_' + res.data.id).replaceWith(centre);
+=======
+                       $('#centre_id_' + res.data.id_local).replaceWith(centre);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
                     }
 
                     $('#centreForm').trigger("reset");

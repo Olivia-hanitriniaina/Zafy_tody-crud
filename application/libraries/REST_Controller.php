@@ -1,10 +1,13 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 namespace Restserver\Libraries;
 use Exception;
 use stdClass;
@@ -13,7 +16,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH . 'libraries/REST_Controller_Definitions.php';
 
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 /**
  * CodeIgniter Rest Controller
  * A fully RESTful server implementation for CodeIgniter using one library, one config file and one controller.
@@ -26,6 +32,7 @@ require APPPATH . 'libraries/REST_Controller_Definitions.php';
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  * @version         3.0.0
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 abstract class REST_Controller extends \CI_Controller {
 
@@ -164,6 +171,9 @@ abstract class REST_Controller extends \CI_Controller {
 =======
 trait REST_Controller {
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+trait REST_Controller {
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
     /**
      * This defines the rest format
@@ -319,6 +329,7 @@ trait REST_Controller {
      */
     protected $_supported_formats = [
 <<<<<<< HEAD
+<<<<<<< HEAD
             'json' => 'application/json',
             'array' => 'application/json',
             'csv' => 'application/csv',
@@ -329,6 +340,8 @@ trait REST_Controller {
             'xml' => 'application/xml'
         ];
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         'json' => 'application/json',
         'array' => 'application/json',
         'csv' => 'application/csv',
@@ -338,7 +351,10 @@ trait REST_Controller {
         'serialized' => 'application/vnd.php.serialized',
         'xml' => 'application/xml'
     ];
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
     /**
      * Information about the current API user
@@ -365,10 +381,15 @@ trait REST_Controller {
     protected $_enable_xss = FALSE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private $is_valid_request = TRUE;
 
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+    private $is_valid_request = TRUE;
+
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
     /**
      * HTTP status codes and their respective description
      * Note: Only the widely used HTTP status codes are used
@@ -377,6 +398,7 @@ trait REST_Controller {
      * @link http://www.restapitutorial.com/httpstatuscodes.html
      */
     protected $http_status_codes = [
+<<<<<<< HEAD
 <<<<<<< HEAD
         self::HTTP_OK => 'OK',
         self::HTTP_CREATED => 'CREATED',
@@ -395,6 +417,8 @@ trait REST_Controller {
 
     /**
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         REST_Controller_Definitions::HTTP_OK => 'OK',
         REST_Controller_Definitions::HTTP_CREATED => 'CREATED',
         REST_Controller_Definitions::HTTP_NO_CONTENT => 'NO CONTENT',
@@ -420,7 +444,10 @@ trait REST_Controller {
     protected $auth_override;
 
     /**
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
      * Extend this function to apply additional checking early on in the process
      *
      * @access protected
@@ -451,6 +478,7 @@ trait REST_Controller {
         $this->output->parse_exec_vars = FALSE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Start the timer for how long the request takes
         $this->_start_rtime = microtime(TRUE);
 
@@ -460,6 +488,8 @@ trait REST_Controller {
         // At present the library is bundled with REST_Controller 2.5+, but will eventually be part of CodeIgniter (no citation)
         $this->load->library('format');
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Log the loading time to the log table
         if ($this->config->item('rest_enable_logging') === TRUE)
         {
@@ -481,7 +511,10 @@ trait REST_Controller {
         //    $this->format = $this->libraryFormat;
         //}
 
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
         // Determine supported output formats from configuration
         $supported_formats = $this->config->item('rest_supported_formats');
@@ -516,10 +549,14 @@ trait REST_Controller {
 
         // Load the language file
 <<<<<<< HEAD
+<<<<<<< HEAD
         $this->lang->load('rest_controller', $language, FALSE, TRUE, __DIR__."/../");
 =======
         $this->lang->load('rest_controller', $language, FALSE, TRUE, __DIR__.'/../');
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        $this->lang->load('rest_controller', $language, FALSE, TRUE, __DIR__.'/../');
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
         // Initialise the response, request and rest objects
         $this->request = new stdClass();
@@ -565,10 +602,14 @@ trait REST_Controller {
 
         $this->{'_parse_' . $this->request->method}();
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Fix parse method return arguments null
         if($this->{'_'.$this->request->method.'_args'} === null)
         {
@@ -576,12 +617,15 @@ trait REST_Controller {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Now we know all about our request, let's try and parse the body if it exists
         if ($this->request->format && $this->request->body)
         {
             $this->request->body = $this->format->factory($this->request->body, $this->request->format)->to_array();
             // Assign payload arguments to proper method container
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Which format should the data be returned in?
         $this->response->format = $this->_detect_output_format();
 
@@ -594,7 +638,10 @@ trait REST_Controller {
             $this->request->body = Format::factory($this->request->body, $this->request->format)->to_array();
 
         // Assign payload arguments to proper method container
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
             $this->{'_'.$this->request->method.'_args'} = $this->request->body;
         }
 
@@ -614,6 +661,7 @@ trait REST_Controller {
         );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Which format should the data be returned in?
         $this->response->format = $this->_detect_output_format();
 
@@ -622,6 +670,8 @@ trait REST_Controller {
 
 =======
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Extend this function to apply additional checking early on in the process
         $this->early_checks();
 
@@ -654,6 +704,7 @@ trait REST_Controller {
             // Display an error response
             $this->response([
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ajax_only')
                 ], self::HTTP_NOT_ACCEPTABLE);
@@ -662,16 +713,25 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ajax_only')
             ], REST_Controller_Definitions::HTTP_NOT_ACCEPTABLE);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ajax_only')
+            ], REST_Controller_Definitions::HTTP_NOT_ACCEPTABLE);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
 
         // When there is no specific override for the current class/method, use the default auth value set in the config
         if ($this->auth_override === FALSE &&
             (! ($this->config->item('rest_enable_keys') && $this->_allow === TRUE) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
             ($this->config->item('allow_auth_and_keys') === TRUE && $this->_allow === TRUE)))
 =======
                 ($this->config->item('allow_auth_and_keys') === TRUE && $this->_allow === TRUE)))
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                ($this->config->item('allow_auth_and_keys') === TRUE && $this->_allow === TRUE)))
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         {
             $rest_auth = strtolower($this->config->item('rest_auth'));
             switch ($rest_auth)
@@ -687,12 +747,15 @@ trait REST_Controller {
                     break;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             if ($this->config->item('rest_ip_whitelist_enabled') === TRUE)
             {
                 $this->_check_whitelist_auth();
             }
         }
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
     }
 
@@ -713,7 +776,10 @@ trait REST_Controller {
         }
 
         $this->load->config($config_file, FALSE, TRUE);
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
     }
 
     /**
@@ -726,6 +792,7 @@ trait REST_Controller {
     public function __destruct()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Get the current timestamp
         $this->_end_rtime = microtime(TRUE);
 
@@ -733,13 +800,18 @@ trait REST_Controller {
         if ($this->config->item('rest_enable_logging') === TRUE)
         {
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Log the loading time to the log table
         if ($this->config->item('rest_enable_logging') === TRUE)
         {
             // Get the current timestamp
             $this->_end_rtime = microtime(TRUE);
 
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
             $this->_log_access_time();
         }
     }
@@ -775,9 +847,13 @@ trait REST_Controller {
      * @param string $object_called
      * @param array $arguments The arguments passed to the controller method
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
      * @throws Exception
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+     * @throws Exception
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
      */
     public function _remap($object_called, $arguments = [])
     {
@@ -785,6 +861,7 @@ trait REST_Controller {
         if ($this->config->item('force_https') && $this->request->ssl === FALSE)
         {
             $this->response([
+<<<<<<< HEAD
 <<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unsupported')
@@ -794,6 +871,11 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unsupported')
             ], REST_Controller_Definitions::HTTP_FORBIDDEN);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unsupported')
+            ], REST_Controller_Definitions::HTTP_FORBIDDEN);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
 
         // Remove the supported format from the function name e.g. index.json => index
@@ -801,18 +883,24 @@ trait REST_Controller {
 
         $controller_method = $object_called.'_'.$this->request->method;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    // Does this method exist? If not, try executing an index method
 	    if (!method_exists($this, $controller_method)) {
 		    $controller_method = "index_" . $this->request->method;
 		    array_unshift($arguments, $object_called);
 	    }
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Does this method exist? If not, try executing an index method
         if (!method_exists($this, $controller_method)) {
             $controller_method = "index_" . $this->request->method;
             array_unshift($arguments, $object_called);
         }
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
         // Do we want to log this method (if allowed by config)?
         $log_method = ! (isset($this->methods[$controller_method]['log']) && $this->methods[$controller_method]['log'] === FALSE);
@@ -828,17 +916,23 @@ trait REST_Controller {
                 $this->_log_request();
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             
             // fix cross site to option request error 
 =======
 
             // fix cross site to option request error
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+
+            // fix cross site to option request error
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
             if($this->request->method == 'options') {
                 exit;
             }
 
             $this->response([
+<<<<<<< HEAD
 <<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => sprintf($this->lang->line('text_rest_invalid_api_key'), $this->rest->key)
@@ -848,6 +942,11 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => sprintf($this->lang->line('text_rest_invalid_api_key'), $this->rest->key)
             ], REST_Controller_Definitions::HTTP_FORBIDDEN);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => sprintf($this->lang->line('text_rest_invalid_api_key'), $this->rest->key)
+            ], REST_Controller_Definitions::HTTP_FORBIDDEN);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
 
         // Check to see if this key has access to the requested controller
@@ -860,6 +959,7 @@ trait REST_Controller {
 
             $this->response([
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_api_key_unauthorized')
                 ], self::HTTP_UNAUTHORIZED);
@@ -868,12 +968,18 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_api_key_unauthorized')
             ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_api_key_unauthorized')
+            ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
 
         // Sure it exists, but can they do anything with it?
         if (! method_exists($this, $controller_method))
         {
             $this->response([
+<<<<<<< HEAD
 <<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unknown_method')
@@ -883,6 +989,11 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unknown_method')
             ], REST_Controller_Definitions::HTTP_METHOD_NOT_ALLOWED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unknown_method')
+            ], REST_Controller_Definitions::HTTP_METHOD_NOT_ALLOWED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
 
         // Doing key related stuff? Can only do it if they have a key right?
@@ -893,10 +1004,14 @@ trait REST_Controller {
             {
                 $response = [$this->config->item('rest_status_field_name') => FALSE, $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_api_key_time_limit')];
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $this->response($response, self::HTTP_UNAUTHORIZED);
 =======
                 $this->response($response, REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->response($response, REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
             }
 
             // If no level is set use 0, they probably aren't using permissions
@@ -914,10 +1029,14 @@ trait REST_Controller {
                 // They don't have good enough perms
                 $response = [$this->config->item('rest_status_field_name') => FALSE, $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_api_key_permissions')];
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $this->response($response, self::HTTP_UNAUTHORIZED);
 =======
                 $this->response($response, REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->response($response, REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
             }
         }
 
@@ -926,10 +1045,14 @@ trait REST_Controller {
         {
             $response = [$this->config->item('rest_status_field_name') => FALSE, $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ip_address_time_limit')];
 <<<<<<< HEAD
+<<<<<<< HEAD
             $this->response($response, self::HTTP_UNAUTHORIZED);
 =======
             $this->response($response, REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+            $this->response($response, REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
 
         // No key stuff, but record that stuff is happening
@@ -942,12 +1065,18 @@ trait REST_Controller {
         try
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             call_user_func_array([$this, $controller_method], $arguments);
 =======
             if ($this->is_valid_request) {
                 call_user_func_array([$this, $controller_method], $arguments);
             }
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+            if ($this->is_valid_request) {
+                call_user_func_array([$this, $controller_method], $arguments);
+            }
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
         catch (Exception $ex)
         {
@@ -957,12 +1086,17 @@ trait REST_Controller {
 
             // If the method doesn't exist, then the error will be caught and an error response shown
 <<<<<<< HEAD
+<<<<<<< HEAD
 	        $_error = &load_class('Exceptions', 'core');
 	        $_error->show_exception($ex);
 =======
             $_error = &load_class('Exceptions', 'core');
             $_error->show_exception($ex);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+            $_error = &load_class('Exceptions', 'core');
+            $_error->show_exception($ex);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
     }
 
@@ -972,6 +1106,7 @@ trait REST_Controller {
      * @access public
      * @param array|NULL $data Data to output to the user
      * @param int|NULL $http_code HTTP status code
+<<<<<<< HEAD
 <<<<<<< HEAD
      * running the script; otherwise, exit
      */
@@ -1044,6 +1179,8 @@ trait REST_Controller {
 
         // Otherwise dump the output automatically
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
      * @param bool $continue TRUE to flush the response to the client and continue
      * running the script; otherwise, exit
      */
@@ -1143,7 +1280,10 @@ trait REST_Controller {
         else{
             echo json_encode($data);
         }
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
     }
 
     /**
@@ -1359,18 +1499,26 @@ trait REST_Controller {
                     // multiple ip addresses must be separated using a comma, explode and loop
                     $list_ip_addresses = explode(',', $row->ip_addresses);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             $ip_address = $this->input->ip_address();
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+            $ip_address = $this->input->ip_address();
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
                     $found_address = FALSE;
 
                     foreach ($list_ip_addresses as $ip_address)
                     {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         if ($this->input->ip_address() === trim($ip_address))
 =======
                         if ($ip_address === trim($ip_address))
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                        if ($ip_address === trim($ip_address))
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
                         {
                             // there is a match, set the the value to TRUE and break out of the loop
                             $found_address = TRUE;
@@ -1399,10 +1547,14 @@ trait REST_Controller {
      *
      * @access protected
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @return string|NULL The language code
 =======
      * @return string|NULL|array The language code
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+     * @return string|NULL|array The language code
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
      */
     protected function _detect_lang()
     {
@@ -1481,6 +1633,7 @@ trait REST_Controller {
         switch ($this->config->item('rest_limits_method'))
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
           case 'IP_ADDRESS':
             $limited_uri = 'ip-address:' .$this->input->ip_address();
             $api_key = $this->input->ip_address();
@@ -1504,6 +1657,8 @@ trait REST_Controller {
             $limited_uri = 'uri:'.$limited_uri.':'.$this->request->method; // It's good to differentiate GET from PUT
             break;
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
             case 'IP_ADDRESS':
                 $api_key = $this->input->ip_address();
                 $limited_uri = 'ip-address:' . $api_key;
@@ -1526,7 +1681,10 @@ trait REST_Controller {
                 }
                 $limited_uri = 'uri:'.$limited_uri.':'.$this->request->method; // It's good to differentiate GET from PUT
                 break;
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
 
         if (isset($this->methods[$controller_method]['limit']) === FALSE )
@@ -1830,12 +1988,17 @@ trait REST_Controller {
         else if ($this->input->method() === 'put')
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
            // If no file type is provided, then there are probably just arguments
            $this->_put_args = $this->input->input_stream();
 =======
             // If no file type is provided, then there are probably just arguments
             $this->_put_args = $this->input->input_stream();
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+            // If no file type is provided, then there are probably just arguments
+            $this->_put_args = $this->input->input_stream();
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
     }
 
@@ -2119,10 +2282,14 @@ trait REST_Controller {
         log_message('debug', 'LDAP Auth: Loading configuration');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $this->config->load('ldap.php', TRUE);
 =======
         $this->config->load('ldap', TRUE);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        $this->config->load('ldap', TRUE);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
         $ldap = [
             'timeout' => $this->config->item('timeout', 'ldap'),
@@ -2304,14 +2471,20 @@ trait REST_Controller {
     protected function _check_php_session()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // If whitelist is enabled it has the first chance to kick them out
         if ($this->config->item('rest_ip_whitelist_enabled'))
         {
             $this->_check_whitelist_auth();
         }
 
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Get the auth_source config item
         $key = $this->config->item('auth_source');
 
@@ -2321,6 +2494,7 @@ trait REST_Controller {
             // Display an error response
             $this->response([
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unauthorized')
                 ], self::HTTP_UNAUTHORIZED);
@@ -2329,6 +2503,11 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unauthorized')
             ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unauthorized')
+            ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
     }
 
@@ -2349,10 +2528,14 @@ trait REST_Controller {
         // Returns NULL if the SERVER variables PHP_AUTH_USER and HTTP_AUTHENTICATION don't exist
         $username = $this->input->server('PHP_AUTH_USER');
 <<<<<<< HEAD
+<<<<<<< HEAD
         $http_auth = $this->input->server('HTTP_AUTHENTICATION');
 =======
         $http_auth = $this->input->server('HTTP_AUTHENTICATION') ?: $this->input->server('HTTP_AUTHORIZATION');
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        $http_auth = $this->input->server('HTTP_AUTHENTICATION') ?: $this->input->server('HTTP_AUTHORIZATION');
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
         $password = NULL;
         if ($username !== NULL)
@@ -2415,27 +2598,36 @@ trait REST_Controller {
 
         // For digest authentication the library function should return already stored md5(username:restrealm:password) for that username see rest.php::auth_library_function config
 <<<<<<< HEAD
+<<<<<<< HEAD
         $username = $this->_check_login($digest['username'], TRUE);
         if (array_key_exists('username', $digest) === FALSE || $username === FALSE)
 =======
         if (isset($digest['username']) === FALSE || $this->_check_login($digest['username'], TRUE) === FALSE)
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        if (isset($digest['username']) === FALSE || $this->_check_login($digest['username'], TRUE) === FALSE)
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         {
             $this->_force_login($unique_id);
         }
 
         $md5 = md5(strtoupper($this->request->method).':'.$digest['uri']);
 <<<<<<< HEAD
+<<<<<<< HEAD
         $valid_response = md5($username.':'.$digest['nonce'].':'.$digest['nc'].':'.$digest['cnonce'].':'.$digest['qop'].':'.$md5);
 =======
         $valid_response = md5($digest['username'].':'.$digest['nonce'].':'.$digest['nc'].':'.$digest['cnonce'].':'.$digest['qop'].':'.$md5);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        $valid_response = md5($digest['username'].':'.$digest['nonce'].':'.$digest['nc'].':'.$digest['cnonce'].':'.$digest['qop'].':'.$md5);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
         // Check if the string don't compare (case-insensitive)
         if (strcasecmp($digest['response'], $valid_response) !== 0)
         {
             // Display an error response
             $this->response([
+<<<<<<< HEAD
 <<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_invalid_credentials')
@@ -2445,6 +2637,11 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_invalid_credentials')
             ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_invalid_credentials')
+            ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
     }
 
@@ -2465,6 +2662,7 @@ trait REST_Controller {
             // Display an error response
             $this->response([
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ip_denied')
                 ], self::HTTP_UNAUTHORIZED);
@@ -2473,6 +2671,11 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ip_denied')
             ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ip_denied')
+            ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
     }
 
@@ -2499,6 +2702,7 @@ trait REST_Controller {
         {
             $this->response([
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $this->config->item('rest_status_field_name') => FALSE,
                     $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ip_unauthorized')
                 ], self::HTTP_UNAUTHORIZED);
@@ -2507,6 +2711,11 @@ trait REST_Controller {
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ip_unauthorized')
             ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+                $this->config->item('rest_status_field_name') => FALSE,
+                $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_ip_unauthorized')
+            ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         }
     }
 
@@ -2521,6 +2730,7 @@ trait REST_Controller {
     protected function _force_login($nonce = '')
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $rest_auth = $this->config->item('rest_auth');
         $rest_realm = $this->config->item('rest_realm');
         if (strtolower($rest_auth) === 'basic')
@@ -2529,15 +2739,24 @@ trait REST_Controller {
         $rest_realm = $this->config->item('rest_realm');
         if ($rest_auth === 'basic')
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        $rest_auth = strtolower($this->config->item('rest_auth'));
+        $rest_realm = $this->config->item('rest_realm');
+        if ($rest_auth === 'basic')
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         {
             // See http://tools.ietf.org/html/rfc2617#page-5
             header('WWW-Authenticate: Basic realm="'.$rest_realm.'"');
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         elseif (strtolower($rest_auth) === 'digest')
 =======
         elseif ($rest_auth === 'digest')
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        elseif ($rest_auth === 'digest')
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         {
             // See http://tools.ietf.org/html/rfc2617#page-18
             header(
@@ -2547,12 +2766,15 @@ trait REST_Controller {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Display an error response
         $this->response([
                 $this->config->item('rest_status_field_name') => FALSE,
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unauthorized')
             ], self::HTTP_UNAUTHORIZED);
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         if ($this->config->item('strict_api_and_auth') === true) {
             $this->is_valid_request = false;
         }
@@ -2562,7 +2784,10 @@ trait REST_Controller {
             $this->config->item('rest_status_field_name') => FALSE,
             $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unauthorized')
         ], REST_Controller_Definitions::HTTP_UNAUTHORIZED);
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
     }
 
     /**
@@ -2575,6 +2800,7 @@ trait REST_Controller {
     protected function _log_access_time()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $payload['rtime'] = $this->_end_rtime - $this->_start_rtime;
 
         return $this->rest->db->update(
@@ -2582,6 +2808,8 @@ trait REST_Controller {
                 'id' => $this->_insert_id
             ]);
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         if($this->_insert_id == ''){
             return false;
         }
@@ -2592,7 +2820,10 @@ trait REST_Controller {
             $this->config->item('rest_logs_table'), $payload, [
             'id' => $this->_insert_id
         ]);
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
     }
 
     /**
@@ -2606,12 +2837,18 @@ trait REST_Controller {
     protected function _log_response_code($http_code)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         if($this->_insert_id == ''){
             return false;
         }
 
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         $payload['response_code'] = $http_code;
 
         return $this->rest->db->update(
@@ -2635,6 +2872,7 @@ trait REST_Controller {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         //check if the key has all_access
         $accessRow = $this->rest->db
             ->where('key', $this->rest->key)
@@ -2647,6 +2885,8 @@ trait REST_Controller {
 
 =======
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // Fetch controller based on path and controller name
         $controller = implode(
             '/', [
@@ -2658,6 +2898,7 @@ trait REST_Controller {
         $controller = str_replace('//', '/', $controller);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Query the access table and get the number of results
         return $this->rest->db
             ->where('key', $this->rest->key)
@@ -2665,6 +2906,8 @@ trait REST_Controller {
             ->get($this->config->item('rest_access_table'))
             ->num_rows() > 0;
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         //check if the key has all_access
         $accessRow = $this->rest->db
             ->where('key', $this->rest->key)
@@ -2677,7 +2920,10 @@ trait REST_Controller {
         }
 
         return false;
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
     }
 
     /**
@@ -2690,12 +2936,17 @@ trait REST_Controller {
     {
         // Convert the config items into strings
 <<<<<<< HEAD
+<<<<<<< HEAD
         $allowed_headers = implode(' ,', $this->config->item('allowed_cors_headers'));
         $allowed_methods = implode(' ,', $this->config->item('allowed_cors_methods'));
 =======
         $allowed_headers = implode(', ', $this->config->item('allowed_cors_headers'));
         $allowed_methods = implode(', ', $this->config->item('allowed_cors_methods'));
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+        $allowed_headers = implode(', ', $this->config->item('allowed_cors_headers'));
+        $allowed_methods = implode(', ', $this->config->item('allowed_cors_methods'));
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
         // If we want to allow any domain to access the API
         if ($this->config->item('allow_any_cors_domain') === TRUE)
@@ -2724,10 +2975,13 @@ trait REST_Controller {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // If the request HTTP method is 'OPTIONS', kill the response and send it to the client
         if ($this->input->method() === 'options')
         {
 =======
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
         // If there are headers that should be forced in the CORS check, add them now
         if (is_array($this->config->item('forced_cors_headers')))
         {
@@ -2745,7 +2999,10 @@ trait REST_Controller {
             {
                 $this->rest->db = $this->load->database($this->config->item('rest_database_group'), TRUE);
             }
+<<<<<<< HEAD
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
             exit;
         }
     }

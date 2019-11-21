@@ -10,11 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Set to force the use of HTTPS for REST API calls
 |
 */
-<<<<<<< HEAD
-$config['force_https'] = FALSE;
-=======
+
 $config['force_https'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -86,11 +84,9 @@ $config['rest_message_field_name'] = 'error';
 | Should we enable emulation of the request (e.g. used in Mootools request)
 |
 */
-<<<<<<< HEAD
-$config['enable_emulate_request'] = TRUE;
-=======
+
 $config['enable_emulate_request'] = true;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -118,11 +114,9 @@ $config['rest_realm'] = 'REST API';
 |           authorization key
 |
 */
-<<<<<<< HEAD
-$config['rest_auth'] = FALSE;
-=======
+
 $config['rest_auth'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -149,12 +143,11 @@ $config['auth_source'] = 'ldap';
 | requests etc), set to TRUE;
 |
 */
-<<<<<<< HEAD
-$config['allow_auth_and_keys'] = TRUE;
-=======
-$config['allow_auth_and_keys'] = true;
+
 $config['strict_api_and_auth'] = true; // force the use of both api and auth before a valid api request is made
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
+$config['strict_api_and_auth'] = true; // force the use of both api and auth before a valid api request is made
+
 
 /*
 |--------------------------------------------------------------------------
@@ -244,11 +237,9 @@ $config['rest_valid_logins'] = ['admin' => '1234'];
 |    restrict certain methods to IPs in your white-list
 |
 */
-<<<<<<< HEAD
-$config['rest_ip_whitelist_enabled'] = FALSE;
-=======
+
 $config['rest_ip_whitelist_enabled'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -258,11 +249,9 @@ $config['rest_ip_whitelist_enabled'] = false;
 | Handle exceptions caused by the controller
 |
 */
-<<<<<<< HEAD
-$config['rest_handle_exceptions'] = TRUE;
-=======
+
 $config['rest_handle_exceptions'] = true;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -290,11 +279,9 @@ $config['rest_ip_whitelist'] = '';
 | 1. Set to TRUE and add any IP address to 'rest_ip_blacklist'
 |
 */
-<<<<<<< HEAD
-$config['rest_ip_blacklist_enabled'] = FALSE;
-=======
+
 $config['rest_ip_blacklist_enabled'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -352,11 +339,9 @@ $config['rest_keys_table'] = 'keys';
 |   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-<<<<<<< HEAD
-$config['rest_enable_keys'] = FALSE;
-=======
+
 $config['rest_enable_keys'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -436,11 +421,8 @@ $config['rest_key_name'] = 'X-API-KEY';
 |   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-<<<<<<< HEAD
-$config['rest_enable_logging'] = FALSE;
-=======
+
 $config['rest_enable_logging'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
 
 /*
 |--------------------------------------------------------------------------
@@ -473,11 +455,9 @@ $config['rest_logs_table'] = 'logs';
 |    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-<<<<<<< HEAD
-$config['rest_enable_access'] = FALSE;
-=======
+
 $config['rest_enable_access'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -499,11 +479,10 @@ $config['rest_access_table'] = 'access';
 | Set to FALSE to log as serialized PHP
 |
 */
-<<<<<<< HEAD
-$config['rest_logs_json_params'] = FALSE;
-=======
+
+
 $config['rest_logs_json_params'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -528,18 +507,16 @@ $config['rest_logs_json_params'] = false;
 | limits with:
 |
 <<<<<<< HEAD
+<<<<<<< HEAD
 |       $this->method['METHOD_NAME']['limit'] = [NUM_REQUESTS_PER_HOUR];
 |
 | See application/controllers/api/example.php for examples
 */
 $config['rest_enable_limits'] = FALSE;
-=======
-|       $this->methods['METHOD_NAME']['limit'] = [NUM_REQUESTS_PER_HOUR];
-|
-| See application/controllers/api/example.php for examples
-*/
-$config['rest_enable_limits'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
+     $this->methods['METHOD_NAME']['limit'] = [NUM_REQUESTS_PER_HOUR];
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -561,11 +538,9 @@ $config['rest_limits_table'] = 'limits';
 | Only do this if you are using the $this->rest_format or /format/xml in URLs
 |
 */
-<<<<<<< HEAD
-$config['rest_ignore_http_accept'] = FALSE;
-=======
+
 $config['rest_ignore_http_accept'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -580,11 +555,9 @@ $config['rest_ignore_http_accept'] = false;
 | Hint: This is good for production environments
 |
 */
-<<<<<<< HEAD
-$config['rest_ajax_only'] = FALSE;
-=======
+
 $config['rest_ajax_only'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -606,11 +579,9 @@ $config['rest_language'] = 'english';
 | will access it through a browser
 |
 */
-<<<<<<< HEAD
-$config['check_cors'] = FALSE;
-=======
+
 $config['check_cors'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+
 
 /*
 |--------------------------------------------------------------------------
@@ -654,11 +625,8 @@ $config['allowed_cors_methods'] = [
 | source domain
 |
 */
-<<<<<<< HEAD
-$config['allow_any_cors_domain'] = FALSE;
-=======
+
 $config['allow_any_cors_domain'] = false;
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
 
 /*
 |--------------------------------------------------------------------------
@@ -672,8 +640,7 @@ $config['allow_any_cors_domain'] = false;
 |
 */
 $config['allowed_cors_origins'] = [];
-<<<<<<< HEAD
-=======
+
 
 /*
 |--------------------------------------------------------------------------
@@ -695,4 +662,4 @@ $config['allowed_cors_origins'] = [];
 |
 */
 $config['forced_cors_headers'] = [];
->>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+

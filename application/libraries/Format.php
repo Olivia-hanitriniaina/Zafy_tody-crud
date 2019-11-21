@@ -1,9 +1,14 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 namespace Restserver\Libraries;
 use Exception;
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+namespace Restserver\Libraries;
+use Exception;
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -530,7 +535,11 @@ class Format {
         return trim($data);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> f03be351d94963db8525b25a47640095fcc9214d
+=======
+}
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2

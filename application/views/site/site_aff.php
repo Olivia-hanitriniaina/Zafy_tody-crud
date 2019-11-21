@@ -3,7 +3,11 @@
     <br>
     <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-site"> <i class="fa fa-plus"></i> Ajouter</a>
     <br><br>
+<<<<<<< HEAD
     <input type="texte" id = "recherche" onChange = "recherche()">
+=======
+
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
     <table class="table table-bordered table-striped" id="site_liste">
         <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
@@ -17,6 +21,7 @@
         <tbody>
             <?php if($sites): ?>
                 <?php foreach($sites as $site): ?>
+<<<<<<< HEAD
                     <tr id="station_id_<?=$site->id;?>">
                         <td style="text-align:center" hidden><?= $site->id ?></td>
                         <td style="text-align:center"><?= $site->name ?></td>
@@ -24,6 +29,15 @@
                         <td style="text-align:center">
                             <a href="javascript:void(0)" id="edit-site" data-id="<?=$site->id?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
                             <a href="javascript:void(0)" id="delete-site" data-id="<?=$site->id?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
+=======
+                    <tr id="station_id_<?=$site->id_local;?>">
+                        <td style="text-align:center" hidden><?= $site->id_local ?></td>
+                        <td style="text-align:center"><?= $site->name_local ?></td>
+                        <td style="text-align:center"><?= $site->fullname ?></td>
+                        <td style="text-align:center">
+                            <a href="javascript:void(0)" id="edit-site" data-id="<?=$site->id_local?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
+                            <a href="javascript:void(0)" id="delete-site" data-id="<?=$site->id_local?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -156,14 +170,23 @@
                    data: serialize,
                    
                    success: function(res){
+<<<<<<< HEAD
                     var site='<tr id="site_id_'+ res.data.id + '"><td>' + res.data.id + '</td><td>' + res.data.name + '</td><td>'+ res.data.fullname + '</td><td>'; 
                     site+= '<td><a href="javascript:void(0)" id="edit-site" data-id="' + res.data.id + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-site" data-id="' + res.data.id + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+=======
+                    var site='<tr id="site_id_'+ res.data.id_local + '"><td>' + res.data.id_local + '</td><td>' + res.data.name_local + '</td><td>'+ res.data.fullname + '</td><td>'; 
+                    site+= '<td><a href="javascript:void(0)" id="edit-site" data-id="' + res.data.id_local + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-site" data-id="' + res.data.id_local + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 
                     if(actionType =="create-site"){
                         
                        $('#site_liste').prepend(site);
                     }else{
+<<<<<<< HEAD
                        $('#site_id_' + res.data.id).replaceWith(site);
+=======
+                       $('#site_id_' + res.data.id_local).replaceWith(site);
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
                     }
 
                     $('#siteForm').trigger("reset");
@@ -182,6 +205,7 @@
            }
        })
    }
+<<<<<<< HEAD
 
    function recherche(){
     var value = document.getElementById("recherche").value; 
@@ -210,4 +234,6 @@
                }
            });
    }
+=======
+>>>>>>> 51fe62a1aa825fbdd3a197c095fdb74cd1ed89e2
 </script>
