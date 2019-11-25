@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/acceuil.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/datatables.min.css')?>">
+    <link rel="stylesheet" href="<?=base_url('/assets/css/recherche.css')?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Stylesheet

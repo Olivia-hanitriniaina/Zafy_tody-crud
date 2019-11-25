@@ -63,19 +63,19 @@ class Station_service extends CI_Controller{
             redirect('authentifiaction/','location');
         }
    }
+   public function get_all_station(){
 
-   public function search(){
-       $search_station=$this->input->post('search_station');
-       $data=$this->Station_model->search_station($search_station);
-       $arr =array('success'=>false,'data'=>'');
+    $data=$this->Station_model->get_all_stations(3,0);
+    $arr =array('success'=>true,'data'=>'');
 
-       var_dump($data);
-       if($data){
-           $arr=array('success'=>true,'data'=>$data);
-       }
-       echo json_encode($arr);
-   } 
-
+    if(empty($data)){
+        $arr=array('success'=>false,'data'=>'resultat null');
+    }
+    else {
+        $arr=array('success'=>true,'data'=>$data);
+    }
+    echo json_encode($arr);
+}
 
    public function get_station_by_id(){
        $id=$this->input->post('station_id');
@@ -114,4 +114,21 @@ class Station_service extends CI_Controller{
        $this->Station_model->delete();
        echo json_encode(array('status'=>true));
    }
+   
+    public function get_rechercher(){
+
+    $stations=$this->input->post('station');
+    $gerant=$this->input->post('gerante');
+    $data=$this->Station_model->getrecherche_station($stations,$gerant);
+
+        $arr =array('success'=>true,'data'=>'');
+
+        if(empty($data)){
+            $arr=array('success'=>false,'data'=>'resultat null');
+        }
+        else {
+            $arr=array('success'=>true,'data'=>$data);
+        }
+        echo json_encode($arr);
+    }
 }

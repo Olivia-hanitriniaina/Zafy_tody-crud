@@ -119,4 +119,37 @@ class Station_model extends CI_Model{
       show_error($e->getMessage().'-----'.$e->getTraceAsString());
     }
   }
+  
+  public function getrecherche_station($station, $gerant){
+    try{
+
+        $sql =" SELECT * from codir_locals 
+                join codir_local_type 
+                on local_type_id=codir_local_type.id 
+                join codir_users 
+                on codir_users.id=local_manager_id
+                where local_type_id = 3";
+        if($station == " " && $gerant != " ")
+        {
+            $sql = $sql." and name_local like '%".$station."%' ";
+        }
+        if($gerant == " " && $station != " ")
+        {
+            $sql = $sql." and codir_users.fullname like '%".$gerant."%' ";
+        }
+        if($station != " " && $gerant != " ")
+        {
+            $sql = $sql." and name_local like '%".$station."%' and codir_users.fullname like '%".$gerant."%' ";
+        }
+        else {
+          $sql = $sql;
+        }
+        $query = $this->db->query($sql);
+        $rows = $query->result();
+        return $rows;
+    }
+    catch(Exception $e){
+        show_error($e->getMessage().'------'.$e->getTraceAsString());
+    }
+}
 }
