@@ -92,8 +92,8 @@
                         var td2 = document.createElement('td');table.setAttribute("style","text-align:center");td2.innerHTML =res.data[$i]['name_local'];
                         var td3 = document.createElement('td');table.setAttribute("style","text-align:center");td3.innerHTML =res.data[$i]['fullname'];
                         var td5 = document.createElement('td');
-                        var a1 = document.createElement('a');a1.setAttribute('class','btn btn-info');
                         var i1 = document.createElement('i');i1.setAttribute('class','fa fa-edit');
+                        var a1 = document.createElement('a');a1.setAttribute('class','btn btn-info');
                         a1.innerHTML="Modifier";
                         var a2 = document.createElement('a');a2.setAttribute("class", 'btn btn-danger delete-user');
                         var i2 = document.createElement('i');i2.setAttribute('class','fa fa-trash');
