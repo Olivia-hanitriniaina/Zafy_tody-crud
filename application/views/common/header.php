@@ -90,4 +90,22 @@
             </div>
         </div>
     </header>
+    <br>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="nav navbar-nav">
+                   
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                        
+                    <li style = "  font-family: arial; font-size: 20px; margin-top: 8.5px;">
+                      Bienvenu : <?php echo $connecter['login']?>
+                    </li>
+                </ul>
+
+               
+            </div>
+        </div>
+    </nav>
     <!-- Features Section -->    

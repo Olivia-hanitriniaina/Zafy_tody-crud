@@ -7,11 +7,10 @@ class Visite_station extends CI_Controller{
     }
 
     public function index(){
-        //$result=$this->Visite_station_model->get_all_questions();
-        //var_dump($result);
-        if(isset($this->session->userdata['logged_in'])){
+        $data['connecter'] = $this->session->userdata['logged_in'];
+        if(isset($data['connecter'])){
             $data['result']=$this->Visite_station_model->get_all_questions();
-            $this->load->view('common/header');
+            $this->load->view('common/header',$data);
             $this->load->view('accueil/visite_station',$data);
             $this->load->view('common/footer');
         }else{

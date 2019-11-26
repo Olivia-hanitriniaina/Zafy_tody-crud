@@ -1,4 +1,4 @@
-<?php
+?php
 class Parametrage extends CI_Controller{
 
     public function  depot_aviantion(){

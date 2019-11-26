@@ -8,9 +8,10 @@ class Ville extends CI_Controller{
    }
 
    public function index(){
-        if(isset($this->session->userdata['logged_in'])){
+       $data['connecter'] = $this->session->userdata['logged_in'];
+        if(isset($data['connecter'])){
             $data['villes']=$this->Ville_model->get_all_villes();
-            $this->load->view('common/header');
+            $this->load->view('common/header',$data);
             $this->load->view('ville/ville_aff',$data);
             $this->load->view('common/footer');
         }else{

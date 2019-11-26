@@ -9,7 +9,8 @@ class Station_service extends CI_Controller{
    }
 
    public function index(){
-        if(isset($this->session->userdata['logged_in'])){
+       $data['connecter'] = $this->session->userdata['logged_in'];
+        if(isset($data['connecter'])){
             $config=array();
             $config['base_url']=base_url()."station_service";
             $config['total_rows']=$this->Station_model->get_count();
@@ -56,7 +57,7 @@ class Station_service extends CI_Controller{
             
 
             $data['users']=$this->Station_model->get_all_users();
-            $this->load->view('common/header');
+            $this->load->view('common/header',$data);
             $this->load->view('station_service/station_aff',$data);
             $this->load->view('common/footer');
         }else{

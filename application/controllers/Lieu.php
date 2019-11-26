@@ -8,9 +8,10 @@ class Lieu extends CI_Controller{
    }
 
    public function index(){
-        if(isset($this->session->userdata['logged_in'])){
+        $data['connecter'] = $this->session->userdata['logged_in'];
+        if(isset($data)){
             $data['lieux']=$this->Lieu_model->get_all_lieux();
-            $this->load->view('common/header');
+            $this->load->view('common/header', $data);
             $this->load->view('lieu/lieu_aff',$data);
             $this->load->view('common/footer');
         }else{

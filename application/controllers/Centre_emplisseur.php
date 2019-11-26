@@ -8,10 +8,11 @@ class Centre_emplisseur extends CI_Controller{
     }
  
     public function index(){
-         if(isset($this->session->userdata['logged_in'])){
+        $data['connecter'] = $this->session->userdata['logged_in'];
+         if(isset( $data['connecter'])){
              $data['centres']=$this->Centre_model->get_all_centres();
              $data['users']=$this->Centre_model->get_all_users();
-             $this->load->view('common/header');
+             $this->load->view('common/header', $data);
              $this->load->view('centre_emplisseur/centre_aff',$data);
              $this->load->view('common/footer');
          }else{

@@ -8,9 +8,10 @@ class Produit extends CI_Controller{
    }
 
    public function index(){
-        if(isset($this->session->userdata['logged_in'])){
+       $data['connecter'] = $this->session->userdata['logged_in'];
+        if(isset( $data['connecter'])){
             $data['produits']=$this->Produit_model->get_all_produits();
-            $this->load->view('common/header');
+            $this->load->view('common/header',$data);
             $this->load->view('produit/produit_aff',$data);
             $this->load->view('common/footer');
         }else{
