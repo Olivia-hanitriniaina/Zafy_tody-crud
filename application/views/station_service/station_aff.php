@@ -5,12 +5,11 @@
         <fieldset>
         <ul class="form-style-1">
             <li><label>Rechercher </span></label>
-            <input type="text" name="station_name" id ="station_name" class="field-divided" placeholder="Station service name" /> 
-            <input type="text" name="garent_name" id = "gerant_name" class="field-divided" placeholder="Gérant name" />
-            <br>
-            <br>
-            <a href = "javascript:void(0)" id="edit-recherche" value="" >search</a>
-           
+                <input type="text" name="station_name" id ="station_name" class="field-divided" placeholder="Station service name" /> 
+                <input type="text" name="garent_name" id = "gerant_name" class="field-divided" placeholder="Gérant name" />
+                <br>
+                <br>
+                <a href = "javascript:void(0)" id="edit-recherche" value="" >search</a>
             </li>
         </ul>
         </fieldset>
@@ -22,7 +21,7 @@
     <table class="table table-bordered table-striped" id="station_liste">
         <thead style="background-color:rgba(200,0,0,0.5)">
             <tr>
-                <th style="text-align:center">ID</th>
+                <th style="text-align:center" hidden>ID</th>
                 <th style="text-align:center">Station service</th>
                 <th style="text-align:center">Gérant</th>
                 <th style="text-align:center">Actions</th>
@@ -57,7 +56,7 @@
                         <select name="local_manager" id="local_manager" class='form-control'>
                             <option value="default"></option>
                             <?php foreach ($users as $user): ?>
-                                <option value="<?= $user->id_local ?>"><?= $user->fullname ?></option>
+                                <option value="<?= $user->id ?>"><?= $user->fullname ?></option>
                             <?php endforeach;?>
     
                         </select>
@@ -65,7 +64,7 @@
                 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister</button>
                     <button class="btn btn-default" data-dismiss="modal">Fermer</button>
                 </div>
             </form>
@@ -73,6 +72,22 @@
     </div>
 </div>
 
+<!--Modal for delete station-->
+<div class="modal fade" id="ajax-delete-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="deleteForm" name="deleteForm" class="form-horizontal">
+                <div class="modal-body" style="width:95%;margin:auto">
+                    <p id="suppr" style="color:red;font-size:1.5em;text-align:center;font-weight:bold"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="supprimer-station">Supprimer</button>
+                    <button class="btn btn-defaut" data-dismiss="modal">Fermer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script>
    var SITEURL='<?php echo base_url();?>';
    $(document).ready(function() {
@@ -93,14 +108,14 @@
                         var td3 = document.createElement('td');table.setAttribute("style","text-align:center");td3.innerHTML =res.data[$i]['fullname'];
                         var td5 = document.createElement('td');
                         var i1 = document.createElement('i');i1.setAttribute('class','fa fa-edit');
-                        var a1 = document.createElement('a');a1.setAttribute('class','btn btn-info');
-                        a1.innerHTML="Modifier";
-                        var a2 = document.createElement('a');a2.setAttribute("class", 'btn btn-danger delete-user');
+                        var a1 = document.createElement('a');a1.setAttribute('class','btn btn-info');a1.setAttribute('id','edit-station');a1.setAttribute('data-id',res.data[$i]['id_local']);a1.style.fontSize="1.5em";
+                        //a1.innerHTML="Modifier";
+                        var a2 = document.createElement('a');a2.setAttribute('class','btn btn-danger delete user');a2.setAttribute('id','delete-station');a2.setAttribute('data-id',res.data[$i]['id_local']);a2.setAttribute('data-name',res.data[$i]['name_local']);a2.style.fontSize="1.5em";
                         var i2 = document.createElement('i');i2.setAttribute('class','fa fa-trash');
-                        a2.innerHTML = "Supprimer";
+                        //a2.innerHTML = "Supprimer";
                         a1.append(i1);
                         a2.append(i2);
-                        table.append(td1);
+                        //table.append(td1);
                         table.append(td2);
                         table.append(td3);
                         table.append(td5); 
@@ -178,11 +193,11 @@
 
   
   
-  /* $(document).ready(function(){
-        $('#station_liste').DataTable();
+   $(document).ready(function(){
+        //$('#station_liste').DataTable();
         
        /**Quand l'utilisateur clic sur me boutton "Ajouter" */
-      /* $('#ajouter-station').click(function(){
+       $('#ajouter-station').click(function(){
             $('#btn-save').val('create-station');
             $('#station_id').val('');
             $('#stationForm').trigger("reset");
@@ -191,7 +206,7 @@
        });
 
        /**Quand l'utilisateur clic sur me boutton "Modifier" */
-     /*  $('body').on('click','#edit-station',function(){
+      $('body').on('click','#edit-station',function(){
            var station_id=$(this).data("id");
           
            $.ajax({
@@ -203,7 +218,6 @@
                dataType: "json",
                success: function (res){
                     if(res.success == true){
-                        alert(res.data);
                         $('#nom_station-error').hide();
                         $('#nom_visiteur-error').hide();
                         $('#date-error').hide();
@@ -224,9 +238,11 @@
 
        $('body').on('click','#delete-station',function(){
            var station_id=$(this).data("id");
-
-           if(confirm("Etes-vous sûre de vouloir supprimer?")){
-               $.ajax({
+           var station_name=$(this).data("name"); 
+           $('#ajax-delete-modal').modal('show');
+           $('#suppr').html('Voulez-vous supprimer la station '+'"'+station_name+'"');
+           $('#supprimer-station').click(function(){
+                $.ajax({
                    type:"Post",
                    url:SITEURL + "station_service/delete",
                    data:{
@@ -243,7 +259,7 @@
                        console.log('error:',data);
                    }
                });
-           }
+           });
        });
    }); 
 
@@ -285,6 +301,6 @@
                });
            }
        })
-   }*/
+   }
   
 </script>

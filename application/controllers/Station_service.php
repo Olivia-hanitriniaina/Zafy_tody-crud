@@ -19,28 +19,28 @@ class Station_service extends CI_Controller{
 
             /* This Application Must Be Used With BootStrap 3 *  */
             $config['full_tag_open'] = "<ul class='pagination'>";
-    $config['full_tag_close'] = '</ul>';
-    $config['num_tag_open'] = '<li>';
-    $config['num_tag_close'] = '</li>';
-    $config['cur_tag_open'] = '<li class="active"><a href="#">';
-    $config['cur_tag_close'] = '</a></li>';
-    $config['prev_tag_open'] = '<li>';
-    $config['prev_tag_close'] = '</li>';
-    $config['first_tag_open'] = '<li>';
-    $config['first_tag_close'] = '</li>';
-    $config['last_tag_open'] = '<li>';
-    $config['last_tag_close'] = '</li>';
+            $config['full_tag_close'] = '</ul>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['cur_tag_open'] = '<li class="active"><a href="#">';
+            $config['cur_tag_close'] = '</a></li>';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $config['first_tag_open'] = '<li>';
+            $config['first_tag_close'] = '</li>';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_close'] = '</li>';
 
 
 
-    $config['prev_link'] = '<i class="fa fa-chevron-left"></i> Précédent';
-    $config['prev_tag_open'] = '<li>';
-    $config['prev_tag_close'] = '</li>';
+            $config['prev_link'] = '<i class="fa fa-chevron-left"></i> Précédent';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
 
 
-    $config['next_link'] = 'Suivant <i class="fa fa-chevron-right"></i>';
-    $config['next_tag_open'] = '<li>';
-    $config['next_tag_close'] = '</li>';
+            $config['next_link'] = 'Suivant <i class="fa fa-chevron-right"></i>';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
            
             $this->pagination->initialize($config);
             $page=($this->uri->segment(2)) ? $this->uri->segment(2)  : 0;
@@ -66,7 +66,7 @@ class Station_service extends CI_Controller{
    }
    public function get_all_station(){
 
-    $data=$this->Station_model->get_all_stations(3,0);
+    $data=$this->Station_model->get_all_stations(10,0);
     $arr =array('success'=>true,'data'=>'');
 
     if(empty($data)){
