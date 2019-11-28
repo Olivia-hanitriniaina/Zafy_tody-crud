@@ -1,37 +1,46 @@
 <div class="container" id="container">
     <h2>Station service</h2>
-    <br>
-    <div class="form-style-3">
-        <fieldset>
-        <ul class="form-style-1">
-            <li><label>Rechercher </span></label>
-                <input type="text" name="station_name" id ="station_name" class="field-divided" placeholder="Station service name" /> 
-                <input type="text" name="garent_name" id = "gerant_name" class="field-divided" placeholder="Gérant name" />
-                <br>
-                <br>
-                <a href = "javascript:void(0)" id="edit-recherche" value="" >search</a>
-            </li>
-        </ul>
-        </fieldset>
-        </div>
-    <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-station"> <i class="fa fa-plus"></i> Ajouter</a>
-    <br><br>
-
-    <table class="table table-bordered table-striped" id="station_liste">
-        <thead style="background-color:rgba(200,0,0,0.5)">
-            <tr>
-                <th style="text-align:center" hidden>ID</th>
-                <th style="text-align:center">Station service</th>
-                <th style="text-align:center">Gérant</th>
-                <th style="text-align:center">Actions</th>
-            </tr>
-        </thead>
-
-        <tbody id = "body">
-        </tbody>
-    </table>
-</div>
+    
+    <div class="card">
+      
+      <!-- Paginate -->
+      <div id='pagination' style="margin-left:-90%"></div>
+      <div class="row">
+          <div class="col-md-6"><a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-station"> <i class="fa fa-plus"></i> Ajouter</a></div>
+          <div class="col-md-6">
+            <div class="form-group row">
+                <div class="col-xs-5">
+                <input type="text" name="station_name" id ="station_name" class="field-divided form-control input-sm" placeholder="Nom de la station" />
+                </div>
+                <div class="col-xs-5">
+                <input type="text" name="garent_name" id = "gerant_name" class="field-divided form-control input-sm" placeholder="Nom du gérant" />
+                </div>
+                <div class="col-xs-2">
+                <a href = "javascript:void(0)" id="edit-recherche" value="" class='btn btn-warning'>Rechercher</a>
+                </div>
+            </div>
+                
+          </div>
+      </div>
+      
+      <div>
+           <!-- Posts List -->
+           <table class="table table-borderd" id='postsList'>
+             <thead>
+              <tr>
+                <th>ID</th>
+                <th>Station service</th>
+                <th>Gérant</th>
+                <th>Action</th>
+              </tr>
+             </thead>
+             <tbody></tbody>
+           </table>
+           
+          
+      </div>
+    </div>
+   </div>
 
 <!--Modal for add & edit station-->
 <div class="modal fade" id="ajax-station-modal" aria-hidden="true">
@@ -39,7 +48,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal">×</a>
-                <h4 class="modal-title" id="stationCrudModal"></h4>
+                <h4 class="modal-title" id="stationCrudModal" style="text-align:center"></h4>
             </div>
             <form id="stationForm" name="stationForm" class="form-horizontal">
                 <div class="modal-body" style="width:95%;margin:auto">
@@ -88,61 +97,60 @@
         </div>
     </div>
 </div>
-<script>
-   var SITEURL='<?php echo base_url();?>';
-   $(document).ready(function() {
-        var tableau = document.getElementById('station_liste');
-        var tbody = document.getElementById('body');
-        $.ajax({
-            type:"Post",
-            url:SITEURL + "station_service/get_all_station",
-            data:{
-            },
-            dataType: "json",
-            success: function (res){
-                if(res.success == true){
-                    for($i = 0; $i<res.data.length; $i++){
-                        var table = document.createElement('tr');table.setAttribute("id","station_id");
-                        var td1 = document.createElement('td');table.setAttribute("style","text-align:center");td1.innerHTML =res.data[$i]['id_local'];
-                        var td2 = document.createElement('td');table.setAttribute("style","text-align:center");td2.innerHTML =res.data[$i]['name_local'];
-                        var td3 = document.createElement('td');table.setAttribute("style","text-align:center");td3.innerHTML =res.data[$i]['fullname'];
-                        var td5 = document.createElement('td');
-                        var i1 = document.createElement('i');i1.setAttribute('class','fa fa-edit');
-                        var a1 = document.createElement('a');a1.setAttribute('class','btn btn-info');a1.setAttribute('id','edit-station');a1.setAttribute('data-id',res.data[$i]['id_local']);a1.style.fontSize="1.5em";
-                        //a1.innerHTML="Modifier";
-                        var a2 = document.createElement('a');a2.setAttribute('class','btn btn-danger delete user');a2.setAttribute('id','delete-station');a2.setAttribute('data-id',res.data[$i]['id_local']);a2.setAttribute('data-name',res.data[$i]['name_local']);a2.style.fontSize="1.5em";
-                        var i2 = document.createElement('i');i2.setAttribute('class','fa fa-trash');
-                        //a2.innerHTML = "Supprimer";
-                        a1.append(i1);
-                        a2.append(i2);
-                        //table.append(td1);
-                        table.append(td2);
-                        table.append(td3);
-                        table.append(td5); 
-                        td5.append(a1);  td5.append(a2);
-                        tbody.append(table);
-                    }
-                    tableau.append(tbody);
-                }
-                if(res.success == false){
-                    var h2 = document.createElement('h4'); h2.innerHTML= "Aucun enregistrements correspondants trouvés";
-                    tbody.innerHTML = "";
-                    tableau.innerHTML = "";
-                    container.append(h2);
-                }
-            },
-            error:function(data){
-                console.log('error',data);
-            }
-        });
-        $('body').on('click','#edit-recherche',function(){
-            var tableau = document.getElementById('station_liste');
-            var container = document.getElementById('container');
-            var tbody = document.getElementById('body') ;tbody.innerHTML ="";
+   <!-- Script -->
+  
+<script type='text/javascript'>
+   $(document).ready(function(){
+    var SITEURL='<?php echo base_url();?>';
+     $('#pagination').on('click','a',function(e){
+       e.preventDefault(); 
+       var pageno = $(this).attr('data-ci-pagination-page');
+       loadPagination(pageno);
+     });
+ 
+     loadPagination(0);
+ 
+     function loadPagination(pagno){
+       $.ajax({
+         url:SITEURL+'/station_service/loadRecord/'+pagno,
+         type: 'get',
+         dataType: 'json',
+         success: function(response){
+            $('#pagination').html(response.pagination);
+            createTable(response.result,response.row);
+         }
+       });
+     }
+     createTable();
+     function createTable(result,sno){
+       sno = Number(sno);
+       $('#postsList tbody').empty();
+       for(index in result){
+          var id = result[index].id_local;
+          var name = result[index].name_local;
+          var fullname = result[index].fullname;
+    
+          sno+=1;
+
+    
+ 
+          var tr = "<tr>";
+          tr += "<td>"+ sno +"</td>";
+          tr += "<td>"+ name +"</td>";
+          tr += "<td>"+ fullname +"</td>";
+          tr+= "<td> <a class='btn btn-info' id='edit-station' data-id='"+id+"'> <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-station' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
+          tr += "</tr>";
+          $('#postsList tbody').append(tr);
+  
+        }
+      }
+
+      $('body').on('click','#edit-recherche',function(){
+            $('#postsList tbody').html('');
             var station = document.getElementById("station_name").value;
             var gerante = document.getElementById("gerant_name").value;
-          
-           $.ajax({
+          if(station!='' || gerante!=''){
+            $.ajax({
                     type:"Post",
                     url:SITEURL + "station_service/get_rechercher",
                     data:{
@@ -155,47 +163,33 @@
                     if(res.success == true){
                         
                         for($i = 0; $i<res.data.length; $i++){
-                        var table = document.createElement('tr');table.setAttribute("id","station_id");
-                        var td1 = document.createElement('td');table.setAttribute("style","text-align:center");td1.innerHTML =res.data[$i]['id_local'];
-                        var td2 = document.createElement('td');table.setAttribute("style","text-align:center");td2.innerHTML =res.data[$i]['name_local'];
-                        var td3 = document.createElement('td');table.setAttribute("style","text-align:center");td3.innerHTML =res.data[$i]['fullname'];
-                        var td5 = document.createElement('td');
-                        var a1 = document.createElement('a');a1.setAttribute('class','btn btn-info');
-                        var i1 = document.createElement('i');i1.setAttribute('class','fa fa-edit');
-                        a1.innerHTML="Modifier";
-                        var a2 = document.createElement('a');a2.setAttribute("class", 'btn btn-danger delete-user');
-                        var i2 = document.createElement('i');i2.setAttribute('class','fa fa-trash');
-                        a2.innerHTML = "Supprimer";
-                        a1.append(i1);
-                        a2.append(i2);
-                        table.append(td1);
-                        table.append(td2);
-                        table.append(td3);
-                        table.append(td5); 
-                        td5.append(a1);  td5.append(a2);
-                        tbody.append(table);
+                            var id=res.data[$i]['id_local'];
+                            var name=res.data[$i]['name_local'];
+                            var tr = "<tr>";
+                            tr += "<td>"+ res.data[$i]['id_local'] +"</td>";
+                            tr += "<td>"+ res.data[$i]['name_local'] +"</td>";
+                            tr += "<td>"+ res.data[$i]['fullname'] +"</td>";
+                            tr+= "<td> <a class='btn btn-info' id='edit-station' data-id='"+id+"'> <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-station' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
+                            tr += "</tr>";
+                            $('#postsList tbody').append(tr);
                     }
-                    tableau.append(tbody);
                }
                 if(res.success == false){
-                    var h2 = document.createElement('h4'); h2.innerHTML= "Aucun enregistrements correspondants trouvés";
-                    tbody.innerHTML = "";
-                    tableau.innerHTML = "";
-                    container.append(h2);
+                    $('#postsList tbody').html('Aucun enregistrements correspondants trouvés');
                 }
                },
                error:function(data){
                    console.log('error',data);
                }
            });
+          }else{
+            loadPagination(0)
+          }
        });
-   });
 
-  
-  
-   $(document).ready(function(){
-        //$('#station_liste').DataTable();
-        
+     
+
+      $(document).ready(function(){ 
        /**Quand l'utilisateur clic sur me boutton "Ajouter" */
        $('#ajouter-station').click(function(){
             $('#btn-save').val('create-station');
@@ -303,4 +297,6 @@
        })
    }
   
-</script>
+       
+    });
+    </script>
