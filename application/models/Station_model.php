@@ -59,7 +59,7 @@ class Station_model extends CI_Model{
       $this->db->where(array('local_type_id'=>3));
       $this->db->limit($limit,$start);
       $query=$this->db->get();
-      return $query->result();
+      return $query->result_array();
     }
     catch(Exception $e){
       show_error($e->getMessage().'-----'.$e->getTraceAsString());

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/tour_securite_codir.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/datatables.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/recherche.css')?>">
+    <link rel="stylesheet" href="<?=base_url('/assets/css/font-awesome.min.css')?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Stylesheet
@@ -69,6 +70,9 @@
                             <i class="fa faç-sign-out" aria-hidden="true"></i> Se déconnecter
                         </a>
                     </li>
+                    <li>
+                      <a href="" class='fa fa-user' style="font-size:15px" >  <?php echo $connecter['login']?></a> 
+                    </li>
                 </ul>
                 
             </div>
@@ -91,21 +95,4 @@
         </div>
     </header>
     <br>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="main-nav">
-                <ul class="nav navbar-nav">
-                   
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                        
-                    <li style = "  font-family: arial; font-size: 20px; margin-top: 8.5px;">
-                      Bienvenu : <?php echo $connecter['login']?>
-                    </li>
-                </ul>
-
-               
-            </div>
-        </div>
-    </nav>
     <!-- Features Section -->    
