@@ -66,7 +66,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="<?=base_url('/authentification/logout')?>" style="font-size:15px">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter
+                            <i class="fa faç-sign-out" aria-hidden="true"></i> Se déconnecter
                         </a>
                     </li>
                 </ul>
