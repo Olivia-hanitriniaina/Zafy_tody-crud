@@ -44,7 +44,7 @@
             
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav ">
+                <ul class="nav navbar-nav " >
                     <?php if (isset($this->session->userdata['logged_in'])):?>
                         <li><?=anchor("accueil/acceuil","Accueil")?></li>
                         <li class="dropdown">
@@ -66,12 +66,12 @@
                 </ul>    
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="<?=base_url('/authentification/logout')?>" style="font-size:15px">
+                        <a href="<?=base_url('/authentification/logout')?>">
                             <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter
                         </a>
                     </li>
                     <li>
-                      <a href="" class='fa fa-user' style="font-size:15px" >  <?php echo $connecter['login']?></a> 
+                        <i class='fa fa-user' style="font-size:15px;color:aliceblue"> <?= $this->session->userdata['logged_in']['fullname'] ?></i> 
                     </li>
                 </ul>
                 

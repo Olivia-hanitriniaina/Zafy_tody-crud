@@ -5,9 +5,9 @@ class Auth_model extends CI_Model{
     public function login($data){
 
         try {
-                $condition="login="."'".$data['login']."' AND "."password="."'".$data['password']."'";
+                $condition="nom_utilisateur="."'".$data['login']."' AND "."mot_de_passe="."'".$data['password']."'";
                 $this->db->select('*');
-                $this->db->from('codir_users');
+                $this->db->from('Utilisateur');
                 $this->db->where($condition);
                 $this->db->limit(1);
                 $query=$this->db->get();
@@ -26,9 +26,9 @@ class Auth_model extends CI_Model{
     public function read_user_information($login){
 
         try {
-                $condition="login="."'".$login."'";
+                $condition="nom_utilisateur="."'".$login."'";
                 $this->db->select('*');
-                $this->db->from('codir_users');
+                $this->db->from('Utilisateur');
                 $this->db->where($condition);
                 $this->db->limit(1);
                 $query=$this->db->get();

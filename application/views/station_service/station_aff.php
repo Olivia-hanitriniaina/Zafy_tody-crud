@@ -7,8 +7,8 @@
       <div id='pagination' style="margin-left:-90%"></div>
       <div class="row">
           <div class="col-md-6"><a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-station"> <i class="fa fa-plus"></i> Ajouter</a></div>
-          <div class="col-md-6">
-            <div class="form-group row">
+          <div class="col-md-6" style="margin-left:-20%">
+            <div class="form-group row" >
                 <div class="col-xs-5">
                 <input type="text" name="station_name" id ="station_name" class="field-divided form-control input-sm" placeholder="Nom de la station" />
                 </div>
@@ -25,10 +25,10 @@
       
       <div>
            <!-- Posts List -->
-           <table class="table table-borderd" id='postsList'>
+           <table class="table table-borderd" id='postsList'style='width:80%'>
              <thead>
               <tr>
-                <th>ID</th>
+                <!--<th>ID</th>-->
                 <th>Station service</th>
                 <th>Gérant</th>
                 <th>Action</th>
@@ -65,7 +65,7 @@
                         <select name="local_manager" id="local_manager" class='form-control'>
                             <option value="default"></option>
                             <?php foreach ($users as $user): ?>
-                                <option value="<?= $user->id ?>"><?= $user->fullname ?></option>
+                                <option value="<?= $user->id ?>"><?= $user->nom_complet ?></option>
                             <?php endforeach;?>
     
                         </select>
@@ -126,16 +126,16 @@
        sno = Number(sno);
        $('#postsList tbody').empty();
        for(index in result){
-          var id = result[index].id_local;
-          var name = result[index].name_local;
-          var fullname = result[index].fullname;
+          var id = result[index].id;
+          var name = result[index].nom;
+          var fullname = result[index].nom_complet;
     
           sno+=1;
 
     
  
           var tr = "<tr>";
-          tr += "<td>"+ sno +"</td>";
+          //tr += "<td>"+ sno +"</td>";
           tr += "<td>"+ name +"</td>";
           tr += "<td>"+ fullname +"</td>";
           tr+= "<td> <a class='btn btn-info' id='edit-station' data-id='"+id+"'> <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-station' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
@@ -163,12 +163,12 @@
                     if(res.success == true){
                         
                         for($i = 0; $i<res.data.length; $i++){
-                            var id=res.data[$i]['id_local'];
-                            var name=res.data[$i]['name_local'];
+                            var id=res.data[$i]['id'];
+                            var name=res.data[$i]['nom'];
                             var tr = "<tr>";
-                            tr += "<td>"+ res.data[$i]['id_local'] +"</td>";
-                            tr += "<td>"+ res.data[$i]['name_local'] +"</td>";
-                            tr += "<td>"+ res.data[$i]['fullname'] +"</td>";
+                            //tr += "<td>"+ res.data[$i]['id'] +"</td>";
+                            tr += "<td>"+ res.data[$i]['nom'] +"</td>";
+                            tr += "<td>"+ res.data[$i]['nom_complet'] +"</td>";
                             tr+= "<td> <a class='btn btn-info' id='edit-station' data-id='"+id+"'> <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-station' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
                             tr += "</tr>";
                             $('#postsList tbody').append(tr);
@@ -218,9 +218,9 @@
                         $('#stationCrudModal').html('Modifier Station service');
                         $('#btn-save').val('Modifier');
                         $('#ajax-station-modal').modal('show');
-                        $('#station_id').val(res.data.id_local);
-                        $('#nom_station').val(res.data.name_local);
-                        $('#local_manager').val(res.data.local_manager_id);
+                        $('#station_id').val(res.data.id);
+                        $('#nom_station').val(res.data.nom);
+                        $('#local_manager').val(res.data.responsable_id);
                     }
                    
                },
@@ -270,14 +270,14 @@
                    data: serialize,
                    
                    success: function(res){
-                    var station='<tr id="station_id_'+ res.data.id_local + '"><td>' + res.data.id_local + '</td><td>' + res.data.name_local + '</td><td>'+ res.data.fullname + '</td><td>'; 
-                    station+= '<td><a href="javascript:void(0)" id="edit-station" data-id="' + res.data.id_local + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-station" data-id="' + res.data.id_local + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+                    var station='<tr id="station_id_'+ res.data.id + '"><td>' + res.data.id + '</td><td>' + res.data.nom + '</td><td>'+ res.data.nom_complet + '</td><td>'; 
+                    station+= '<td><a href="javascript:void(0)" id="edit-station" data-id="' + res.data.id + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-station" data-id="' + res.data.id + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
 
                     if(actionType =="create-station"){
                         
                        $('#station_liste').prepend(station);
                     }else{
-                       $('#station_id_' + res.data.id_local).replaceWith(station);
+                       $('#station_id_' + res.data.id).replaceWith(station);
                     }
 
                     $('#stationForm').trigger("reset");
