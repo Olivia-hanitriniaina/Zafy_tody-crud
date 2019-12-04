@@ -10,6 +10,10 @@
        margin-left: 62% ;
        margin-top:-3% ;
     }
+    /** Error message input modal */
+    .error{
+        color:red;
+    }
 </style>
 
 <div class="container">
@@ -75,24 +79,24 @@
                     <input type="hidden" name="user_id" id="user_id">
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Nom d'utilisateur : </label>
+                        <label for="name" class="control-label">Nom d'utilisateur*: </label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Entrer le nom d'utilisateur" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Nom et Prénom : </label>
+                        <label for="name" class="control-label">Nom et Prénom*: </label>
                         <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Entrer votre nom et prénom" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Adresse email : </label>
+                        <label for="name" class="control-label">Adresse email*: </label>
                         <input type="email" class="form-control" id="adresse_email" name="adresse_email" placeholder="Entrer votre adresse e-mail" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Fonction : </label>
-                        <select name="fonction" id="fonction" class="form-control">
-                            <option value=""></option>
+                        <label for="name" class="control-label">Fonction* : </label>
+                        <select name="fonction" id="fonction" class="form-control" required>
+                            <option></option>
                             <?php foreach ($profils as $profil) : ?>
                                 <option value="<?= $profil->id ?>"><?= $profil->label ?></option>
                             <?php endforeach ;?>    
@@ -100,12 +104,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Mot de passe : </label>
+                        <label for="name" class="control-label">Mot de passe* : </label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Confirmation du mot de passe : </label>
+                        <label for="name" class="control-label">Confirmation du mot de passe* : </label>
                         <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmer votre mot de passe" value="" required="">
                     </div>
                 
@@ -311,6 +315,27 @@
                     required:true,
                     equalTo:"#password"
                 }
+            },
+            messages:{
+                username:{
+                    required:"Veuillez remplir le champ par un nom d'utilisateur",
+                },
+                fullname:{
+                    required:"Veuillez remplir le champ par votre nom complet",
+                },
+                adresse_email:{
+                    required:"Veuillez remplir le champ par votre adresse email",
+                },
+                fonction:{
+                    required:"Veuillez choisir une fonction",
+                },
+                password:{
+                    required:"Veuillez remplir le champ mot de passe",
+                },
+                confirm_password:{
+                    required:"Veuillez remplir le champ mot de passe",
+                    equalTo:"Confirmer votre mot de passe"
+                },
             },
            submitHandler: function(form){
                var actionType= $('#btn-save').val();

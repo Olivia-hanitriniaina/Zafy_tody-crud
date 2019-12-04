@@ -61,12 +61,12 @@
                     <input type="hidden" name="depot_id" id="depot_id">
 
                     <div class="form-group">
-                        <label for="name">Dépôt aviation : </label>
+                        <label for="name">Dépôt aviation* : </label>
                         <input type="text" class="form-control" id="depot_aviation" name="depot_aviation" placeholder="Dépôt aviation" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Gérant : </label>
+                        <label for="name">Gérant* : </label>
                         <select name="local_manager" id="local_manager" class="form-control">
                             <option></option>
                             <?php foreach ($users as $user): ?>

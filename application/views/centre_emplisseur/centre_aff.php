@@ -60,12 +60,12 @@
                     <input type="hidden" name="centre_id" id="centre_id">
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Centre emplisseur : </label>
+                        <label for="name" class="control-label">Centre emplisseur* : </label>
                         <input type="text" class="form-control" id="nom_centre" name="nom_centre" placeholder="Entrer le nom du centre emplisseur" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Gérant : </label>
+                        <label for="name" class="control-label">Gérant* : </label>
                         <select name="local_manager" id="local_manager" class='form-control'>
                             <option></option>
                             <?php foreach ($users as $user): ?>

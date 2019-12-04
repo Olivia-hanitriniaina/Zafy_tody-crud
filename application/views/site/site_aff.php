@@ -59,12 +59,12 @@
                         <input type="hidden" name="site_id" id="site_id">
 
                         <div class="form-group">
-                            <label for="nom_site" class="control-label">Site : </label>
+                            <label for="nom_site" class="control-label">Site* : </label>
                             <input type="text" class="form-control" id="nom_site" name="nom_site" placeholder="Entrer le nom du site" value="">
                         </div>
 
                         <div class="form-group">
-                            <label for="local_manager" class="control-label">Chef de site : </label>
+                            <label for="local_manager" class="control-label">Chef de site* : </label>
                             <select name="local_manager" id="local_manager" class='form-control'>
                                 <option></option>
                                 <?php foreach ($users as $user): ?>

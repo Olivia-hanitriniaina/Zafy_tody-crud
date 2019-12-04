@@ -57,7 +57,7 @@
                     <input type="hidden" name="ville_id" id="ville_id">
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Ville : </label>
+                        <label for="name" class="control-label">Ville* : </label>
                         <input type="text" class="form-control" id="nom_ville" name="nom_ville" placeholder="Entrer le nom de la ville" value="" required="">
                     </div>
 

@@ -102,7 +102,7 @@ class Gestion_model extends CI_Model{
 
   public function search_users($utilisateur){
     try{
-      $this->db->select('*');
+      $this->db->select('Utilisateur.*,UtilisateurType.label');
       $this->db->from('Utilisateur');
       $this->db->join('UtilisateurType','type_id = UtilisateurType.id','left');
       $this->db->or_like(array('nom_utilisateur'=>$utilisateur,'nom_complet'=>$utilisateur));

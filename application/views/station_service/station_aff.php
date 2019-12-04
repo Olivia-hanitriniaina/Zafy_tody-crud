@@ -60,12 +60,12 @@
                     <input type="hidden" name="station_id" id="station_id">
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Station service : </label>
+                        <label for="name" class="control-label">Station service* : </label>
                         <input type="text" class="form-control" id="nom_station" name="nom_station" placeholder="Entrer le nom du station service" value="" required="">
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Gérant : </label>
+                        <label for="name" class="control-label">Gérant* : </label>
                         <select name="local_manager" id="local_manager" class='form-control'>
                             <option></option>
                             <?php foreach ($users as $user): ?>

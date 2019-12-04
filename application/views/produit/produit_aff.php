@@ -56,7 +56,7 @@
                     <input type="hidden" name="produit_id" id="produit_id">
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Produit : </label>
+                        <label for="name" class="control-label">Produit* : </label>
                         <input type="text" class="form-control" id="nom_produit" name="nom_produit" placeholder="Entrer le nom du produit" value="" required="">
                     </div>
 
@@ -239,7 +239,7 @@
 
    if($('#produitForm').length >0){
        $('#produitForm').validate({
-        rules:{
+            rules:{
                 nom_produit:"required",
             },
             messages:{
