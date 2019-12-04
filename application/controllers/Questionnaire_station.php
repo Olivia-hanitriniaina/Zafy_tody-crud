@@ -9,6 +9,20 @@ class Questionnaire_station extends CI_Controller{
         $this->load->library('pagination');
     }
     
+    public function index(){
+        $data['connecter'] = $this->session->userdata['logged_in'];
+        if(isset($data['connecter'])){
+            $data['question']=$this->Questionnaire_Station_model->get_All_Questionnnaire_stationService();
+            $data['station_id']=$this->Questionnaire_Station_model->get_All_fiche_visite_station_by_id(1);
+
+            $this->load->view('common/header',$data);
+            $this->load->view('Liste/visite_station',$data);
+            $this->load->view('common/footer');
+        }else{
+            redirect('authentifiaction/','location');
+        }
+    }
+
     public function get_AllQuestionnaire(){
         $data['connecter'] = $this->session->userdata['logged_in'];
         $id = $this->input->get('id');
@@ -16,7 +30,7 @@ class Questionnaire_station extends CI_Controller{
         $data['question']=$this->Questionnaire_Station_model->get_All_Questionnnaire_stationService();
         $data['station_id']=$this->Questionnaire_Station_model->get_All_fiche_visite_station_by_id(1);
             $this->load->view('common/header',$data);
-            $this->load->view('accueil/visite_station',$data);
+            $this->load->view('Liste/visite_station',$data);
             $this->load->view('common/footer');
         }else{
             redirect('authentifiaction/','location');
