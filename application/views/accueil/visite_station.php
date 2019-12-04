@@ -1,24 +1,29 @@
 
 <?php
     $objet_filtrer=array();
-    foreach ($result as $element) {
-        if (!isset($objet_filtrer[$element->categorie_id])) {
-            $objet_filtrer[$element->categorie_id] = (object) ['label' => $element->label_categorie, 'elements' => array()];
+    foreach ($question as $element) {
+        if (!isset($objet_filtrer[$element->categorie])) {
+            $objet_filtrer[$element->categorie] = (object) ['label' => $element->categorie, 'elements' => array()];
         }
     
-        array_push($objet_filtrer[$element->categorie_id]->elements, (object) [
-            'id' => $element->id_question, 'subcategorie' => $element->label_subcategorie, 'question' => $element->label_question
+        array_push($objet_filtrer[$element->categorie]->elements, (object) [
+            'id' => $element->id, 'subcategorie' => $element->sous_categorie, 'question' => $element->question
         ]);
     };
-    
-    /* foreach ($objet_filtrer as $categorie) {
-        echo $categorie->label . "\n";
-        foreach ($categorie->elements as $element) {
-            echo $element->id . ': ' . $element->subcategorie . ' => ' . $element->question . "\n";
-        }
-    } */
 ?>
 <div class="container">
+<div class="well" style="text-align: center">
+        <h1>TOUR SECURITE CODIR STATION SERVICE </h1>
+    </div>
+    <?php foreach($station_id as $station ){?>
+    <ul>
+        <li>Date : <?php echo $station->{'datevisiteur'}?> : <?php echo $station->{'timevisiteur'}?></li>
+        <li>Station service : <?php echo $station->{'nomstation'}?></li>
+        <li>Gérant : <?php echo $station->{'nomgerant'}?></li>
+        <li>Visiteur : <?php echo $station->{'nomvisiteur'}?></li>
+    </ul>
+    <?php }?>
+</nav>
     <table class="table-bordered">
         <thead>
             <tr>

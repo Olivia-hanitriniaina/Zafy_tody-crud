@@ -71,7 +71,7 @@
                         </a>
                     </li>
                     <li>
-                      <a href="" class='fa fa-user' style="font-size:15px" >  <?php echo $connecter['login']?></a> 
+                      <a href="" class='fa fa-user' style="font-size:15px" >  <?php echo $connecter['nom_utilisateur']?></a> 
                     </li>
                 </ul>
                 
