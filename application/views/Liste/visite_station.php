@@ -39,6 +39,18 @@
               </tr>
              </thead>
              <tbody id = "tbody">
+            
+                  <?php foreach($question as $response) {?>
+                  <tr>
+                      <td style="text-align:center"><?php echo $response->{'idvisiteur'}?></td>
+                      <td style="text-align:center"><?php echo $response->{'datevisiteur'}?> : <?php echo $response->{'timevisiteur'}?></td>
+                      <td style="text-align:center"><?php echo $response->{'nomvisiteur'}?></td>
+                      <td style="text-align:center"><?php echo $response->{'nomgerant'}?></td>
+                      <td style="text-align:center"><?php echo $response->{'nomstation'}?></td>
+                      <td> <a href = "<?php echo site_url("Questionnaire_station/get_AllQuestionnaire?idvisite=")?><?php echo $response->{'visite'}?>&&idstation=<?php echo $response->{'idvisiteur'}?>" class='btn btn-info' id='edit-station' data-id=''> <i class='fa fa-edit'></i></a></td>
+                      </tr>
+                  <?php } ?>
+           
              </tbody>
            </table>
       </div>
@@ -49,7 +61,7 @@
 
 <script>
 
-$(document).ready(function(){
+/*$(document).ready(function(){
         var SITEURL='<?php echo base_url();?>';
         $('#pagination').on('click','a',function(e){
             e.preventDefault(); 

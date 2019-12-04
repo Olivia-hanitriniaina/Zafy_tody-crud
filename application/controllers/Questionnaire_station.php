@@ -12,9 +12,8 @@ class Questionnaire_station extends CI_Controller{
     public function index(){
         $data['connecter'] = $this->session->userdata['logged_in'];
         if(isset($data['connecter'])){
-            $data['question']=$this->Questionnaire_Station_model->get_All_Questionnnaire_stationService();
-            $data['station_id']=$this->Questionnaire_Station_model->get_All_fiche_visite_station_by_id(1);
-
+           // $data['question']=$this->Questionnaire_Station_model->get_All_Questionnnaire_stationService();
+            $data['question']=$this->Questionnaire_Station_model->get_All_fiche_visite_station(1);
             $this->load->view('common/header',$data);
             $this->load->view('Liste/visite_station',$data);
             $this->load->view('common/footer');
@@ -25,12 +24,13 @@ class Questionnaire_station extends CI_Controller{
 
     public function get_AllQuestionnaire(){
         $data['connecter'] = $this->session->userdata['logged_in'];
-        $id = $this->input->get('id');
+        $idvisite = $this->input->get('idvisite');
+        $idstation = $this->input->get('idstation');
         if(isset($data['connecter'])){
-        $data['question']=$this->Questionnaire_Station_model->get_All_Questionnnaire_stationService();
-        $data['station_id']=$this->Questionnaire_Station_model->get_All_fiche_visite_station_by_id(1);
+        $data['result']=$this->Questionnaire_Station_model->get_All_Questionnnaire_stationService();
+        $data['station_id']=$this->Questionnaire_Station_model->get_All_fiche_visite_station_by_id($idvisite,$idstation);
             $this->load->view('common/header',$data);
-            $this->load->view('Liste/visite_station',$data);
+            $this->load->view('Qestionnnaire/visite_station_question',$data);
             $this->load->view('common/footer');
         }else{
             redirect('authentifiaction/','location');

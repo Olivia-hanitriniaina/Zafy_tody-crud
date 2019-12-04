@@ -36,7 +36,7 @@ class Questionnaire_station_model extends CI_Model{
         
       }
 
-    public function get_All_fiche_visite_station($id,$limit,$offset){
+    public function get_All_fiche_visite_station($id){
 
         try{
             
@@ -47,8 +47,7 @@ class Questionnaire_station_model extends CI_Model{
                      join Utilisateur as u on v.visiteur_id = u.id 
                      join Utilisateur as ut on l.responsable_id = ut.id
                     where vsc.type_id = ".$id." 
-                    limit ".$limit.", ".$offset."";
-                    echo $sql;   
+                    ";  
             $query = $this->db->query($sql);
             $rows = $query->result();
             return $rows;
