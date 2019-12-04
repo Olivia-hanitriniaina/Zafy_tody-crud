@@ -6,12 +6,12 @@ class Site_model extends CI_model{
         parent::__construct();
         $this->load->database();
     }
-
+    
     public function get_all_users(){
         try{
-            $this->db->select('id,fullname');
-            $this->db->from('codir_users');
-            $this->db->where(array('profil_id'=>2));
+            $this->db->select('id,nom_complet');
+            $this->db->from('Utilisateur');
+            $this->db->where(array('type_id'=>2));
             $query=$this->db->get();
             return $query->result();
         }catch(Exception $e){
@@ -19,13 +19,29 @@ class Site_model extends CI_model{
         }
     }
 
-    public function get_all_sites(){
+    public function get_count(){
+        try {
+          $this->db->select('localisation.*,LocalisationType.label,Utilisateur.nom_complet');
+          $this->db->from('Localisation');
+          $this->db->join('LocalisationType','type_id=LocalisationType.id');
+          $this->db->join('Utilisateur','Utilisateur.id=responsable_id','left');
+          $this->db->where(array('Localisation.type_id'=>1));
+          return $this->db->count_all_results();
+        }
+        catch(Exception $e){
+          show_error($e->getMessage().'-----'.$e->getTraceAsString());
+        }
+        
+      }
+
+    public function get_all_sites($limit,$start){
         try{
-            $this->db->select('*');
-            $this->db->from('codir_locals');
-            $this->db->join('codir_local_type','local_type_id=codir_local_type.id');
-            $this->db->join('codir_users','codir_users.id=local_manager_id','left');
-            $this->db->where(array('local_type_id'=>1));
+            $this->db->select('Localisation.*,LocalisationType.label,Utilisateur.nom_complet');
+            $this->db->from('Localisation');
+            $this->db->join('LocalisationType','Localisation.type_id=LocalisationType.id');
+            $this->db->join('Utilisateur','Utilisateur.id=responsable_id','left');
+            $this->db->where(array('Localisation.type_id'=>1));
+            $this->db->limit($limit,$start);
             $query=$this->db->get();
             return $query->result();
         }catch(Exception $e){
@@ -35,11 +51,11 @@ class Site_model extends CI_model{
 
     public function get_by_id($id){
         try{
-           $this->db->select('*');
-           $this->db->from('codir_locals');
-           $this->db->join('codir_local_type','local_type_id=codir_local_type.id');
-           $this->db->join('codir_users','codir_users.id=local_manager_id','left');
-           $this->db->where(array('local_type_id'=>1,'id_local'=>$id));
+           $this->db->select('Localisation.*,LocalisationType.label,Utilisateur.nom_complet');
+           $this->db->from('Localisation');
+           $this->db->join('LocalisationType','Localisation.type_id=LocalisationType.id');
+           $this->db->join('Utilisateur','Utilisateur.id=responsable_id','left');
+           $this->db->where(array('Localisation.type_id'=>1,'Localisation.id'=>$id));
            $query=$this->db->get();
            return $query->row(); 
         }catch(Exception $e){
@@ -49,7 +65,7 @@ class Site_model extends CI_model{
 
     public function create($data){
         try{
-            $this->db->insert('codir_locals',$data);
+            $this->db->insert('Localisation',$data);
             return $this->db->insert_id();
         }catch(Exception $e){
             show_error($e->getMessage().'------'.$e->getTraceAsString());
@@ -58,8 +74,8 @@ class Site_model extends CI_model{
 
     public function update($data){
         try{
-            $where=array('id_local'=>$this->input->post('site_id'));
-            $this->db->update('codir_locals',$data,$where);
+            $where=array('id'=>$this->input->post('site_id'));
+            $this->db->update('Localisation',$data,$where);
             return $this->db->affected_rows();
         }catch(Exception $e){
             show_error($e->getMessage().'------'.$e->getTraceAsString());
@@ -69,10 +85,43 @@ class Site_model extends CI_model{
     public function delete(){
         try{
             $id=$this->input->post('site_id');
-            $this->db->where('id_local',$id);
-            $this->db->delete('codir_locals');
+            $this->db->where('id',$id);
+            $this->db->delete('Localisation');
         }catch(Exception $e){
             show_error($e->getMessage().'------'.$e->getTraceAsString());
         }
     }
+
+    public function search_site($site, $gerant){
+        try{
+    
+            $sql =" SELECT Localisation.*,LocalisationType.label,Utilisateur.nom_complet from Localisation 
+                    join LocalisationType
+                    on Localisation.type_id =LocalisationType.id 
+                    join Utilisateur 
+                    on Utilisateur.id=responsable_id
+                    where Localisation.type_id = 1";
+            if($site == " " && $gerant != " ")
+            {
+                $sql = $sql." and nom like '%".$site."%' ";
+            }
+            if($gerant == " " && $site != " ")
+            {
+                $sql = $sql." and Utilisateur.nom_complet like '%".$gerant."%' ";
+            }
+            if($site != " " && $gerant != " ")
+            {
+                $sql = $sql." and nom like '%".$site."%' and Utilisateur.nom_complet like '%".$gerant."%' ";
+            }
+            else {
+              $sql = $sql;
+            }
+            $query = $this->db->query($sql);
+            $rows = $query->result();
+            return $rows;
+        }
+        catch(Exception $e){
+            show_error($e->getMessage().'------'.$e->getTraceAsString());
+        }
+      }
 }

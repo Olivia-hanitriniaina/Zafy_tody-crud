@@ -37,8 +37,8 @@ class Authentification extends CI_Controller{
                 if($result!=FALSE){
                     $session_data=array(
                         'id'=>$result[0]->id,
-                        'nom_utilisateur'=>$result[0]->nom_utilisateur,
-                        'nom_complet'=>$result[0]->nom_complet,
+                        'login'=>$result[0]->nom_utilisateur,
+                        'fullname'=>$result[0]->nom_complet,
                         'adresse_email'=>$result[0]->adresse_email
                     );
 

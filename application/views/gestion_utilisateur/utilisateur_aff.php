@@ -1,41 +1,60 @@
+<style>
+    #pagination span.page-link{
+        font-size: 0.8em;
+    }
+    #pagination{
+        margin-left:-90%;
+    }
+
+    #find{
+       margin-left: 62% ;
+       margin-top:-3% ;
+    }
+</style>
+
 <div class="container">
-<?php $session=$this->session->userdata['logged_in'];?>
+    <?php $session=$this->session->userdata['logged_in'];?>
+
     <h2>Gestion des utilisateurs</h2>
     <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-user"> <i class="fa fa-plus"></i> Ajouter</a>
-    <br><br>
 
-    <table class="table table-bordered table-striped" id="users_liste"> 
-        <thead style="background-color:rgba(200,0,0,0.5)">
-            <tr>
-                <th style="text-align:center">ID</th>
-                <th style="text-align:center">Nom d'utilisateur</th>
-                <th style="text-align:center">Nom et Prénom</th>
-                <th style="text-align:center">Adresse email</th>
-                <th style="text-align:center">Fonction</th>
-                <th style="text-align:center">Actions</th>
-            </tr>
-        </thead>
-       
-        <tbody>
-            <?php if($users): ?>
-                <?php foreach($users as $user): ?>
-                    <tr id="user_id_<?=$user->id;?>">
-                        <td style="text-align:center"><?= $user->id ?></td>
-                        <td style="text-align:center"><?= $user->login ?></td>
-                        <td style="text-align:center"><?= $user->fullname ?></td>
-                        <td style="text-align:center"><?= $user->adress_email ?></td>
-                        <td style="text-align:center"><?= $user->name ?></td>
-                        <td style="text-align:center">
-                            <a href="javascript:void(0)" id="<?php if($user->adress_email == $session['adresse_email']){ echo "edit-users";} ?>" data-id="<?=$user->id?>" class="btn btn-info" <?php if($user->adress_email != $session['adresse_email']){ echo "disabled";} ?>><i class="fa fa-edit"></i> Modifier</a>
-                            <a href="javascript:void(0)" id="delete-users" data-id="<?=$user->id?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
-                        </td>
-                    </tr>
-                <?php endforeach;?>
-            <?php endif;?>        
-        </tbody>
-    </table>
-</div>
+    <div id="pagination"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-user"> <i class="fa fa-plus"></i> Ajouter</a>
+        </div>
+
+        <div class="col-md-6" id='find'>
+            <div class="form-group row">
+                <div class="col-xs-6">
+                    <input type="text" name="users" id="users" class='form-control input-sm' placeholder="Rechercher utilisateur ...">
+                </div>
+                <div class="col-xs-6">
+                    <a href="javascript:void(0)" id="user-serach" class="btn btn-warning"><i class='fa fa-search'></i> Rechercher</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   <div class="table">
+       <table class="table table-bordered" id="users_liste">
+            <thead>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Nom et Prénom</th>
+                    <th>Adresse email</th>
+                    <th>Fonction</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+       </table>
+   </div>
+</div> 
 
 
 <!--Modal for add & edit users-->
@@ -44,7 +63,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal">×</a>
-                <h4 class="modal-title" id="userCrudModal"></h4>
+                <h4 class="modal-title" id="userCrudModal" style="text-align:center"></h4>
             </div>
             <form id="userForm" name="userForm" class="form-horizontal">
                 <div class="modal-body" style="width:95%;margin:auto">
@@ -75,7 +94,7 @@
                         <select name="fonction" id="fonction" class="form-control">
                             <option value=""></option>
                             <?php foreach ($profils as $profil) : ?>
-                                <option value="<?= $profil->id_user_profil ?>"><?= $profil->name ?></option>
+                                <option value="<?= $profil->id ?>"><?= $profil->label ?></option>
                             <?php endforeach ;?>    
                         </select>
                     </div>
@@ -100,12 +119,115 @@
     </div>
 </div>
 
+<!--Modal for delete users-->
+<div class="modal fade" id="ajax-delete-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="deleteForm" name="deleteForm" class="form-horizontal">
+                <div class="modal-body" style="width:95%;margin:auto">
+                    <p id="suppr" style="color:red;font-size:1.5em;text-align:center;font-weight:bold"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="supprimer-user">Supprimer</button>
+                    <button class="btn btn-defaut" data-dismiss="modal">Fermer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
    var SITEURL='<?php echo base_url();?>';
    
 
    $(document).ready(function(){
-        $('#users_liste').DataTable();
+        $('#pagination').on('click','a',function(e){
+            e.preventDefault(); 
+            var pageno = $(this).attr('data-ci-pagination-page');
+            loadPagination(pageno);
+        });
+
+        loadPagination(0);
+
+        function loadPagination(pagno){
+            $.ajax({
+                url:SITEURL+'/gestion_utilisateur/loadRecord/'+pagno,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    $('#pagination').html(response.pagination);
+                    createTable(response.result,response.row);
+                }
+             });
+        }
+
+        createTable();
+
+        function createTable(result,sno){
+            sno= Number(sno);
+            $('#users_liste tbody').empty();
+
+            for (index in result){
+                var id=result[index].id;
+                var nom_utilisateur=result[index].nom_utilisateur;
+                var nom_complet=result[index].nom_complet;
+                var adresse_email=result[index].adresse_email;
+                var fonction=result[index].label;
+
+                sno+=1;
+
+                var tr= "<tr>";
+                tr += "<td>"+ nom_utilisateur +"</td>";
+                tr += "<td>"+ nom_complet +"</td>";
+                tr += "<td>"+ adresse_email +"</td>";
+                tr += "<td>"+ fonction +"</td>";
+                tr+= "<td> <a class='btn btn-info' id='edit-users' data-id='"+id+"'>  <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-users' data-id='"+id+"' data-name='"+nom_utilisateur+"'> <i class='fa fa-trash'></i> </a></td>"
+                tr += "</tr>";
+                $('#users_liste tbody').append(tr);
+  
+            }
+        }
+        /** Quand l'utilisateur clic sur le boutton Rechercher */
+        $('body').on('click','#user-serach',function(){
+            $('#users_liste tbody').html('');
+            var users = document.getElementById("users").value;
+          if(users!=''){
+            $.ajax({
+                    type:"Post",
+                    url:SITEURL + "gestion_utilisateur/rechercher",
+                    data:{
+                        users : users,
+                    },
+                    dataType: "json",
+               success: function (res){
+                   console.log("ato");
+                    if(res.success == true){
+                        
+                        for($i = 0; $i<res.data.length; $i++){
+                            var id=res.data[$i]['id'];
+                            var name=res.data[$i]['nom_utilisateur'];
+                            var tr = "<tr>";
+                            tr += "<td>"+ res.data[$i]['nom_utilisateur'] +"</td>";
+                            tr += "<td>"+ res.data[$i]['nom_complet'] +"</td>";
+                            tr += "<td>"+ res.data[$i]['adresse_email'] +"</td>";
+                            tr += "<td>"+ res.data[$i]['label'] +"</td>";
+                            tr+= "<td> <a class='btn btn-info' id='edit-users' data-id='"+id+"'>  <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-users' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
+                            tr += "</tr>";
+                            $('#users_liste tbody').append(tr);
+                    }
+               }
+                if(res.success == false){
+                    $('#users_liste tbody').html('Aucun enregistrements correspondants trouvés');
+                }
+               },
+               error:function(data){
+                   console.log('error',data);
+               }
+           });
+          }else{
+            loadPagination(0)
+          }
+       });
         
        /**Quand l'utilisateur clic sur me boutton "Ajouter" */
        $('#ajouter-user').click(function(){
@@ -136,12 +258,12 @@
                         $('#btn-save').val('Modifier');
                         $('#ajax-user-modal').modal('show');
                         $('#user_id').val(res.data.id);
-                        $('#username').val(res.data.login);
-                        $('#fullname').val(res.data.fullname)
-                        $('#adresse_email').val(res.data.adress_email);
-                        $('#fonction').val(res.data.profil_id);
-                        $('#password').val(res.data.password);
-                        $('#confirm_password').val(res.data.password);
+                        $('#username').val(res.data.nom_utilisateur);
+                        $('#fullname').val(res.data.nom_complet)
+                        $('#adresse_email').val(res.data.adresse_email);
+                        $('#fonction').val(res.data.type_id);
+                        $('#password').val(res.data.mot_de_passe);
+                        $('#confirm_password').val(res.data.mot_de_passe);
                     }
                },
                error:function(data){
@@ -152,26 +274,29 @@
 
        $('body').on('click','#delete-users',function(){
            var user_id=$(this).data("id");
-           
-           if(confirm("Etes-vous sûre de vouloir supprimer?")){
-               $.ajax({
-                   type:"Post",
-                   url:SITEURL + "gestion_utilisateur/delete",
-                   data:{
-                    user_id:user_id
-                   },
-                   dataType:'json',
-                   success:function(data){
-                        $('#user_id_' + user_id).remove();
-                        setTimeout(function(){
-                            location.reload();
-                        },100);
-                   }, 
-                   error:function(data){
-                       console.log('error:',data);
-                   }
-               });
-           }
+           var user_name=$(this).data("name");
+           $('#ajax-delete-modal').modal('show');
+           $('#suppr').html('Voulez-vous supprimer l\'utilisateur '+'"'+user_name+'"');
+           $('#supprimer-user').click(function(){
+                $.ajax({
+                    type:"Post",
+                    url:SITEURL + "gestion_utilisateur/delete",
+                    data:{
+                        user_id:user_id
+                    },
+                    dataType:'json',
+                    success:function(data){
+                            $('#user_id_' + user_id).remove();
+                            setTimeout(function(){
+                                location.reload();
+                            },100);
+                    }, 
+                    error:function(data){
+                        console.log('error:',data);
+                    }
+                });
+
+           }); 
        });
    }); 
 

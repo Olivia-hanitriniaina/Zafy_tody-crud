@@ -15,7 +15,28 @@ class Questionnaire_station_model extends CI_Model{
         }
     }
 
-    public function get_All_fiche_visite_station($id){
+
+    public function get_count($id){
+        try {
+            $sql =" SELECT count(*) as isa from VisiteStationService as vsc 
+                     join Visite as v on vsc.visite_id= v.visiteur_id 
+                     join VisiteType as vt on vsc.type_id = vt.id 
+                     join Localisation as l on v.localisation_id = l.id 
+                     join Utilisateur as u on v.visiteur_id = u.id 
+                     join Utilisateur as ut on l.responsable_id = ut.id
+                    where vsc.type_id = ".$id."";
+           
+            $query = $this->db->query($sql);
+            $rows = $query->result();
+            return $rows[0]->isa;
+        }
+        catch(Exception $e){
+          show_error($e->getMessage().'-----'.$e->getTraceAsString());
+        }
+        
+      }
+
+    public function get_All_fiche_visite_station($id,$limit,$offset){
 
         try{
             
@@ -25,8 +46,9 @@ class Questionnaire_station_model extends CI_Model{
                      join Localisation as l on v.localisation_id = l.id 
                      join Utilisateur as u on v.visiteur_id = u.id 
                      join Utilisateur as ut on l.responsable_id = ut.id
-                    where vsc.type_id = ".$id." ";
-                
+                    where vsc.type_id = ".$id." 
+                    limit ".$limit.", ".$offset."";
+                    echo $sql;   
             $query = $this->db->query($sql);
             $rows = $query->result();
             return $rows;

@@ -25,8 +25,9 @@
       </div>
       
       <div>
-           <!-- Posts List -->
-           <table class="table table-borderd" id='tableau'>
+      <!-- Posts List -->
+
+           <table class="table table-borderd" id='postsList'style='width:80%'>
              <thead>
               <tr>
                 <th style="text-align:center">ID</th>
@@ -38,26 +39,117 @@
               </tr>
              </thead>
              <tbody id = "tbody">
-             <?php foreach($resultat as $response){?>
-                <tr>
-                    <td style="text-align:center"><?php echo $response->{'idvisiteur'}?></td>
-                    <td style="text-align:center"><?php echo $response->{'datevisiteur'}?> : <?php echo $response->{'timevisiteur'}?></td>
-                    <td style="text-align:center"><?php echo $response->{'nomstation'}?></td>
-                    <td style="text-align:center"><?php echo $response->{'nomgerant'}?></td>
-                    <td style="text-align:center"><?php echo $response->{'nomvisiteur'}?></td>
-                    <td style="text-align:center"><a href="<?=base_url('Questionnaire_station/get_AllQuestionnaire?id=')?><?php echo $response->{'idvisiteur'}?>" class="btn btn-info"> <i class="fa fa-edit"></i>edit</a></td>
-                </tr>
-                <?php }?>
              </tbody>
            </table>
-           
-          
       </div>
     </div>
    </div>
 
 <script>
-   $('body').on('click','#edit-recherche',function(){
+
+$(document).ready(function(){
+        var SITEURL='<?php echo base_url();?>';
+        $('#pagination').on('click','a',function(e){
+            e.preventDefault(); 
+            var pageno = $(this).attr('data-ci-pagination-page');
+            loadPagination(pageno);
+        });
+ 
+        loadPagination(0);
+       
+        function loadPagination(pagno){
+         
+            $.ajax({
+                url:SITEURL+'/Questionnaire_station/loadRecord/'+pagno,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                  console.log(pagno);
+                    $('#pagination').html(response.pagination);
+                   
+                    createTable(response.result,response.row);
+                }
+            });
+        }
+
+        createTable();
+
+        function createTable(result,sno){
+            sno = Number(sno);
+            $('#postsList tbody').empty();
+            for(index in result){
+                var id = result[index].idvisiteur;
+                var date = result[index].datevisiteur +" : "+ result[index].timevisiteur ;
+                var nomgerant = result[index].nomgerant;
+                var nomstation = result[index].nomstation;
+                var  nomvisiteur = result[index]. nomvisiteur;
+                sno+=1;
+                alert("response"+id);
+                var tr = "<tr>";
+                //tr += "<td>"+ sno +"</td>";
+                tr += "<td>"+ id +"</td>";
+                tr += "<td>"+ date +"</td>";
+                tr += "<td>"+ nomgerant +"</td>";
+                tr += "<td>"+ nomstation +"</td>";
+                tr += "<td>"+ nomvisiteur +"</td>";
+                tr+= "<td> <a class='btn btn-info' id='edit-station' data-id='"+id+"'> <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-station' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
+                tr += "</tr>";
+                $('#postsList tbody').append(tr);
+            }
+        }
+        $('body').on('click','#edit-recherche',function(){
+            $('#postsList tbody').html('');
+            var date = document.getElementById("date").value;
+            var station = document.getElementById("station").value;
+            var visite = document.getElementById("gerant").value;
+
+            if(station!='' || gerante!=''){
+                $.ajax({
+                    type:"Post",
+                    url:SITEURL + "Questionnaire_station/get_recherche_station",
+                    data:{
+                        date : date,
+                        station : station,
+                        visite : visite,
+                    },
+                    dataType: "json",
+                    success: function (res){
+                        console.log("ato");
+                        if(res.success == true){
+                            for($i = 0; $i<res.data.length; $i++){
+                              var id = res.data[$i].idvisiteur;
+                              var date = res.data[$i].datevisiteur +" : "+ res.data[$i].timevisiteur ;
+                              var nomgerant = res.data[$i].nomgerant;
+                              var nomstation = res.data[$i].nomstation;
+                              var  nomvisiteur = result[index]. nomvisiteur;
+                              sno+=1;
+
+                              var tr = "<tr>";
+                              //tr += "<td>"+ sno +"</td>";
+                              tr += "<td>"+ id +"</td>";
+                              tr += "<td>"+ date +"</td>";
+                              tr += "<td>"+ nomgerant +"</td>";
+                              tr += "<td>"+ nomstation +"</td>";
+                              tr += "<td>"+ nomvisiteur +"</td>";
+                              tr+= "<td> <a class='btn btn-info' id='edit-station' data-id='"+id+"'> <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-station' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
+                              tr += "</tr>";
+                              $('#postsList tbody').append(tr);
+                            }
+                        }
+                        if(res.success == false){
+                            $('#postsList tbody').html('Aucun enregistrements correspondants trouvés');
+                        }
+                    },
+                    error:function(data){
+                        console.log('error',data);
+                    }
+                });
+            }else{
+                loadPagination(0)
+            }
+        });
+});
+   /*$('body').on('click','#edit-recherche',function(){
     var tbody =  document.getElementById('tbody'); tbody.innerHTML = " ";
     var tableau =  document.getElementById('tableau'); 
     var date = document.getElementById("date").value;
@@ -108,7 +200,7 @@
             console.log('error',data);
         }
     });
-  });
+  });*/
 </script>
    <!-- Script -->
 

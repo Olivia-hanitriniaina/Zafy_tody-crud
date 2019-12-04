@@ -8,9 +8,9 @@ class Depot_model extends CI_Model{
 
   public function get_all_users(){
     try{
-      $this->db->select('id,fullname');
-      $this->db->from('codir_users');
-      $this->db->where(array('profil_id'=>1));
+      $this->db->select('id,nom_complet');
+      $this->db->from('Utilisateur');
+      $this->db->where(array('type_id'=>1));
       $query=$this->db->get();
 
       return $query->result();
@@ -19,16 +19,32 @@ class Depot_model extends CI_Model{
     }
   }
 
-  public function get_all_depots(){
+  public function get_count(){
+    try {
+      $this->db->select('localisation.*,LocalisationType.label,Utilisateur.nom_complet');
+      $this->db->from('Localisation');
+      $this->db->join('LocalisationType','type_id=LocalisationType.id');
+      $this->db->join('Utilisateur','Utilisateur.id=responsable_id','left');
+      $this->db->where(array('Localisation.type_id'=>5));
+      return $this->db->count_all_results();
+    }
+    catch(Exception $e){
+      show_error($e->getMessage().'-----'.$e->getTraceAsString());
+    }
+    
+  }
+
+  public function get_all_depots($limit,$start){
 
     try {
-      $this->db->select('*');
-      $this->db->from('codir_locals');
-      $this->db->join('codir_local_type','local_type_id=codir_local_type.id');
-      $this->db->join('codir_users','codir_users.id=local_manager_id','left');
-      $this->db->where(array('local_type_id'=>4));
+      $this->db->select('Localisation.*,LocalisationType.label,Utilisateur.nom_complet');
+      $this->db->from('Localisation');
+      $this->db->join('LocalisationType','Localisation.type_id=LocalisationType.id');
+      $this->db->join('Utilisateur','Utilisateur.id=responsable_id','left');
+      $this->db->where(array('Localisation.type_id'=>5));
+      $this->db->limit($limit,$start);
       $query=$this->db->get();
-      return $query->result();
+      return $query->result_array();
     }
     catch(Exception $e){
       show_error($e->getMessage().'-----'.$e->getTraceAsString());
@@ -39,11 +55,11 @@ class Depot_model extends CI_Model{
   public function get_by_id($id){
 
     try{
-      $this->db->select('*');
-      $this->db->from('codir_locals');
-      $this->db->join('codir_local_type','local_type_id=codir_local_type.id');
-      $this->db->join('codir_users','codir_users.id=local_manager_id','left');
-      $this->db->where(array('local_type_id'=>4,'id_local'=>$id));
+      $this->db->select('Localisation.*,LocalisationType.label,Utilisateur.nom_complet');
+      $this->db->from('Localisation');
+      $this->db->join('LocalisationType','Localisation.type_id=LocalisationType.id');
+      $this->db->join('Utilisateur','Utilisateur.id=responsable_id','left');
+      $this->db->where(array('Localisation.type_id'=>5,'Localisation.id'=>$id));
       $query=$this->db->get();
       return $query->row();
     }
@@ -56,7 +72,7 @@ class Depot_model extends CI_Model{
   public function create($data){
 
     try{
-          $this->db->insert('codir_locals',$data);
+          $this->db->insert('Localisation',$data);
           return $this->db->insert_id();
     }
     catch(Exception $e){
@@ -68,8 +84,8 @@ class Depot_model extends CI_Model{
   public function update($data){
 
     try {
-          $where=array('id_local'=>$this->input->post('depot_id'));
-          $this->db->update('codir_locals',$data,$where);
+          $where=array('id'=>$this->input->post('depot_id'));
+          $this->db->update('Localisation',$data,$where);
           return $this->db->affected_rows();
     }
     catch(Exception $e){
@@ -82,12 +98,45 @@ class Depot_model extends CI_Model{
 
     try {
           $id= $this->input->post('depot_id');
-          $this->db->where('id_local',$id);
-          $this->db->delete('codir_locals');
+          $this->db->where('id',$id);
+          $this->db->delete('Localisation');
     }
     catch(Exception $e){
       show_error($e->getMessage().'-----'.$e->getTraceAsString());
     }
 
+  }
+
+  public function search_depot($depot, $gerant){
+    try{
+
+        $sql =" SELECT Localisation.*,LocalisationType.label,Utilisateur.nom_complet from Localisation 
+                join LocalisationType
+                on Localisation.type_id =LocalisationType.id 
+                join Utilisateur 
+                on Utilisateur.id=responsable_id
+                where Localisation.type_id = 5";
+        if($depot == " " && $gerant != " ")
+        {
+            $sql = $sql." and nom like '%".$depot."%' ";
+        }
+        if($gerant == " " && $depot != " ")
+        {
+            $sql = $sql." and Utilisateur.nom_complet like '%".$gerant."%' ";
+        }
+        if($depot != " " && $gerant != " ")
+        {
+            $sql = $sql." and nom like '%".$depot."%' and Utilisateur.nom_complet like '%".$gerant."%' ";
+        }
+        else {
+          $sql = $sql;
+        }
+        $query = $this->db->query($sql);
+        $rows = $query->result();
+        return $rows;
+    }
+    catch(Exception $e){
+        show_error($e->getMessage().'------'.$e->getTraceAsString());
+    }
   }
 }
