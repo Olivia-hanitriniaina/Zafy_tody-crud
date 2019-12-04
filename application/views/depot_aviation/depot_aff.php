@@ -1,3 +1,10 @@
+<style>
+    /** Error message input modal */
+    .error{
+        color:red;
+    }
+</style>
+
 <div class="container">
     <h2>Dépôt aviation</h2>
     <div class="card">
@@ -61,7 +68,7 @@
                     <div class="form-group">
                         <label for="name">Gérant : </label>
                         <select name="local_manager" id="local_manager" class="form-control">
-                            <option value="default"></option>
+                            <option></option>
                             <?php foreach ($users as $user): ?>
                                 <option value="<?= $user->id ?>"> <?= $user->nom_complet?> </option>
                             <?php endforeach; ?>    
@@ -253,6 +260,18 @@
 
    if($('#depotForm').length >0){
        $('#depotForm').validate({
+            rules:{
+                depot_aviation:"required",
+                local_manager:"required"
+            },
+            messages:{
+                depot_aviation:{
+                    required:"Veuillez remplir le champ par le nom d'un dépôt aviation",
+                },
+                local_manager:{
+                    required:"Veuillez selectionner un Gérant",
+                }
+            },
            submitHandler: function(form){
                var actionType= $('#btn-save').val();
                $('#btn-save').html('Envoie...');

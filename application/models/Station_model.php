@@ -109,7 +109,7 @@ class Station_model extends CI_Model{
   public function getrecherche_station($station, $gerant){
     try{
 
-        $sql =" SELECT * from Localisation 
+        $sql =" SELECT Localisation.*,LocalisationType.label,Utilisateur.nom_complet from Localisation 
                 join LocalisationType
                 on Localisation.type_id =LocalisationType.id 
                 join Utilisateur 

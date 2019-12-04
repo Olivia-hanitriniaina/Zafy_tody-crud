@@ -1,44 +1,47 @@
+<style>
+    /** Error message input modal */
+    .error{
+        color:red;
+    }
+</style>
 <div class="container">
     <h2>Produit</h2>
 
     <div class="card">
       
       <!-- Paginate -->
-      <div id='pagination' style="margin-left:-90%"></div>
-      <div class="row">
-          <div class="col-md-6"><a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-produit"> <i class="fa fa-plus"></i> Ajouter</a></div>
-          <div class="col-md-6" style="margin-left:-20%">
-            <div class="form-group row" >
-                <div class="col-xs-5">
-                <input type="text" name="produit_name" id ="produit_name" class="field-divided form-control input-sm" placeholder="Nom du produit" />
-                </div>
-                
-                <div class="col-xs-2">
-                <a href = "javascript:void(0)" id="edit-recherche" value="" class='btn btn-warning'>Rechercher</a>
+        <div id='pagination' style="margin-left:-90%"></div>
+        <div class="row">
+            <div class="col-md-6"><a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-produit"> <i class="fa fa-plus"></i> Ajouter</a></div>
+            <div class="col-md-6" style="margin-left:-20%">
+                <div class="form-group row" >
+                    <div class="col-xs-5">
+                        <input type="text" name="produit_name" id ="produit_name" class="field-divided form-control input-sm" placeholder="Nom du produit" />
+                    </div>
+                    
+                    <div class="col-xs-2">
+                        <a href = "javascript:void(0)" id="edit-recherche" value="" class='btn btn-warning'>Rechercher</a>
+                    </div>
                 </div>
             </div>
-                
-          </div>
-      </div>
+        </div>
       
-      <div>
+        <div>
            <!-- Posts List -->
-           <table class="table table-borderd" id='postsList'style='width:80%'>
-             <thead>
-              <tr>
-                <!--<th>ID</th>-->
-                <th>Produits</th>
-                <th>Action</th>
-              </tr>
-             </thead>
-             <tbody></tbody>
-           </table>
-           
-          
-      </div>
+            <table class="table table-borderd" id='postsList'style='width:80%'>
+                <thead>
+                    <tr>
+                        <!--<th>ID</th>-->
+                        <th>Produits</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
-
+</div>
 <!--Modal for add & edit station-->
 <div class="modal fade" id="ajax-produit-modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -59,7 +62,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister</button>
                     <button class="btn btn-default" data-dismiss="modal">Fermer</button>
                 </div>
             </form>
@@ -89,7 +92,7 @@
    
 
    $(document).ready(function(){
-    $('#pagination').on('click','a',function(e){
+        $('#pagination').on('click','a',function(e){
             e.preventDefault(); 
             var pageno = $(this).attr('data-ci-pagination-page');
             loadPagination(pageno);
@@ -108,7 +111,9 @@
                  }
             });
         }
-         createTable();
+
+        createTable();
+
         function createTable(result,sno){
             sno = Number(sno);
             $('#postsList tbody').empty();
@@ -165,7 +170,7 @@
             }else{
                 loadPagination(0)
             }
-       });
+        });
         
        /**Quand l'utilisateur clic sur me boutton "Ajouter" */
        $('#ajouter-produit').click(function(){
@@ -204,6 +209,7 @@
            });
        });
 
+       /**Quand l'utilisateur clic sur me boutton "Supprimer" */
        $('body').on('click','#delete-produit',function(){
            var produit_id=$(this).data("id");
            var produit_name=$(this).data("name");
@@ -222,52 +228,59 @@
                         setTimeout(function(){
                             location.reload();
                         },100);
-                   }, 
+                    }, 
                    error:function(data){
                        console.log('error:',data);
-                   }
-               }); 
-           });
-       });
-   }); 
+                    }
+                }); 
+            });
+        });
+    }); 
 
    if($('#produitForm').length >0){
        $('#produitForm').validate({
+        rules:{
+                nom_produit:"required",
+            },
+            messages:{
+                nom_produit:{
+                    required:"Veuillez remplir le champ par le nom d'un produit",
+                },
+            },
            submitHandler: function(form){
-               var actionType= $('#btn-save').val();
-               $('#btn-save').html('Envoie...');
-               var serialize=$('#produitForm').serialize();
-               $.ajax({
+                var actionType= $('#btn-save').val();
+                $('#btn-save').html('Envoie...');
+                var serialize=$('#produitForm').serialize();
+                $.ajax({
                    url:SITEURL + "produit/store",
                    type:"Post",
                    dataType:'json',
                    data: serialize,
                    
                    success: function(res){
-                    var produit='<tr id="produit_id_'+ res.data.id + '"><td>' + res.data.id + '</td><td>' + res.data.nom + '</td>'; 
-                    produit+= '<td><a href="javascript:void(0)" id="edit-produit" data-id="' + res.data.id + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-produit" data-id="' + res.data.id + '" data-name="'+res.data.nom+'" class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+                        var produit='<tr id="produit_id_'+ res.data.id + '"><td>' + res.data.id + '</td><td>' + res.data.nom + '</td>'; 
+                        produit+= '<td><a href="javascript:void(0)" id="edit-produit" data-id="' + res.data.id + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-produit" data-id="' + res.data.id + '" data-name="'+res.data.nom+'" class="btn btn-danger delete-user">Supprimer</a></td></tr>';
 
-                    if(actionType =="create-produit"){
-                        
-                       $('#produit_liste').prepend(produit);
-                    }else{
-                       $('#produit_id_' + res.data.id).replaceWith(produit);
+                        if(actionType =="create-produit"){
+                            $('#produit_liste').prepend(produit);
+                        }else{
+                            $('#produit_id_' + res.data.id).replaceWith(produit);
+                        }
+
+                        $('#produitForm').trigger("reset");
+                        $('#ajax-produit-modal').modal('hide');
+                        $('#btn-save').html('Enregister modification');
+                        setTimeout(function(){
+                            location.reload();
+                        },100);
+                    },
+
+                    error:function(data){
+                        console.log('error:',data);
+                        $('#btn-save').html('Enregister modification');    
                     }
-
-                    $('#produitForm').trigger("reset");
-                    $('#ajax-produit-modal').modal('hide');
-                    $('#btn-save').html('Enregister modification');
-                    setTimeout(function(){
-                        location.reload();
-                    },100);
-                   },
-
-                  error:function(data){
-                    console.log('error:',data);
-                    $('#btn-save').html('Enregister modification');    
-                  }
-               });
-           }
-       })
-   }
+                });
+            }
+        })
+    }
 </script>

@@ -91,10 +91,11 @@ class Ville_model extends CI_Model{
 
   public function search_villes($ville){
     try{
-      $this->db->select('*');
+      $this->db->select('Localisation.*,LocalisationType.label');
       $this->db->from('Localisation');
       $this->db->join('LocalisationType','Localisation.type_id = LocalisationType.id','left');
       $this->db->or_like(array('nom'=>$ville));
+      $this->db->where(array('Localisation.type_id'=>3));
       $query=$this->db->get();
       return $query->result();
     }      

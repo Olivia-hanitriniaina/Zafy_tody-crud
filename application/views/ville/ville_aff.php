@@ -1,3 +1,9 @@
+<style>
+    /** Error message input modal */
+    .error{
+        color:red;
+    }
+</style>
 <div class="container">
     <h2>Ville</h2>
     <div class="card">
@@ -57,7 +63,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister les modifications</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="create">Enregister</button>
                     <button class="btn btn-default" data-dismiss="modal">Fermer</button>
                 </div>
             </form>
@@ -233,6 +239,14 @@
 
    if($('#villeForm').length >0){
        $('#villeForm').validate({
+            rules:{
+                nom_ville:"required",
+            },
+            messages:{
+                nom_ville:{
+                    required:"Veuillez remplir le champ par le nom d'une ville",
+                },
+            },
            submitHandler: function(form){
                var actionType= $('#btn-save').val();
                $('#btn-save').html('Envoie...');

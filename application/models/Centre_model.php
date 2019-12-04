@@ -107,7 +107,7 @@ class Centre_model extends CI_Model{
   public function search_centre($centre, $gerant){
     try{
 
-        $sql =" SELECT * from Localisation 
+        $sql =" SELECT Localisation.*,LocalisationType.label,Utilisateur.nom_complet from Localisation 
                 join LocalisationType
                 on Localisation.type_id =LocalisationType.id 
                 join Utilisateur 

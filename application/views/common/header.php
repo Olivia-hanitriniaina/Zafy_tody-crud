@@ -26,7 +26,7 @@
     <!-- SCRIPT -->
     <script src="<?=base_url('/assets/js/jquery.min.js')?>"></script>
     <script src="<?=base_url('/assets/js/bootstrap.min.js')?>"></script>
-    <script src="<?=base_url('/assets/js/navbar_script.js') ?>"></script>
+    <!--<script src="<?=base_url('/assets/js/navbar_script.js') ?>"></script>-->
     <script src="<?=base_url('/assets/js/fontawesome.min.js') ?>"></script>
     <script src="<?=base_url('/assets/js/datatables.min.js') ?>"></script>
     <script src="<?=base_url('/assets/js/jquery.validate.min.js') ?>"></script>

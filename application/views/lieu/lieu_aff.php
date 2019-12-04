@@ -1,3 +1,10 @@
+<style>
+    /** Error message input modal */
+    .error{
+        color:red;
+    }
+</style>
+
 <div class="container">
     <h2>Lieu</h2>
     <div class="card">
@@ -38,35 +45,8 @@
     </div>
 
 
-    <!-- <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-lieu"> <i class="fa fa-plus"></i> Ajouter</a>
-    <br><br>
-
-    <table class="table table-bordered table-striped" id="lieu_liste">
-        <thead style="background-color:rgba(200,0,0,0.5)">
-            <tr>
-                <th style="text-align:center" hidden>ID</th>
-                <th style="text-align:center">Lieux</th>
-                <th style="text-align:center">Actions</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php if($lieux): ?>
-                <?php foreach($lieux as $lieu): ?>
-                    <tr id="lieu_id_<?=$lieu->id_local;?>">
-                        <td style="text-align:center" hidden><?= $lieu->id_local ?></td>
-                        <td style="text-align:center"><?= $lieu->name_local ?></td>
-                        <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-lieu" data-id="<?=$lieu->id_local?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
-                            <a href="javascript:void(0)" id="delete-lieu" data-id="<?=$lieu->id_local?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
-                        </td>
-                    </tr>
-                <?php endforeach;?>
-            <?php endif;?>        
-        </tbody>
-    </table>
-</div> -->
+    
+</div> 
 
 <!--Modal for add & edit station-->
 <div class="modal fade" id="ajax-lieu-modal" aria-hidden="true">
@@ -265,6 +245,14 @@
 
    if($('#lieuForm').length >0){
        $('#lieuForm').validate({
+             rules:{
+                nom_lieu:"required",
+            },
+            messages:{
+                nom_lieu:{
+                    required:"Veuillez remplir le champ par un lieu",
+                },
+            },
            submitHandler: function(form){
                var actionType= $('#btn-save').val();
                $('#btn-save').html('Envoie...');

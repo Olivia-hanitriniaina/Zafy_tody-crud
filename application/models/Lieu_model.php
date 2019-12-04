@@ -91,10 +91,11 @@ class Lieu_model extends CI_Model{
 
   public function search_lieux($lieu){
     try{
-      $this->db->select('*');
+      $this->db->select('Localisation.*,LocalisationType.label');
       $this->db->from('Localisation');
       $this->db->join('LocalisationType','Localisation.type_id = LocalisationType.id','left');
       $this->db->or_like(array('nom'=>$lieu));
+      $this->db->where(array('Localisation.type_id'=>2));
       $query=$this->db->get();
       return $query->result();
     }      

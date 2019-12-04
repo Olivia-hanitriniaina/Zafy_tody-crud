@@ -1,3 +1,9 @@
+<style>
+    /** Error message input modal */
+    .error{
+        color:red;
+    }
+</style>
 <div class="container">
     <h2>Centre emplisseur</h2>
     <div class="card">
@@ -40,38 +46,6 @@
       </div>
     </div>
 
-   <!--  <br>
-    <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-centre"> <i class="fa fa-plus"></i> Ajouter</a>
-    <br><br>
-
-    <table class="table table-bordered table-striped" id="centre_liste">
-        <thead style="background-color:rgba(200,0,0,0.5)">
-            <tr>
-                <th style="text-align:center">ID</th>
-                <th style="text-align:center">Centre emplisseur</th>
-                <th style="text-align:center">Gérant</th>
-                <th style="text-align:center">Actions</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php if($centres): ?>
-                <?php foreach($centres as $centre): ?>
-                    <tr id="centre_id_<?=$centre->id_local;?>">
-                        <td style="text-align:center"><?= $centre->id_local ?></td>
-                        <td style="text-align:center"><?= $centre->name_local ?></td>
-                        <td style="text-align:center"><?= $centre->fullname ?></td>
-                        <td style="text-align:center">
-                            <a href="javascript:void(0)" id="edit-centre" data-id="<?=$centre->id_local?>" class="btn btn-info"> <i class="fa fa-edit"></i> Modifier</a>
-                            <a href="javascript:void(0)" id="delete-centre" data-id="<?=$centre->id_local?>" class="btn btn-danger delete-user"> <i class="fa fa-trash"></i> Supprimer</a>
-                        </td>
-                    </tr>
-                <?php endforeach;?>
-            <?php endif;?>        
-        </tbody>
-    </table>
-</div> -->
-
 <!--Modal for add & edit station-->
 <div class="modal fade" id="ajax-centre-modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -93,7 +67,7 @@
                     <div class="form-group">
                         <label for="name" class="control-label">Gérant : </label>
                         <select name="local_manager" id="local_manager" class='form-control'>
-                            <option value="default"></option>
+                            <option></option>
                             <?php foreach ($users as $user): ?>
                                 <option value="<?= $user->id ?>"><?= $user->nom_complet ?></option>
                             <?php endforeach;?>
@@ -287,6 +261,18 @@
 
    if($('#centreForm').length >0){
        $('#centreForm').validate({
+            rules:{
+                nom_centre:"required",
+                local_manager:"required"
+            },
+            messages:{
+                nom_centre:{
+                    required:"Veuillez remplir le champ par le nom d'un centre emplisseur",
+                },
+                local_manager:{
+                    required:"Veuillez selectionner un Gérant",
+                }
+            },
            submitHandler: function(form){
                var actionType= $('#btn-save').val();
                $('#btn-save').html('Envoie...');

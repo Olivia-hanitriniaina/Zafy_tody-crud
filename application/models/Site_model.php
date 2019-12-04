@@ -6,7 +6,7 @@ class Site_model extends CI_model{
         parent::__construct();
         $this->load->database();
     }
-
+    
     public function get_all_users(){
         try{
             $this->db->select('id,nom_complet');
@@ -95,7 +95,7 @@ class Site_model extends CI_model{
     public function search_site($site, $gerant){
         try{
     
-            $sql =" SELECT * from Localisation 
+            $sql =" SELECT Localisation.*,LocalisationType.label,Utilisateur.nom_complet from Localisation 
                     join LocalisationType
                     on Localisation.type_id =LocalisationType.id 
                     join Utilisateur 
