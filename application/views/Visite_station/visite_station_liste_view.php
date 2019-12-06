@@ -95,7 +95,7 @@
                 tr += "<td>"+ station +"</td>";
                 tr += "<td>"+ gerant +"</td>";
                 tr += "<td>"+ visiteur +"</td>";
-                tr+= "<td> <a id='view' class='fa fa-eye btn' data-id='"+id+"'> </a> <a class='fa fa-file-pdf-o' id='download' data-id='"+id+"'></a></td>";
+                tr+= "<td> <a href='<?php echo base_url()?>visite_station/reponse_visite?idstation="+id+"' id='view' class='fa fa-eye btn' data-id='"+id+"'> </a> <a class='fa fa-file-pdf-o' id='download' data-id='"+id+"'></a></td>";
                 tr += "</tr>";
                 $('#postsList tbody').append(tr);
 

@@ -36,6 +36,24 @@ class Visite_station_model extends CI_model{
         }
     }
 
+
+    public function get_all_visites_by_id($id){
+        try{
+            $this->db->select('VisiteStationService.visite_id,Visite.date,Visite.time,Gerant.nom_complet AS gerant,Visiteur.nom_complet AS visiteur,Localisation.nom');
+            $this->db->from('VisiteStationService');
+            $this->db->join('Visite','Visite.id=visite_id','inner');
+            $this->db->join('Localisation','Localisation.id=localisation_id','inner');
+            $this->db->join('Utilisateur AS Visiteur','Visiteur.id=visiteur_id','inner');
+            $this->db->join('Utilisateur AS Gerant','Gerant.id=responsable_id');
+            $this->db->where('VisiteStationService.visite_id',$id);
+            $query=$this->db->get();
+            return $query->result();
+        }catch(Exception $e){
+            show_error($e->getMessage().'------'.$e->getTraceAsString());
+        }
+    }
+    
+
     public function search_visite($station,$date,$visiteur){
         try{
             $this->db->select('VisiteStationService.visite_id,Visite.date,Visite.time,Gerant.nom_complet AS gerant,Visiteur.nom_complet AS visiteur,Localisation.nom');
@@ -70,7 +88,7 @@ class Visite_station_model extends CI_model{
 
     public function get_reponses($id_visite){
         try{
-            $this->db->select('QuestionReponse.reponse,QuestionReponse.observations,Question.label,QuestionCategorie.label AS categorie,QuestionSousCategorie.label AS sous_categorie');
+            $this->db->select('QuestionReponse.reponse,QuestionReponse.observations,Question.label,Question.id as id,QuestionCategorie.label AS categorie,QuestionCategorie.id as idcategorie,QuestionSousCategorie.label AS sous_categorie,QuestionSousCategorie.id as idsouscategorie');
             $this->db->from('QuestionReponse');
             $this->db->join('Question','Question.id=question_id');
             $this->db->join('QuestionCategorie','QuestionCategorie.id=Question.categorie_id');

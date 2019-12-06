@@ -77,17 +77,15 @@ class Visite_station extends CI_Controller{
     }
 
     public function reponse_visite(){
+        $data = array();
+        $data['connecter'] = $this->session->userdata['logged_in'];
+        $id_station= $this->input->get('idstation');
         $id_visite=1;
-        $data=$this->Visite_station_model->get_reponses($id_visite);
-
-        $arr= array('success'=>true,'data'=>'');
-
-        if(empty($data)){
-            $arr= array('success'=>false,'data'=>'resultat null');
-        }else{
-            $arr=array('success'=>true,'data'=>$data);
-        }
-
-        echo json_encode($arr);
+        $data['result']=$this->Visite_station_model->get_reponses($id_visite);
+        $data['station']=$this->Visite_station_model->get_all_visites_by_id($id_station);
+        $this->load->view('common/header',$data);
+        $this->load->view('Visite_station/questionnaire_visite_station_view',$data);
+        $this->load->view('common/footer');
+    
     }
 }
