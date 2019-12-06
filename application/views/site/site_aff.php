@@ -31,7 +31,7 @@
       
       <div>
            <!-- Posts List -->
-           <table class="table table-borderd" id='postsList'style='width:80%'>
+           <table class="table table-bordered" id='postsList'style='width:80%'>
              <thead>
               <tr>
                 <!--<th>ID</th>-->
