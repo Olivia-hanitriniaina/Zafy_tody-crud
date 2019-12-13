@@ -50,7 +50,7 @@
         </div>
 
         <div class="col-md-3 zoom">
-            <a href="<?= base_url("/accueil/HSE_chantier")?>" style="text-decoration:none;">
+            <a href="<?= base_url("Visite_camion_opere")?>" style="text-decoration:none;">
             <div class="card">
                 <h2 style="text-align:center ;color:black;" class="card-header">STL Camion opéré</h2>
                 <img class="card-body" src="<?= base_url()."assets/images/stl_camion1.png"?>" alt="stl_camion" style="width:100%">

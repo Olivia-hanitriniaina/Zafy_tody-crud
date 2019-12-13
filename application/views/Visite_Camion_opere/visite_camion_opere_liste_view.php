@@ -13,7 +13,7 @@
     }
 </style>
 <div class="container">
-    <h2>Liste des visites de stl bouteilles</h2>
+    <h2>Liste des visites de stl calion opéré</h2>
     <div class="card">
         <!--Barre de recherche et pagination-->
         <div id="pagination"></div>
@@ -28,11 +28,15 @@
                 <input type="text" name="transporteur" id = "transporteur" class="field-divided form-control input-xs" placeholder="Rechercher transporteur..." />
             </div>
             <div class="col-xs-3">
-                <input type="text" name="lieu" id ="lieu" class="field-divided form-control input-xs" placeholder="Rechercher lieu de contrôle..." />
+                <input type="text" name="expediteur" id = "expediteur" class="field-divided form-control input-xs" placeholder="Rechercher expediteur" />
             </div>
+            
 
         </div>
         <div class="form-group row">
+        <div class="col-xs-3">
+                <input type="text" name="lieu" id ="lieu" class="field-divided form-control input-xs" placeholder="Rechercher lieu de contrôle..." />
+            </div>
             <div class="col-xs-3">
                 <input type="text" name="produit" id = "produit" class="field-divided form-control input-xs" placeholder="Rechercher produit..." />
             </div>
@@ -42,12 +46,12 @@
             <div class="col-xs-3">
                 <input type="text" name="tracteur" id ="tracteur" class="field-divided form-control input-xs" placeholder="Rechercher l' immatriculation tracteur/ ..." />
             </div>
-            <div class="col-xs-3">
-                <input type="text" name="semi" id = "semi" class="field-divided form-control input-xs" placeholder="Rechercher l' immatriculation semi_remorque..." />
-            </div>
+            
         </div>
         <div class="form-group row">
-            <div class="col-xs-3"></div>
+        <div class="col-xs-3">
+                <input type="text" name="semi" id = "semi" class="field-divided form-control input-xs" placeholder="Rechercher l' immatriculation semi_remorque..." />
+            </div>
             <div class="col-xs-3"></div>
             <div class="col-xs-3"></div>
             <div class="col-xs-3">
@@ -62,6 +66,7 @@
                 <th>id_visite</th>
                 <th>Nom de l'inspecteur</th>
                 <th>Transporteur</th>
+                <th>Nom_Expediteur</th>
                 <th>Date</th>
                 <th>Heure</th>
                 <th>Lieu de contrôle</th>
@@ -92,7 +97,7 @@
 
         function loadPagination(pagno){
             $.ajax({
-                url:SITEURL+'/visite_bouteilles/loadRecord/'+pagno,
+                url:SITEURL+'/visite_camion_opere/loadRecord/'+pagno,
                 type: 'get',
                 dataType: 'json',
                 success: function(response){
@@ -108,7 +113,8 @@
             for(index in result){
                 var id = result[index].visite_id;
                 var inspecteur = result[index].visiteur;
-                var transporteur = result[index].nom_transporteur;
+                var transporteur = result[index].nom_trasporteur;
+                var expediteur = result[index].nom_expediteur;
                 var date = result[index].date;
                 var time = result[index].heure;
                 var lieu = result[index].localisation;
@@ -123,6 +129,7 @@
                 tr += "<td>"+ id +"</td>";
                 tr += "<td>"+ inspecteur +"</td>";
                 tr += "<td>"+ transporteur +"</td>";
+                tr += "<td>"+ expediteur +"</td>";
                 tr += "<td>"+ date +"</td>";
                 tr += "<td>"+ time +"</td>";
                 tr += "<td>"+ lieu +"</td>";
@@ -130,7 +137,7 @@
                 tr += "<td>"+ conducteur +"</td>";
                 tr += "<td>"+ imma_tracteur +"</td>";
                 tr += "<td>"+ imma_semi +"</td>";
-                tr+= "<td> <a href='<?php echo base_url()?>visite_bouteilles/reponse_visite?idbouteille="+id+"' id='view' class='fa fa-eye btn' data-id='"+id+"'> </a> <a class='fa fa-file-pdf-o' id='download' data-id='"+id+"'></a></td>";
+                tr+= "<td> <a href='<?php echo base_url()?>visite_camion_opere/reponse_visite?idcamion="+id+"' id='view' class='fa fa-eye btn' data-id='"+id+"'> </a> <a class='fa fa-file-pdf-o' id='download' data-id='"+id+"'></a></td>";
                 tr += "</tr>";
                 $('#postsList tbody').append(tr);
 
@@ -143,6 +150,7 @@
             var inspecteur = document.getElementById("inspecteur").value;
             var date = document.getElementById("date").value;
             var transporteur = document.getElementById("transporteur").value;
+            var expediteur = document.getElementById("expediteur").value;
             var lieu = document.getElementById("lieu").value;
             var produit = document.getElementById("produit").value;
             var conducteur = document.getElementById("conducteur").value;
@@ -150,7 +158,7 @@
             var semi = document.getElementById("semi").value;
            
 
-            if(inspecteur!='' || date!='' || transporteur!='' || lieu!='' || produit!='' || conducteur!='' || tracteur!='' || semi!=''){
+            if(inspecteur!='' || date!='' || transporteur!='' || expediteur!='' || lieu!='' || produit!='' || conducteur!='' || tracteur!='' || semi!=''){
                 $.ajax({
                     type:"Post",
                     url:SITEURL + "Visite_bouteilles/search_visite",
@@ -158,6 +166,7 @@
                         inspecteur : inspecteur,
                         date : date,
                         transporteur : transporteur,
+                        expediteur : expediteur,
                         lieu: lieu,
                         produit : produit,
                         conducteur : conducteur,
@@ -174,6 +183,7 @@
                                 var id = res.data[$i]['visite_id'];
                                 var inspecteur = res.data[$i]['visiteur'];
                                 var transporteur = res.data[$i]['nom_transporteur'];
+                                var expediteur = res.data[$i]['nom_expediteur'];
                                 var date = res.data[$i]['date'];
                                 var time = res.data[$i]['heure'];
                                 var lieu = res.data[$i]['localisation'];
@@ -188,6 +198,7 @@
                                 tr += "<td>"+ id +"</td>";
                                 tr += "<td>"+ inspecteur +"</td>";
                                 tr += "<td>"+ transporteur +"</td>";
+                                tr += "<td>"+ expediteur +"</td>";
                                 tr += "<td>"+ date +"</td>";
                                 tr += "<td>"+ time +"</td>";
                                 tr += "<td>"+ lieu +"</td>";

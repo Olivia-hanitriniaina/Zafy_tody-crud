@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit ('No direct script allowed');
-class Visite_emplisseur extends CI_Controller{
+class Visite_camion_opere extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('Visite_emplisseur_model');
+        $this->load->model('Visite_camion_opere_model');
         $this->load->library('pagination');
     }
 
@@ -12,7 +12,7 @@ class Visite_emplisseur extends CI_Controller{
         $data['connecter'] = $this->session->userdata['logged_in'];
         if(isset($data['connecter'])){
             $this->load->view('common/header',$data);
-            $this->load->view('Visite_emplisseur/visite_emplisseur_liste_view');
+            $this->load->view('Visite_camion_opere/visite_camion_opere_liste_view');
             $this->load->view('common/footer');
         }else{
             redirect('authentifiaction/','location');
@@ -25,11 +25,11 @@ class Visite_emplisseur extends CI_Controller{
             $rowno=($rowno-1)*$rowPerPage;
         }
  
-        $allcount=$this->Visite_emplisseur_model->get_count();
+        $allcount=$this->Visite_camion_opere_model->get_count();
  
-        $site=$this->Visite_emplisseur_model->get_all_visites($rowPerPage,$rowno);
+        $site=$this->Visite_camion_opere_model->get_all_visites($rowPerPage,$rowno);
  
-        $config['base_url'] = base_url().'visite_emplisseur/loadRecord';
+        $config['base_url'] = base_url().'visite_camion_opere/loadRecord';
          $config['use_page_numbers'] = TRUE;
          $config['total_rows'] = $allcount;
          $config['per_page'] = $rowPerPage;
@@ -59,11 +59,28 @@ class Visite_emplisseur extends CI_Controller{
     }
 
     public function search_visite(){
-        $station=$this->input->post('emplisseur_name');
-        $date=$this->input->post('date_visite');
-        $visiteur=$this->input->post('visiteur_name');
+        $data = array();
+        $inspecteur=$this->input->post('inspecteur');
+        $date=$this->input->post('date');
+        $transporteur=$this->input->post('transporteur');
+        $lieu=$this->input->post('lieu');
+        $produit=$this->input->post('produit');
+        $conducteur=$this->input->post('conducteur');
+        $tracteur=$this->input->post('tracteur');
+        $semi=$this->input->post('semi');
 
-        $data=$this->Visite_emplisseur_model->search_visite($station,$date,$visiteur);
+        $data['visitecamionstlbouteille.visa_inspecteur'] = $inspecteur;
+        $data['visite.date'] = $date;
+        $data['visitecamionstlbouteille.nom_transporteur'] = $transporteur;
+        $data['visitecamionstlbouteille.nom_expediteur'] = $expediteur;
+        $data['localisation.nom'] = $lieu;
+        $data['produit.nom'] = $produit;
+        $data['visitecamionstlbouteille.nom_conducteur'] = $conducteur;
+        $data['visitecamionstlbouteille.immatriculation_tracteur'] = $tracteur;
+        $data['visitecamionstlbouteille.immatriculation_semi_remorque'] = $semi;
+        
+
+        $data=$this->Visite_bouteilles_model->search_visite($data);
 
         $arr= array('success'=>true,'data'=>'');
 
@@ -79,11 +96,11 @@ class Visite_emplisseur extends CI_Controller{
     public function reponse_visite(){
         $data = array();
         $data['connecter'] = $this->session->userdata['logged_in'];
-        $id_station= $this->input->get('idstation');
-        $data['result']=$this->Visite_emplisseur_model->get_reponses( $id_station);
-        $data['station']=$this->Visite_emplisseur_model->get_all_visites_by_id($id_station);
+        $id_station= $this->input->get('idcamion');
+        $data['result']=$this->Visite_camion_opere_model->get_reponses($id_station);
+        $data['station']=$this->Visite_camion_opere_model->get_all_visites_by_id($id_station);
         $this->load->view('common/header',$data);
-        $this->load->view('Visite_emplisseur/questionnaire_visite_emplisseur_view',$data);
+        $this->load->view('Visite_Camion_opere/questionnaire_visite_camion_opere_view',$data);
         $this->load->view('common/footer');
     
     }

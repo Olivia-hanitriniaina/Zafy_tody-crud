@@ -25,6 +25,7 @@ class Visite_bouteilles_model extends CI_model{
             $this->db->from('visitecamionstlbouteille');
             $this->db->join('Visite','Visite.id=visite_id','inner');
             $this->db->join('Localisation','Localisation.id=localisation_id','inner');
+            $this->db->join('LocalisationType','Localisation.type_id=LocalisationType.id','inner');
             $this->db->join('Produit','Produit.id=produit_id','inner');
             $this->db->join('Utilisateur','Utilisateur.id=Visite.visiteur_id','inner');
            
@@ -42,6 +43,7 @@ class Visite_bouteilles_model extends CI_model{
             $this->db->from('visitecamionstlbouteille');
             $this->db->join('Visite','Visite.id=visite_id','inner');
             $this->db->join('Localisation','Localisation.id=localisation_id','inner');
+            $this->db->join('LocalisationType','Localisation.type_id=LocalisationType.id','inner');
             $this->db->join('Produit','Produit.id=produit_id','inner');
             $this->db->join('Utilisateur','Utilisateur.id=Visite.visiteur_id','inner');
             $this->db->where('visitecamionstlbouteille.visite_id',$id);
@@ -58,6 +60,7 @@ class Visite_bouteilles_model extends CI_model{
             $this->db->from('visitecamionstlbouteille');
             $this->db->join('Visite','Visite.id=visite_id','inner');
             $this->db->join('Localisation','Localisation.id=localisation_id','inner');
+            $this->db->join('LocalisationType','Localisation.type_id=LocalisationType.id','inner');
             $this->db->join('Produit','Produit.id=produit_id','inner');
             $this->db->join('Utilisateur','Utilisateur.id=Visite.visiteur_id','inner');
             foreach($data as $name => $value) {
