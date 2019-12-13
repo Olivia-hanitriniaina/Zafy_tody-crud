@@ -92,7 +92,7 @@ class Visite_station_model extends CI_model{
             $this->db->from('QuestionReponse');
             $this->db->join('Question','Question.id=question_id');
             $this->db->join('QuestionCategorie','QuestionCategorie.id=Question.categorie_id');
-            $this->db->join('QuestionSousCategorie','QuestionSousCategorie.id=Question.sous_categorie_id');
+            $this->db->join('QuestionSousCategorie','QuestionSousCategorie.id=Question.sous_categorie_id','left');
             $this->db->join('Visite','Visite.id=visite_id');
             $this->db->where(array('QuestionReponse.visite_id'=>$id_visite));
             $query=$this->db->get();

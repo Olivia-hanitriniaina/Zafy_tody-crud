@@ -15,7 +15,7 @@
         </div>
        
         <div class="col-md-3 zoom">
-            <a href="<?= base_url("/accueil/depot_aviation")?>" style="text-decoration:none;">
+            <a href="<?= base_url("Visite_depot")?>" style="text-decoration:none;">
                 <div class="card">
                     <h2 style="text-align:center ;color:black;" class="card-header">Dépôt aviation</h2>
                     <img class="card-body" src="<?= base_url()."assets/images/depot_aviation.jpg"?>" alt="depot_aviation" style="width:100%">
@@ -33,7 +33,7 @@
         </div>
        
         <div class="col-md-3 zoom">
-            <a href="<?= base_url("/accueil/controle_camion")?>" style="text-decoration:none;">
+            <a href="<?= base_url("Visite_control_camion")?>" style="text-decoration:none;">
                 <div class="card">
                     <h2 style="text-align:center ;color:black;" class="card-header">Contrôle camion</h2>
                     <img class="card-body" src="<?= base_url()."assets/images/controle_camion1.jpg"?>" alt="controle_camion" style="width:100%">
@@ -61,7 +61,7 @@
    
     <div class="row">
         <div class="col-md-3 zoom">
-            <a href="<?= base_url("/accueil/STL_camion")?>" style="text-decoration:none;">
+            <a href="<?= base_url("Visite_chantier")?>" style="text-decoration:none;">
             <div class="card">
                 <h2 style="text-align:center ;color:black;" class="card-header">HSE Chantier</h2>
                 <img class="card-body" src="<?= base_url()."assets/images/hse_chantier1.png"?>" alt="hse_chantier" style="width:100%">

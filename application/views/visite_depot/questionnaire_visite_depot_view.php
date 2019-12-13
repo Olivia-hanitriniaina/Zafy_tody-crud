@@ -13,15 +13,15 @@
   
 ?>
 <div class="container">
-        <?php foreach($station as $station){ ?>
+        <?php foreach($depots as $depot){ ?>
             <div class="well" style="text-align: center">
-            <h1>Tour de sécurité CODIR station service :  <?php echo $station->{'nom'}?></h1>
+            <h1>Fiche de visite du dépôt aviation :  <?php echo $depot->{'nom'}?></h1>
             </div>
             <ul>
-                <li>Date:  <?php echo $station->{'date'}?></li>
-                <li>Station service: <?php echo $station->{'nom'}?></li>
-                <li>Gérant :  <?php echo $station->{'gerant'}?></li>
-                <li>Visiteur:  <?php echo $station->{'visiteur'}?></li>
+                <li>Date:  <?php echo $depot->{'date'}?></li>
+                <li>Dépôt aviation: <?php echo $depot->{'nom'}?></li>
+                <li>Gérant :  <?php echo $depot->{'gerant'}?></li>
+                <li>Visiteur:  <?php echo $depot->{'visiteur'}?></li>
             </ul>
         <?php }?>
     <table class="table-bordered">
@@ -75,5 +75,4 @@
             
         </tbody>
     </table>
-   
 </div>

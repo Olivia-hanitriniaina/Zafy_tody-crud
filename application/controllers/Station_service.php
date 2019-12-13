@@ -5,7 +5,6 @@ class Station_service extends CI_Controller{
        parent::__construct();
        $this->load->helper('url');
        $this->load->model('Station_model');
-       $this->load->model('Questionnaire_Station_model');
        $this->load->library('pagination');
    }
 
