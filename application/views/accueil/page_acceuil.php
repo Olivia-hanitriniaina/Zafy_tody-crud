@@ -24,7 +24,7 @@
         </div>
        
         <div class="col-md-3 zoom">
-            <a href="<?= base_url("/accueil/centre_emplisseur")?>" style="text-decoration:none;">
+            <a href="<?= base_url("Visite_emplisseur")?>" style="text-decoration:none;">
                 <div class="card">
                     <h2 style="text-align:center ;color:black;" class="card-header">Centre emplisseur</h2>
                     <img class="card-body" src="<?= base_url()."assets/images/centre_emplisseur1.png"?>" alt="centre_emplisseur" style="width:100%">
@@ -42,7 +42,7 @@
         </div>
        
         <div class="col-md-3 zoom">
-            <a href="<?= base_url("/accueil/STL_bouteilles")?>" style="text-decoration:none;">
+            <a href="<?= base_url("Visite_bouteilles")?>" style="text-decoration:none;">
             <div class="card">
                 <h2 style="text-align:center ;color:black;" class="card-header">STL Bouteilles</h2>
                 <img class="card-body" src="<?= base_url()."assets/images/stl_bouteille1.png"?>" alt="stl_bouteille" style="width:100%">

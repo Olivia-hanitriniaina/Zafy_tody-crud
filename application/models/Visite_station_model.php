@@ -63,19 +63,19 @@ class Visite_station_model extends CI_model{
             $this->db->join('Utilisateur AS Visiteur','Visiteur.id=visiteur_id','inner');
             $this->db->join('Utilisateur AS Gerant','Gerant.id=responsable_id');
             if(!empty($station) AND !empty($date) AND !empty($visiteur)){//tous remplies
-                $this->db->or_like(array('Localisation.nom'=>$station,'Visite.date'=>$date,'visiteur'=>$visiteur));
+                $this->db->or_like(array('Localisation.nom'=>$station,'Visite.date'=>$date,'Visiteur.nom_complet'=>$visiteur));
             }elseif(!empty($station) AND !empty($date) AND empty($visiteur)){//2 inputs remplies
                 $this->db->or_like(array('Localisation.nom'=>$station,'Visite.date'=>$date));
             }elseif(!empty($station) AND empty($date) AND !empty($visiteur)){//2 inputs remplies
-                $this->db->or_like(array('Localisation.nom'=>$station,'visiteur'=>$visiteur));
+                $this->db->or_like(array('Localisation.nom'=>$station,'Visiteur.nom_complet'=>$visiteur));
             }elseif(empty($station) AND !empty($date) AND !empty($visiteur)){//2 inputs remplies
-                $this->db->or_like(array('Visite.date'=>$date,'visiteur'=>$visiteur));
+                $this->db->or_like(array('Visite.date'=>$date,'Visiteur.nom_complet'=>$visiteur));
             }elseif(!empty($station) AND empty($date) AND empty($visiteur)){//1 input remplie
                 $this->db->or_like(array('Localisation.nom'=>$station));
             }elseif(empty($station) AND !empty($date) AND empty($visiteur)){//1 input remplie
                 $this->db->or_like(array('Visite.date'=>$date));
             }elseif(empty($station) AND empty($date) AND !empty($visiteur)){//1 input remplie
-                $this->db->or_like(array('visiteur'=>$visiteur));
+                $this->db->or_like(array('Visiteur.nom_complet'=>$visiteur));
             }else{
 
             }    
@@ -92,7 +92,7 @@ class Visite_station_model extends CI_model{
             $this->db->from('QuestionReponse');
             $this->db->join('Question','Question.id=question_id');
             $this->db->join('QuestionCategorie','QuestionCategorie.id=Question.categorie_id');
-            $this->db->join('QuestionSousCategorie','QuestionSousCategorie.id=Question.sous_categorie_id');
+            $this->db->join('QuestionSousCategorie','QuestionSousCategorie.id=Question.sous_categorie_id','left');
             $this->db->join('Visite','Visite.id=visite_id');
             $this->db->where(array('QuestionReponse.visite_id'=>$id_visite));
             $query=$this->db->get();

@@ -20,7 +20,7 @@ class Visite_station extends CI_Controller{
     }
 
     public function loadRecord($rowno=0){
-        $rowPerPage=5;
+        $rowPerPage=4;
         if($rowno!=0){
             $rowno=($rowno-1)*$rowPerPage;
         }

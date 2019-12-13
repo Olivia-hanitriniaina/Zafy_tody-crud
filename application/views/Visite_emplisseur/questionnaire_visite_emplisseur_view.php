@@ -15,12 +15,10 @@
 <div class="container">
         <?php foreach($station as $station){ ?>
             <div class="well" style="text-align: center">
-            <h1>Tour de sécurité CODIR station service :  <?php echo $station->{'nom'}?></h1>
+            <h1>TOUR SECURITE CODIR  CENTRE EMPLISSEUR GPL - <?php echo $station->{'nom'}?></h1>
             </div>
             <ul>
                 <li>Date:  <?php echo $station->{'date'}?></li>
-                <li>Station service: <?php echo $station->{'nom'}?></li>
-                <li>Gérant :  <?php echo $station->{'gerant'}?></li>
                 <li>Visiteur:  <?php echo $station->{'visiteur'}?></li>
             </ul>
         <?php }?>
