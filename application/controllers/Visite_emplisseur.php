@@ -80,7 +80,7 @@ class Visite_emplisseur extends CI_Controller{
         $data = array();
         $data['connecter'] = $this->session->userdata['logged_in'];
         $id_station= $this->input->get('idstation');
-        $data['result']=$this->Visite_emplisseur_model->get_reponses( $id_station);
+        $data['result']=$this->Visite_emplisseur_model->get_reponses(3);
         $data['station']=$this->Visite_emplisseur_model->get_all_visites_by_id($id_station);
         $this->load->view('common/header',$data);
         $this->load->view('Visite_emplisseur/questionnaire_visite_emplisseur_view',$data);
