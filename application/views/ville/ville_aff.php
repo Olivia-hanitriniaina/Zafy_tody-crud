@@ -4,7 +4,7 @@
         color:red;
     }
 </style>
-<div class="container">
+<div class="container main_content">
     <h2>Ville</h2>
     <div class="card">
       

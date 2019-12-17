@@ -11,7 +11,7 @@
     }
 ?>
 
-<div class="container">
+<div class="container main_content">
     <?php foreach($chantiers as $chantier):?>
         <div id="titre">
             <h1 style="text-align: center">VISITE INOPINE CHANTIER - TOTAL MADAGASCAR</h1>

@@ -12,7 +12,7 @@
     };
   
 ?>
-<div class="container">
+<div class="container main_content">
         <?php foreach($station as $station){ ?>
             <div class="well" style="text-align: center">
             <h1>Tour de sécurité CODIR station service :  <?php echo $station->{'nom'}?></h1>

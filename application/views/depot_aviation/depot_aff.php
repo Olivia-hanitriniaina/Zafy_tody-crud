@@ -5,7 +5,7 @@
     }
 </style>
 
-<div class="container">
+<div class="container main_content">
     <h2>Dépôt aviation</h2>
     <div class="card">
       

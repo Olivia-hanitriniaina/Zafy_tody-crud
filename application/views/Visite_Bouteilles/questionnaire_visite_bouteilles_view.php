@@ -12,7 +12,7 @@
     };
   
 ?>
-<div class="container">
+<div class="container main_content">
     <div class="well" style="text-align: center">
          <h1>SAFE TO LOAD (CAMION OPERE GPL CONDITIONNE) </h1>
     </div>

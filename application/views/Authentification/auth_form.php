@@ -14,10 +14,9 @@
 
 </head>
 <body>
-        
-
-    <?php $this->load->helper('form') ?>
-   
+    <div class="container-fluid page_login">
+        <?php $this->load->helper('form') ?>
+    
     <div class="container">
         <img src="<?=base_url('/assets/images/logo.png')?>" alt="logo" id="logo">
         <?= form_open('authentification/user_login',array('class'=>'form')) ?>
@@ -34,6 +33,7 @@
 
             <div class="form-group">
                 <button type="submit" name="login" id="login" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Se connecter</button>
+                <a id="mdp_oublie" href="#">Mot de passe oublié ?</a>
             </div>
             <!--Déclération des 2 variables contenant les erreurs dans les inputs -->
             <?php 
@@ -54,8 +54,8 @@
             <?php endif;?>           
         </fieldset>
         <?= form_close()?>
+   </div>   
     </div>
-
     <script src="<?=base_url('/assets/js/jquery.min.js')?>"></script>
     <script src="<?=base_url('/assets/js/bootstrap.min.js')?>"></script>
    

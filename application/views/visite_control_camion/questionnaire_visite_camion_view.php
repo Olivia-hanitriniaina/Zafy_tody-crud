@@ -15,7 +15,7 @@ $objet_filtrer=array();
   
 ?>
 
-<div class="container">
+<div class="container main_content">
     <?php foreach ($camions as $camion): ?>
         <div class="en-tete container-fluid" style="background-color:lightgrey">
             <div class="row">

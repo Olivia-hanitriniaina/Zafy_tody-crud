@@ -12,7 +12,7 @@
         margin-left: 15px;
     }
 </style>
-<div class="container">
+<div class="container main_content">
     <h2>Liste des visites de chantier</h2>
     <div class="card">
         <!--Barre de recherche et pagination-->

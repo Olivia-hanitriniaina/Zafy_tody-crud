@@ -12,7 +12,7 @@
     };
   
 ?>
-<div class="container">
+<div class="container main_content">
         <?php foreach($station as $station){ ?>
             <div class="well" style="text-align: center">
             <h1>TOUR SECURITE CODIR  CENTRE EMPLISSEUR GPL - <?php echo $station->{'nom'}?></h1>

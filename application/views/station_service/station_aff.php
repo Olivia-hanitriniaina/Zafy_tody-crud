@@ -5,7 +5,7 @@
     }
 </style>
 
-<div class="container" id="container">
+<div class="container main_content" id="container">
     <h2>Station service</h2>
     
     <div class="card">

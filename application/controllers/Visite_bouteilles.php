@@ -12,7 +12,7 @@ class Visite_bouteilles extends CI_Controller{
         $data['connecter'] = $this->session->userdata['logged_in'];
         if(isset($data['connecter'])){
             $this->load->view('common/header',$data);
-            $this->load->view('Visite_bouteilles/visite_bouteilles_liste_view');
+            $this->load->view('Visite_Bouteilles/visite_bouteilles_liste_view');
             $this->load->view('common/footer');
         }else{
             redirect('authentifiaction/','location');

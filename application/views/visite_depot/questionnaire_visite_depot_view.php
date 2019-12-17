@@ -12,7 +12,7 @@
     };
   
 ?>
-<div class="container">
+<div class="container main_content">
         <?php foreach($depots as $depot){ ?>
             <div class="well" style="text-align: center">
             <h1>Fiche de visite du dépôt aviation :  <?php echo $depot->{'nom'}?></h1>
