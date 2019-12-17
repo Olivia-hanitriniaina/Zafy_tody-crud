@@ -59,7 +59,7 @@
        </table>
    </div>
 
-
+</div> 
 
     <!--Modal for add & edit users-->
     <div class="modal fade" id="ajax-user-modal" aria-hidden="true">²
@@ -379,3 +379,4 @@
         })
     }
     </script>
+   
