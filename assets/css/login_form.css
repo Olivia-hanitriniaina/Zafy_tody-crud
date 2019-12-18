@@ -13,11 +13,11 @@ body,html{
   height: 100%;
 }
 div.container{
-  width: 50%;
-  margin-top: 12%;
+  width: 40%;
+  margin-top: 15%;
   border: 2px solid white ;
   border-radius:2%;
-  background-color:hsl(0, 0%, 96%);
+  background-color:white;
 }
 div.alert.alert-danger{
   width: 50%;
@@ -28,10 +28,10 @@ div.alert.alert-danger{
 #login{
   background-color: rgba(245,151,0);
   border: none;
-  margin-left:40%;
+  margin-left:45%;
 }
 #mdp_oublie{
-  margin-left:25px;
+  margin-left:12px;
   text-decoration: none;
   color:black;
 }
@@ -39,5 +39,5 @@ div.alert.alert-danger{
   color:red;
 }
 #logo{
-  margin-left:30%;
+  margin-left:25%;
 }

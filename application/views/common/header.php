@@ -15,6 +15,7 @@
     <!--<link rel="stylesheet" href="<?=base_url('/assets/css/recherche.css')?>"> -->
     <link rel="stylesheet" href="<?=base_url('/assets/css/font-awesome.min.css')?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="<?=base_url('/assets/Fonts/San francisco/SF-Pro-Text-Regular.otf')?>">
 
     <!-- Stylesheet
         ================================================== -->
@@ -34,7 +35,7 @@
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" id="navbar">
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" style="margin-right:5px"> 
         <li>
             <a href=""><?= $this->session->userdata['logged_in']['fullname'] ?>  <i class='fa fa-user'></i></a>  
         </li>
@@ -46,17 +47,17 @@
 
 <div class="wrapper">
     <div class="sidebar">
-        <img src="<?=base_url().'assets/images/logo.png'?>" alt="logo_total">
+        <img src="<?=base_url().'assets/images/logo.png'?>" alt="logo_total" style="width:80%;margin-top:22px">
         <ul>
             <?php if (isset($this->session->userdata['logged_in'])):?>
-                <li><?=anchor("accueil/acceuil"," Accueil",array('class'=>'fa fa-home'))?></li>
+                <li> <a href="<?=base_url().'accueil/acceuil'?>"> <i class="fa fa-home"></i> Accueil</a></li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" style="background-color:transparent" id="dropdown"> <i class="fa fa-list" ></i> Liste déroulante <b class="caret"></b></a>
                     <ul id="dropdown-menu">
                            
                     </ul>
                 </li>
-                <li><?=anchor("gestion_utilisateur/","  Gestion utilisateur",array('class'=>'fa fa-users'))?></li>
+                <li><a href="<?=base_url().'gestion_utilisateur/'?>"> <i class="fa fa-users"></i> Gestion des utilisateurs</a></li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" style="background-color:transparent" id="dropdown2"> <i class="fa fa-clipboard" ></i> Les visites <b class="caret"></b></a>
                     <ul id="dropdown-menu2">

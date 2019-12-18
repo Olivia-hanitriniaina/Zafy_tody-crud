@@ -3,30 +3,40 @@
         font-size: 0.8em;
     }
     #pagination{
-        margin-left:-90%;
+        margin-top: -15px;
+        margin-left:-88.4%;
     }
 
     #find{
-       margin-left: 62% ;
+       margin-left: 61.6% ;
        margin-top:-3% ;
     }
     /** Error message input modal */
     .error{
         color:red;
     }
+    #edit-users,#delete-users{
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+    #delete-users{
+        color:red;
+        margin-left: 20px;
+    }
+    #gestion_utilisateur{
+        overflow: hidden;
+    }
 </style>
 
-<div class="container main_content">
+<div class="container main_content" id="gestion_utilisateur">
     <?php $session=$this->session->userdata['logged_in'];?>
-
-    <h2>Gestion des utilisateurs</h2>
-    <br>
-
-    <div id="pagination"></div>
-
+    <div class="titre" >
+        <h2 style="color:grey"><i class="fa fa-users"></i> Gestion des utilisateurs</h2>
+    </div>
+    
     <div class="row">
         <div class="col-md-6">
-            <a href="javascript:void(0)" class="btn btn-success ml-3" id="ajouter-user"> <i class="fa fa-plus"></i> Ajouter</a>
+            <a href="javascript:void(0)" class="btn btn-default ml-3" style="background-color: #80b0d1;color:white" id="ajouter-user"> <i class="fa fa-plus"></i> Ajouter</a>
         </div>
 
         <div class="col-md-6" id='find'>
@@ -35,7 +45,7 @@
                     <input type="text" name="users" id="users" class='form-control input-sm' placeholder="Rechercher utilisateur ...">
                 </div>
                 <div class="col-xs-6">
-                    <a href="javascript:void(0)" id="user-serach" class="btn btn-warning"><i class='fa fa-search'></i> Rechercher</a>
+                    <a href="javascript:void(0)" id="user-serach" class="btn btn-default" style="background-color: #80b0d1;color:white"><i class='fa fa-search'></i> Rechercher</a>
                 </div>
             </div>
         </div>
@@ -43,7 +53,7 @@
     
    <div class="table">
        <table class="table table-bordered" id="users_liste">
-            <thead>
+            <thead style="background-color: #80b0d1;color:white">
                 <tr>
                     <th>Nom d'utilisateur</th>
                     <th>Nom et Prénom</th>
@@ -58,6 +68,7 @@
             </tbody>
        </table>
    </div>
+   <div id="pagination"></div>
 
 </div> 
 
@@ -185,7 +196,7 @@
                     tr += "<td>"+ nom_complet +"</td>";
                     tr += "<td>"+ adresse_email +"</td>";
                     tr += "<td>"+ fonction +"</td>";
-                    tr+= "<td> <a class='btn btn-info' id='edit-users' data-id='"+id+"'>  <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-users' data-id='"+id+"' data-name='"+nom_utilisateur+"'> <i class='fa fa-trash'></i> </a></td>"
+                    tr+= "<td> <a id='edit-users' data-id='"+id+"'>  <i class='fa fa-edit'></i> </a> <a  id='delete-users' data-id='"+id+"' data-name='"+nom_utilisateur+"'> <i class='fa fa-trash'></i> </a></td>"
                     tr += "</tr>";
                     $('#users_liste tbody').append(tr);
     
@@ -215,7 +226,7 @@
                                 tr += "<td>"+ res.data[$i]['nom_complet'] +"</td>";
                                 tr += "<td>"+ res.data[$i]['adresse_email'] +"</td>";
                                 tr += "<td>"+ res.data[$i]['label'] +"</td>";
-                                tr+= "<td> <a class='btn btn-info' id='edit-users' data-id='"+id+"'>  <i class='fa fa-edit'></i> </a> <a class='btn btn-danger' id='delete-users' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
+                                tr+= "<td> <a  id='edit-users' data-id='"+id+"'>  <i class='fa fa-edit'></i> </a> <a  id='delete-users' data-id='"+id+"' data-name='"+name+"'> <i class='fa fa-trash'></i> </a></td>"
                                 tr += "</tr>";
                                 $('#users_liste tbody').append(tr);
                         }
@@ -349,7 +360,7 @@
                     
                     success: function(res){
                         var user='<tr id="user_id_'+ res.data.id + '"><td>' + res.data.id + '</td><td>' + res.data.login + '</td><td>' + res.data.fullname + '</td><td>'+ '</td><td>' + res.data.profil_id + '</td><td>' + res.data.adress_email + '</td><td>';
-                        user+= '<td><a href="javascript:void(0)" id="edit-user" data-id="' + res.data.id + '"class="btn btn-info">Modifier</a><a href="javascript:void(0)" id="delete-user" data-id="' + res.data.id + '"class="btn btn-danger delete-user">Supprimer</a></td></tr>';
+                        user+= '<td><a href="javascript:void(0)" id="edit-user" data-id="' + res.data.id + '>Modifier</a><a href="javascript:void(0)" id="delete-user" data-id="' + res.data.id + 'delete-user">Supprimer</a></td></tr>';
 
                         if(actionType =="create-user"){
                             
