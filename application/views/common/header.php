@@ -36,79 +36,12 @@
 <body>
 <div class="navbar navbar-default navbar-fixed-top" id="navbar">
     <ul class="nav navbar-nav navbar-right" style="margin-right:5px"> 
-        <li>
-            <a href=""><?= $this->session->userdata['logged_in']['fullname'] ?>  <i class='fa fa-user'></i></a>  
-        </li>
+        
         <li>
             <a href="<?=base_url('/authentification/logout')?>"> Se déconnecter  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
         </li>
     </ul>
 </div>
-
-<div class="wrapper">
-    <div class="sidebar">
-        <img src="<?=base_url().'assets/images/logo.png'?>" alt="logo_total" style="width:80%;margin-top:22px">
-        <ul>
-            <?php if (isset($this->session->userdata['logged_in'])):?>
-                <li> <a href="<?=base_url().'accueil/acceuil'?>"> <i class="fa fa-home"></i> Accueil</a></li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" style="background-color:transparent" id="dropdown"> <i class="fa fa-list" ></i> Liste déroulante <b class="caret"></b></a>
-                    <ul id="dropdown-menu">
-                           
-                    </ul>
-                </li>
-                <li><a href="<?=base_url().'gestion_utilisateur/'?>"> <i class="fa fa-users"></i> Gestion des utilisateurs</a></li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" style="background-color:transparent" id="dropdown2"> <i class="fa fa-clipboard" ></i> Les visites <b class="caret"></b></a>
-                    <ul id="dropdown-menu2">
-                           
-                    </ul>
-                </li>
-            <?php else: ?>
-                <?php redirect('authentification/') ?>
-            <?php endif; ?> 
-        </ul>    
-    </div>
     <script>
-        $(document).ready(function(){
-            var status=false;
-            $('#dropdown').click(function(){
-                var li='';
-                li+='<li>'+'<?=anchor("station_service/","Station service")?>'+'</li>';
-                li+='<li>'+'<?=anchor("depot_aviation/","Dépôt aviation")?>'+'</li>';
-                li+='<li>'+'<?=anchor("centre_emplisseur/","Centre emplisseur")?>'+'</li>';
-                li+='<li>'+'<?=anchor("ville/","Ville")?>'+'</li>';
-                li+='<li>'+'<?=anchor("site/","Site")?>'+'</li>';
-                li+='<li>'+'<?=anchor("lieu/","Lieu")?>'+'</li>';
-                li+='<li>'+'<?=anchor("produit/","Produit")?>'+'</li>';
 
-                if(status==false){
-                    $('#dropdown-menu').append(li);
-                    status=true;
-                }else{
-                    $('#dropdown-menu').children('li').remove();
-                    status=false;
-                }
-                
-            });
-            $('#dropdown2').click(function(){
-                var li='';
-                li+='<li>'+'<?=anchor("Visite_station/","Tour sécurité CODIR station service")?>'+'</li>';
-                li+='<li>'+'<?=anchor("Visite_depot/","Tour sécurité CODIR dépôt aviation")?>'+'</li>';
-                li+='<li>'+'<?=anchor("Visite_centre/","Tour sécurité CODIR centre emplisseur")?>'+'</li>';
-                li+='<li>'+'<?=anchor("Visite_control_camion/","Contrôle camion")?>'+'</li>';
-                li+='<li>'+'<?=anchor("Visite_chantier/","HSE Chantier")?>'+'</li>';
-                li+='<li>'+'<?=anchor("Visite_bouteilles","STL Bouteilles")?>'+'</li>';
-                li+='<li>'+'<?=anchor("produit/","STL Camion opéré")?>'+'</li>';
-
-                if(status==false){
-                    $('#dropdown-menu2').append(li);
-                    status=true;
-                }else{
-                    $('#dropdown-menu2').children('li').remove();
-                    status=false;
-                }
-                
-            });
-        });
     </script>

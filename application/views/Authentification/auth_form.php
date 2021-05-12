@@ -18,27 +18,27 @@
         <?php $this->load->helper('form') ?>
     
     <div class="container">
-        <img src="<?=base_url('/assets/images/logo.png')?>" alt="logo" id="logo">
+        <h2 style="text-align:center">Se Connecter</h2>
         <?= form_open('authentification/user_login',array('class'=>'form')) ?>
         <fieldset class="scheduler-border">
             <div class="form-group">
-                <?= form_label("Nom d'utilisateur&nbsp:","username")?>
-                <?= form_input(['name'=>'username','id'=>'username','class'=>'form-control'],set_value('username'))?>
+                <?= form_label("Email d'utilisateur&nbsp:","email")?>
+                <?= form_input(['name'=>'email','id'=>'email','class'=>'form-control'],set_value('email'))?>
             </div>
 
             <div class="form-group"> 
-                <?= form_label("Mot de passe&nbsp:","password")?>
-                <?= form_password(['name'=>'password','id'=>'password','class'=>'form-control'],set_value('password'))?>
+                <?= form_label("Mot de passe&nbsp:","mdp")?>
+                <?= form_password(['name'=>'mdp','id'=>'mdp','class'=>'form-control'],set_value('mdp'))?>
             </div>
 
             <div class="form-group">
                 <button type="submit" name="login" id="login" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Se connecter</button>
-                <a id="mdp_oublie" href="#">Mot de passe oublié ?</a>
+                <a href= "<?=base_url('accueil/inscription')?>" id="mdp_oublie" href="#">S'inscrire</a>
             </div>
             <!--Déclération des 2 variables contenant les erreurs dans les inputs -->
             <?php 
-                $login_error=form_error('username');
-                $passeword_error=form_error('password');
+                $login_error=form_error('email');
+                $passeword_error=form_error('mdp');
             ?>
             <!-- Gestion des erreurs -->
             <?php if(!empty($error)): ?>

@@ -6,44 +6,33 @@ class Authentification extends CI_Controller{
     }
 
     public function index(){
-      if(isset($this->session->userdata['logged_in'])){
-        redirect('accueil/acceuil','location');
-      }else{
         $this->load->view('Authentification/auth_form.php');
-      }
     }
 
     public function user_login(){
-        $this->form_validation->set_rules('username','Nom d utilisateur','trim|required|xss_clean');
-        $this->form_validation->set_rules('password','Mot de passe','trim|required|xss_clean');
+        $this->form_validation->set_rules('email','Nom d utilisateur','trim|required|xss_clean');
+        $this->form_validation->set_rules('mdp','Mot de passe','trim|required|xss_clean');
         
         if($this->form_validation->run()==FALSE){
-            if(isset($this->session->userdata['logged_in'])){
-                redirect('accueil/acceuil','location');
-            }else{
                 $this->load->view('Authentification/auth_form.php');
-            }
         }else{
             $data=array(
-                'login'=>$this->input->post('username'),
-                'password'=>$this->input->post('password')
+                'email'=>$this->input->post('email'),
+                'mdp'=>$this->input->post('mdp')
             );
-            $result=$this->auth_model->login($data);
-
+            $result=$this->auth_model->login($this->input->post('email'),$this->input->post('mdp'));
             if($result==TRUE){
-                $username=$this->input->post('username');
-                $result=$this->auth_model->read_user_information($username);
+                $email=$this->input->post('email');
+                $result=$this->auth_model->read_user_information($email);
                 
                 if($result!=FALSE){
-                    $session_data=array(
-                        'id'=>$result[0]->id,
-                        'login'=>$result[0]->nom_utilisateur,
-                        'fullname'=>$result[0]->nom_complet,
-                        'adresse_email'=>$result[0]->adresse_email
-                    );
-
-                    $this->session->set_userdata('logged_in',$session_data);
-                    redirect('accueil/acceuil','location');
+                    var_dump($result[0]->role);
+                    if($result[0]->role ==0){
+                        redirect('accueil/acceuil');
+                    }
+                   else {
+                    redirect('accueil/admin');
+                   }
                 }
             }else{
                 $data=array(
@@ -54,12 +43,31 @@ class Authentification extends CI_Controller{
         }
     }
 
-    public function logout(){
-        $session=$this->session->userdata['logged_in'];
-        $array_items=array('id','login','fullname','adresse_email');
-        if(isset($session)){
-            $this->session->unset_userdata('logged_in',$array_items);
-            redirect('authentification/');
+
+    public function inscription(){
+        if($this->input->post('mdp') != $this->input->post('confirm')){
+
+            $data['message']= "password invalide";
+            $this->load->view('Authentification/inscription_form',$data);
         }
+        else{
+            $data=array(
+                'mdp'=>$this->input->post('mdp'),
+                'prenom'=>$this->input->post('prenom'),
+                'nom'=>$this->input->post('nom'),
+                'role'=>$this->input->post('role'),
+                'email'=>$this->input->post('email'),
+                'number'=>$this->input->post('numero'),
+                'ville'=>$this->input->post('ville'),
+           );
+           $result=$this->auth_model->create($data);
+           $this->load->view('Authentification/auth_form.php');
+        }
+       
+    }
+
+    
+    public function logout(){
+            redirect('authentification/');
     } 
 }
